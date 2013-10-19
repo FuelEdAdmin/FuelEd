@@ -1,0 +1,37 @@
+body{
+	text-align: center;
+	maring:0px;
+	padding:0px;
+}
+
+#main{
+	width:700px;
+	margin-right: auto;
+	margin-left: auto;
+}
+
+login_header{
+	border-bottom: 1px;
+	display: inline;
+}
+
+nav ul{
+	list-style:none;
+}
+
+nav li {
+	display: inline;
+	padding: 0px;
+}
+
+nav a{
+	color: black;
+}
+
+nav a:visited {
+	color: black;
+}
+
+nav a:hover {
+	text-shadow: 1px 1px 1px #333;
+}
