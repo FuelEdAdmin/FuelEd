@@ -10,20 +10,16 @@ body{
 /*Header css*/
 
 h1{
-	font-family: 'League Gothic';
-	font-size: 600%;
-	letter-spacing: 1px;
+	font-family: 'Oswald', 'League Gothic';
+	font-size: 550%;
 	color:#8dc729;
-	font-weight: 200;
 	margin:10px;
 }
 
 h2{
-	font-family: 'League Gothic';
-	font-size: 300%;
-	letter-spacing: 1px;
+	font-family: 'Oswald', 'League Gothic';
+	font-size: 250%;
 	color:#8dc729;
-	font-weight: 200;
 	margin:0px;
 	padding:0px;
 }
@@ -180,6 +176,7 @@ a:hover {
 .day-box th {
 	background: white;
 	padding:40px;
+	width:20%;
 }
 
 /*Placeholder footer css for possible copyright statements or quicklinks*/
@@ -188,4 +185,20 @@ footer{
 	position:absolute;
     bottom:0;
     right:0;
+}
+
+/*fonts*/
+
+@font-face {
+  font-family: 'Raleway';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Raleway'), url(http://themes.googleusercontent.com/static/fonts/raleway/v6/cIFypx4yrWPDz3zOxk7hIQLUuEpTyoUstqEm5AMlJo4.woff) format('woff');
+}
+
+@font-face {
+  font-family: 'Oswald';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Oswald Regular'), local('Oswald-Regular'), url(http://themes.googleusercontent.com/static/fonts/oswald/v7/qpy-UiLNKP-VfOdbcs6r6-vvDin1pK8aKteLpeZ5c0A.woff) format('woff');
 }
