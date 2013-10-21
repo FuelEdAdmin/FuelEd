@@ -2,25 +2,92 @@
 <html>
 <head>
 	<title>FuelEd</title>
-	<link rel="stylesheet" href="fueled.css" type="text/css">
+	<link rel="stylesheet" href="../../assets/stylesheets/application.css" type="text/css">
 </head>
 
 <body>
 	<div id="main">
-		<div id="login_header">
-			<h1>FuelEd</h1>
-			<h3>User Portal</h3>
+		<div id="header-main" class="header">
+			<div id="title">
+				<h1 class= "inline">FuelEd</h1>
+				<h3 class= "inline">USER PORTAL</h3>
+			</div>
 			<nav>
 				<ul>
-					<li>Username: <input type="text" name="username"></li>
-            		<li>Password: <input type="text" name="username"></li>
-            		<li class="button"><a href="main.html">Login</a></li>
+					<li><a class="button-square" href="#">profile</a></li>
+					<li><a class="button-square" href="#">calendar</a></li>
+            		<li><a class="button-square" href="#">settings</a></li>
 				</ul>
 			</nav>
+			<div class="clear"></div>
 		</div>
 		<div id= "content">
-			<h2>welcome</h2>
-			<p id="login_welcomebox"> Test test test woooo</p>  
+			
+			<div id="sidebar">
+				<div class="button-pink" id="appointment">
+					<a href="#"><h3>Add an appointment</h3></a>
+				</div>
+				<div id="news">
+					<h2>news</h2>
+					<p class="textbox"> FuelEd recently received news of cornerstone grants from several foundations and donors. This infusion will enable us to build staff on the ground in Houston where we will establish our first sustainable site that can be replicated nationwide.  
+				</div>
+				<div id="workshops">
+					<h2>workshops</h2>
+					<p class="textbox"> FuelEd introduces its Openness to Learning module to teachers and administrators at YES Prep Southwest.</p>  
+				</div>
+			</div>
+			<div id="calendar">
+				<h2>My Appointments</h2>
+				<div class="textbox"> 
+					<table>
+						<tr class = "day-label">
+							<th><h3>monday</h3></th>
+							<th><h3>tuesday</h3></th>
+							<th><h3>wednesday</h3></th>
+							<th><h3>thursday</h3></th>
+							<th><h3>friday</h3></th>
+						</tr>
+						<tr class="day-box">
+							<th></th>
+							<th></th>
+							<th></th>
+							<th></th>
+							<th></th>
+						</tr>
+						<tr class="day-box">
+							<th></th>
+							<th></th>
+							<th></th>
+							<th></th>
+							<th></th>
+						</tr>
+						<tr class="day-box">
+							<th></th>
+							<th></th>
+							<th></th>
+							<th></th>
+							<th></th>
+						</tr>
+						<tr class="day-box">
+							<th></th>
+							<th></th>
+							<th></th>
+							<th></th>
+							<th></th>
+						</tr>
+						<tr class="day-box">
+							<th></th>
+							<th></th>
+							<th></th>
+							<th></th>
+							<th></th>
+						</tr>
+					</table>
+				</div> 
+			</div>
+		</div>
+		<div class="clear"></div>
+		<div id="footer">
 		</div>
 	</div>
 </body>
