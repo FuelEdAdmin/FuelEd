@@ -1,0 +1,79 @@
+-#  This file is app/views/index/index.html.haml
+
+
+%div#main
+  %div{:id => "header-main", :class => "header"}
+    %div{:id => "title"}
+      %h1.inline
+        =image_tag "fueled_logo.jpg", :height => "150px"
+      %h3.inline USER PORTAL
+
+    %nav
+      %ul
+        %li=link_to "profile", "#", :class => "button-square"
+        %li=link_to "calendar", "#", :class => "button-square"
+        %li=link_to "settings", "#", :class => "button-square"
+
+    %div.clear
+
+  %div{:id => "content"}
+
+    %div{:id => "sidebar"}
+      %div{:class => "button-pink", :id => "appointment"}
+        %h3=link_to "Add an Appointment", "#"
+      %div{:id => "news"}
+        %h2 news
+        %p.textbox FuelEd recently received news of cornerstone grants from several foundations and donors. This infusion will enable us to build staff on the ground in Houston where we will establish our first sustainable site that can be replicated nationwide.
+      %div{:id => "workshops"}
+        %h2 workshops
+        %p.textbox FuelEd introduces its Openness to Learning module to teachers and administrators at YES Prep Southwest.
+
+    %div{:id => "calendar"}
+      %h2 my appointments
+      %div.textbox
+        %table
+          %tr{:class => "day-label"}
+            %th
+              %h3 monday
+            %th
+              %h3 tuesday
+            %th
+              %h3 wednesday
+            %th
+              %h3 thursday
+            %th
+              %h3 friday
+          %tr{:class => "day-box"}
+            %th
+            %th
+            %th
+            %th
+            %th
+          %tr{:class => "day-box"}
+            %th
+            %th
+            %th
+            %th
+            %th
+          %tr{:class => "day-box"}
+            %th
+            %th
+            %th
+            %th
+            %th
+          %tr{:class => "day-box"}
+            %th
+            %th
+            %th
+            %th
+            %th
+          %tr{:class => "day-box"}
+            %th
+            %th
+            %th
+            %th
+            %th
+
+
+    %div.clear
+    %div{:id => "footer"}
