@@ -1,0 +1,19 @@
+<h1>Listing appointments</h1>
+ 
+<table>
+  <tr>
+    <th>Client</th>
+    <th>Intern</th>
+    <th>Start</th>
+    <th>End</th>
+  </tr>
+ 
+  <% @appointments.each do |appointment| %>
+    <tr>
+      <td><%= appointment.client %></td>
+      <td><%= appointment.intern %></td>
+      <td><%= appointment.start %></td>
+      <td><%= appointment.end %></td>
+    </tr>
+  <% end %>
+</table>

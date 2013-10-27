@@ -1,10 +1,17 @@
 class CreateAppointments < ActiveRecord::Migration
-  def change
-    create_table :appointments do |t|
-      t.string :client
-      t.string :intern
+	# validates :client, :presence => true
+	# validates :intern, :presence => true
+	# validates :start, :presence => true
+	# validates :end, :presence => true
 
-      t.timestamps
-    end
-  end
+	def change
+		create_table :appointments do |t|
+			t.string :client
+			t.string :intern
+			t.integer :start
+			t.integer :end
+
+			t.timestamps
+		end
+	end
 end
