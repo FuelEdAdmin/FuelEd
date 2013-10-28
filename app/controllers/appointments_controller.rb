@@ -3,9 +3,10 @@ class AppointmentsController < ApplicationController
 	end
 
 	def create
-		@appointment = Appointment.new(params[:appointment].permit(:client, :intern, :start, :end))
+		@appointment = Appointment.new(params[:appointment].permit(:client, :intern, :date, :start, :end))
 		  
 		@appointment.save
+		flash[:alert] = "You have successfully made an appointment!"
 		redirect_to @appointment
 	end
 
