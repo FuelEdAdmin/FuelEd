@@ -14,6 +14,14 @@ group :production do
   gem 'pg'
 end
 
+#gem 'bcrypt-ruby', '~> 3.0.0' #omniauth??
+gem 'omniauth'
+#FOR LATER IF WE WANT TO USE OTHER PROVIDES FOR AUTHENTICATION
+#gem 'omniauth-twitter'
+#gem 'omniauth-facebook'
+#gem 'omniauth-google-oauth2'
+gem 'omniauth-identity'
+
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
 
