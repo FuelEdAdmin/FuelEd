@@ -3,7 +3,7 @@ require 'spec_helper'
 describe UsersController do
 
   before :each do
-    @fake_user = mock("user")
+    @fake_user = double("user")
   end
 
   describe "logging in" do
