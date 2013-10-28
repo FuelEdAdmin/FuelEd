@@ -14,5 +14,4 @@ describe Appointment do
     end
 
   end
-
 end
