@@ -16,6 +16,11 @@ FuelEd::Application.routes.draw do
   # Example resource route (maps HTTP verbs to controller actions automatically):
   resources :appointments
 
+  # routing to session controller after successful login authentication
+  #INCOMPLETE (from omniauth webcast) 
+  match "/auth/:provider/callback" => "sessions#create", via: :get
+  match "/signout" => "sessions#destroy", :as => :signout, via: :get
+ 
   # Example resource route with options:
   #   resources :products do
   #     member do
