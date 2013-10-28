@@ -1,5 +1,5 @@
 class CreateAppointments < ActiveRecord::Migration
-	def change
+	def up
 		create_table :appointments do |t|
 			t.string :client
 			t.string :intern
@@ -10,4 +10,9 @@ class CreateAppointments < ActiveRecord::Migration
 			t.timestamps
 		end
 	end
+
+  def down
+    drop_table :appointments
+  end
+
 end

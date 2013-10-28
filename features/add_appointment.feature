@@ -10,7 +10,7 @@ Background:
   And I fill in "Intern" with "Christine Loh"
 
 Scenario: Add an appointment
-  #And I fill in "Date" with "12/10/2014"
+  And I fill in "Date" with "12/10/2014"
   And I fill in "Start" with "1400"
   And I fill in "End" with "1450"
   And I press "Save Appointment"
@@ -20,7 +20,7 @@ Scenario: Add an appointment
   Then I should see "1450"
 
 Scenario: Add an appointment (unhappy - bad time argument)
-  #And I fill in "Date" with "12/10/2014"
+  And I fill in "Date" with "12/10/2014"
   And I fill in "Start" with "1400"
   And I fill in "End" with "1300"
   And I press "Save Appointment"
@@ -28,7 +28,7 @@ Scenario: Add an appointment (unhappy - bad time argument)
   #Then I should see "Start Time format incorrect"
 
 Scenario: Add an appointment (unhappy - bad time argument)
-  #And I fill in "Date" with "12/10/2014"
+  And I fill in "Date" with "12/10/2014"
   And I fill in "Start" with "-7"
   And I fill in "End" with "1450"
   And I press "Save Appointment"
