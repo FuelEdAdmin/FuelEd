@@ -1,0 +1,30 @@
+<%= form_for :appointment, url: appointments_path do |f| %>
+  <p>
+    <%= f.label :client %><br>
+    <%= f.text_field :client %>
+  </p>
+ 
+  <p>
+    <%= f.label :intern %><br>
+    <%= f.text_field :intern %>
+  </p>
+
+  <p>
+    <%= f.label :date %><br>
+    <%= f.text_field :date %>
+  </p>
+
+  <p>
+    <%= f.label :start %><br>
+    <%= f.text_field :start %>
+  </p>
+
+  <p>
+    <%= f.label :end %><br>
+    <%= f.text_field :end %>
+  </p>
+ 
+  <p>
+    <%= f.submit %>
+  </p>
+<% end %>
