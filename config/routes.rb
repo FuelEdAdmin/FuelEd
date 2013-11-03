@@ -5,6 +5,7 @@ FuelEd::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   root :to => redirect('/users')
+  #root :to => "sessions#new"
   resources :users, :appointments
 
   # Example of regular route:
@@ -18,8 +19,11 @@ FuelEd::Application.routes.draw do
 
   # routing to session controller after successful login authentication
   #INCOMPLETE (from omniauth webcast) 
-  match "/auth/:provider/callback" => "sessions#create", via: :get
+  match "/auth/:provider/callback" => "sessions#create", via: :post
+  match "/auth/identity/register" => "identities#new", via: :post
+  match "/auth/failure" => "sessions#failure", via: :get
   match "/signout" => "sessions#destroy", :as => :signout, via: :get
+  resources :identities
  
   # Example resource route with options:
   #   resources :products do

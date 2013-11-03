@@ -51,7 +51,7 @@ h3{
 	float:left;
 }
 
-nav ul{
+nav ul field li{
 	list-style:none;
 }
 
@@ -220,19 +220,54 @@ footer{
 				<h1 class= "inline">FuelEd</h1>
 				<h3 class= "inline">USER PORTAL</h3>
 			</div>
-			<nav>
-				<ul>
-					<li>USERNAME: <input type="text" name="username"></li>
-            		<li>PASSWORD: <input type="text" name="username"></li>
-            		<li ><a class="button" href="main.html">LOGIN</a></li>
-				</ul>
-			</nav>
+			<% if current_user %>
+			<nav> <ul><a class="button" href= "/signout">SIGN OUT</a></nav></ul>
+			<% else %>
+				<nav>
+					<ul>
+						<%= form_tag "/auth/identity/callback" do %>
+						<!--<div class="field">/-->
+							<li>EMAIL: 
+							<%= text_field_tag :auth_key %> </li>
+						<!--</div>/-->
+						<!--<div class="field">/-->
+							 <li>PASSWORD:
+							<%= password_field_tag :password %></li>
+						<!--</div>/-->
+						<input class = "button" name="commit" type="submit" value="LOGIN">
+						<!--
+						<li>EMAIL: <input type="text" name=":auth_key"></li>
+	            		<li>PASSWORD: <input type="text" name=":password"></li>
+	            		<li ><a class="button" href="/auth/identity/callback">LOGIN</a></li>
+	            		/-->
+	            		<% end %>
+					</ul>
+				</nav>
+			<% end %>
 			<div class="clear"></div>
 		</div>
 		<div id= "content">
-			<h2>welcome</h2>
-			<p class="textbox"> Welcome to the FuelEd appointment scheduling portal! New to the site? Sign up with us! </br>  </br> </br> <a class="button-pink" href="#">Sign Up</a></p>  
+		<h2>welcome</h2>
+		<% if current_user %>
+  			<h3>User Profile</h3>
+ 			<p>
+    			<strong>Name:</strong>
+    			<%= current_user.name %>
+  			</p>
+  			<p>
+    			<strong>Provider:</strong>
+    			<%= current_user.provider %>
+  			</p>
+  			<p>
+    			<strong>OmniAuth UID:</strong>
 
+    			<%= current_user.uid %>
+  			</p>
+<!--   			<p><a class="button" href= "/signout">SIGN OUT</a>
+  			</p> -->
+		<% else %>
+			<p class="textbox"> Welcome to the FuelEd appointment scheduling portal! New to the site? Sign up with us! </br>  </br> </br> <a class="button-pink" href= "/identities/new">Sign Up</a></p>  
+		<% end %>
 		</div>
 	</div>
 </body>
