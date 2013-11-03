@@ -16,6 +16,9 @@ ActiveRecord::Schema.define(version: 20131030045941) do
   create_table "appointments", force: true do |t|
     t.string   "client"
     t.string   "intern"
+    t.string   "date"
+    t.integer  "start"
+    t.integer  "end"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
