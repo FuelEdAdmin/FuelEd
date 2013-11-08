@@ -1,0 +1,48 @@
+-#  This file is app/views/appointments/index.html.haml
+
+
+%div#main
+  %div{:id => "header-main", :class => "header"}
+    %div{:id => "title"}
+      %h1.inline
+        =image_tag "fueled_logo.jpg", :height => "150px"
+      %h3.inline USER PORTAL
+
+    %nav
+      %ul
+        %li=link_to "profile", "#", :class => "button-square"
+        %li=link_to "calendar", "#", :class => "button-current"
+        %li=link_to "settings", "#", :class => "button-square"
+
+    %div.clear
+
+  %div{:id => "content"}
+
+    %div{:id => "sidebar"}
+      %div{:class => "button-pink", :id => "appointment"}
+        %h3=link_to "Create an Appointment", "appointments/new"
+      %div{:id => "user_info"}
+        %h2 my information
+        %p.textbox FuelEd recently received news of cornerstone grants from several foundations and donors. This infusion will enable us to build staff on the ground in Houston where we will establish our first sustainable site that can be replicated nationwide.
+      %div{:id => "workshops"}
+        %h2 workshops
+        %p.textbox FuelEd introduces its Openness to Learning module to teachers and administrators at YES Prep Southwest.
+
+    %div{:id => "calendar"}
+      %h2 my appointments
+      - @appointments.each do |appt|
+        %p
+          %table{:class => "appt"}
+            %tr
+              %td{:width => "60%"}
+                %p
+                  Intern: #{appt.intern} <br/>
+                  Date: #{appt.date} <br/>
+                  Time: #{appt.start} - #{appt.end}
+              %td{:width => "40%"}
+                %p Booked by #{appt.client} <br/>
+                =link_to "View appointment", "appointments/#{appt.id}"
+
+
+    %div.clear
+    %div{:id => "footer"}

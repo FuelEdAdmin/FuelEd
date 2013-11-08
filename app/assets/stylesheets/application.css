@@ -106,6 +106,17 @@ a:hover {
     margin-bottom: 40px;
 }
 
+.appt {
+    background: #EEEEEE;
+    padding: 10px;
+    width: 100%;
+    vertical-align: center;
+}
+
+.booked {
+    background: #F7941E;
+}
+
 /*Grey text boxes css*/
 .textbox{
 	border: 0px solid black;
@@ -130,7 +141,7 @@ a:hover {
 
 }
 
-.button-square{
+.button-square {
 	border: 0px solid black;
     background: #b8d28b;
     margin-left:0px;
@@ -141,6 +152,14 @@ a:hover {
 .button-square:hover {
     background: #8DC63F;
     text-shadow: none;
+}
+
+.button-current {
+	border: 0px solid black;
+    background: #F7941E;
+    margin-left:0px;
+    color: white;
+	padding: 20px 10px;
 }
 
 .button-pink{
