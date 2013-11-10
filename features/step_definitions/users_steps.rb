@@ -1,6 +1,9 @@
 # Add a declarative step here for populating the DB with movies.
 
-Given /the following movies exist/ do |movies_table|
+Given /I am not logged in/ do
+  flunk "Unimplemented"
+end
 
+Given /I am logged in as "(.*)"/ do
   flunk "Unimplemented"
 end

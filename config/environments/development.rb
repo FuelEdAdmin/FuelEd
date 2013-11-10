@@ -6,6 +6,8 @@ FuelEd::Application.configure do
   # since you don't have to restart the web server when you make code changes.
   config.cache_classes = false
 
+# load error meths when accid. call meth on nil
+
   # Do not eager load code on boot.
   config.eager_load = false
 
@@ -19,8 +21,15 @@ FuelEd::Application.configure do
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log
 
+  # Only use best-standards supp. built into browsers
+  config.action_dispatch.best_standards_support = :builitin
+
+
   # Raise an error on page load if there are pending migrations
   config.active_record.migration_error = :page_load
+
+  # do not compress assetts
+  config.assets.compress = false
 
   # Debug mode disables concatenation and preprocessing of assets.
   # This option may cause significant delays in view rendering with a large

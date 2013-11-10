@@ -4,7 +4,9 @@ FuelEd::Application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  root 'index#index'
+  root :to => redirect('/identities')
+  #root :to => "sessions#new"
+  resources :users, :appointments
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
@@ -13,8 +15,17 @@ FuelEd::Application.routes.draw do
   #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
 
   # Example resource route (maps HTTP verbs to controller actions automatically):
-  #   resources :products
+  resources :appointments
+  resources :schools
 
+  # routing to session controller after successful login authentication
+  #INCOMPLETE (from omniauth webcast) 
+  match "/auth/:provider/callback" => "sessions#create", via: :post
+  match "/auth/identity/register" => "identities#new", via: :post
+  match "/auth/failure" => "sessions#failure", via: :get
+  match "/signout" => "sessions#destroy", :as => :signout, via: :get
+  resources :identities
+ 
   # Example resource route with options:
   #   resources :products do
   #     member do

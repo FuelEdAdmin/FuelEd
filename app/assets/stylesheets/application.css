@@ -3,6 +3,7 @@ body{
 	padding:0px;
 	font-size: 15px;
 	font-family: 'Helvetica';
+        color: #444444;
 	min-width:1050px;
 	font-weight: 100;
 }
@@ -12,14 +13,14 @@ body{
 h1{
 	font-family: 'Oswald', 'League Gothic';
 	font-size: 550%;
-	color:#8dc729;
+	color:#8DC63F;
 	margin:10px;
 }
 
 h2{
 	font-family: 'Oswald', 'League Gothic';
 	font-size: 250%;
-	color:#8dc729;
+	color:#8DC63F;
 	margin:0px;
 	padding:0px;
 }
@@ -29,6 +30,10 @@ h3{
 }
 
 /*Header and nav css*/
+
+img {
+	padding-top: 20px;
+}
 
 .header{
 	padding:0px;
@@ -87,6 +92,16 @@ a:hover {
 	text-shadow: 1px 1px 1px #333;
 }
 
+a.appt {
+    color: #8DC63F;
+    text-decoration: underline;
+}
+
+a:hover {
+    color: #333333;
+	text-shadow: none;
+}
+
 .clear {
 	clear: both;
 }
@@ -99,6 +114,17 @@ a:hover {
     margin-right:auto;
     margin-top: 30px;
     margin-bottom: 40px;
+}
+
+.appt {
+    background: #EEEEEE;
+    padding: 10px;
+    width: 100%;
+    vertical-align: center;
+}
+
+.booked {
+    background: #F7941E;
 }
 
 /*Grey text boxes css*/
@@ -120,12 +146,12 @@ a:hover {
 }
 
 .button:hover {
-    background: #8dc729;
+    background: #8DC63F;
     text-shadow: none;
 
 }
 
-.button-square{
+.button-square {
 	border: 0px solid black;
     background: #b8d28b;
     margin-left:0px;
@@ -134,12 +160,20 @@ a:hover {
 }
 
 .button-square:hover {
-    background: #8dc729;
+    background: #8DC63F;
     text-shadow: none;
 }
 
+.button-current {
+	border: 0px solid black;
+    background: #F7941E;
+    margin-left:0px;
+    color: white;
+	padding: 20px 10px;
+}
+
 .button-pink{
-    background: #ee69a4;
+    background: #F7941E;
     padding: 5px 20px 5px 20px;
     color: white;
     margin:10px 0px;
@@ -147,7 +181,7 @@ a:hover {
 }
 
 .button-pink:hover {
-    background: #db6a9d;
+    background: #F28F09;
     text-shadow: none;
 
 }
