@@ -4,7 +4,7 @@ FuelEd::Application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  root :to => redirect('/users')
+  root :to => redirect('/identities')
   #root :to => "sessions#new"
   resources :users, :appointments
 
