@@ -23,7 +23,9 @@
         %h3=link_to "Create an Appointment", "appointments/new"
       %div{:id => "user_info"}
         %h2 my information
-        %p.textbox FuelEd recently received news of cornerstone grants from several foundations and donors. This infusion will enable us to build staff on the ground in Houston where we will establish our first sustainable site that can be replicated nationwide.
+        %p.textbox 
+          UID: #{current_user.uid} <br/>
+          Name: #{current_user.name}
       %div{:id => "workshops"}
         %h2 workshops
         %p.textbox FuelEd introduces its Openness to Learning module to teachers and administrators at YES Prep Southwest.
