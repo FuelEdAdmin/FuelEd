@@ -10,7 +10,7 @@
 
     %nav
       %ul
-        %li=link_to "profile", "#", :class => "button-square"
+        %li=link_to "profile", "/users/#{current_user.uid}", :class => "button-square"
         %li{:class => "button-current"} calendar
         %li=link_to "signout", "/signout", :class => "button-square"
 
