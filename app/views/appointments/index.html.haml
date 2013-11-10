@@ -11,8 +11,8 @@
     %nav
       %ul
         %li=link_to "profile", "#", :class => "button-square"
-        %li=link_to "calendar", "#", :class => "button-current"
-        %li=link_to "settings", "#", :class => "button-square"
+        %li{:class => "button-current"} calendar
+        %li=link_to "signout", "/signout", :class => "button-square"
 
     %div.clear
 
@@ -40,8 +40,8 @@
                   Date: #{appt.date} <br/>
                   Time: #{appt.start} - #{appt.end}
               %td{:width => "40%"}
-                %p Booked by #{appt.client} <br/>
-                =link_to "View appointment", "appointments/#{appt.id}"
+                %p Booked by #{appt.client}
+                =link_to "View appointment", "appointments/#{appt.id}", :class => "appt"
 
 
     %div.clear

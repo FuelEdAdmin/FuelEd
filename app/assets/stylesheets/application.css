@@ -92,6 +92,16 @@ a:hover {
 	text-shadow: 1px 1px 1px #333;
 }
 
+a.appt {
+    color: #8DC63F;
+    text-decoration: underline;
+}
+
+a:hover {
+    color: #333333;
+	text-shadow: none;
+}
+
 .clear {
 	clear: both;
 }
