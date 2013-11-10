@@ -7,7 +7,7 @@ class AppointmentsController < ApplicationController
 		  
 		#@appointment.save
 		flash[:alert] = "You have successfully made an appointment!"
-		redirect_to @appointment
+		redirect_to @appointment	
 	end
 
 	def show
@@ -15,6 +15,10 @@ class AppointmentsController < ApplicationController
 	end
 
 	def index
-		@appointments = Appointment.all
+                if current_user.nil?
+                  redirect_to "/users"
+                end
+                # if user is client, also want to assign @myappts = _____
+		@appointments = Appointment.all # want to find by school
 	end
 end

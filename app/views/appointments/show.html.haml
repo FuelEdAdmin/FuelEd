@@ -1,0 +1,36 @@
+-#  This file is app/views/appointments/show.html.haml
+
+
+%div#main
+  %div{:id => "header-main", :class => "header"}
+    %div{:id => "title"}
+      %h1.inline
+        =image_tag "fueled_logo.jpg", :height => "150px"
+      %h3.inline USER PORTAL
+
+    %nav
+      %ul
+        %li=link_to "profile", "#", :class => "button-square"
+        %li=link_to "calendar", "#", :class => "button-current"
+        %li=link_to "settings", "#", :class => "button-square"
+
+    %div.clear
+
+  %div{:id => "content", :class => "textbox"}
+    %p
+      %b Client:
+      #{@appointment.client}
+    %p
+      %strong Intern:
+      #{@appointment.intern}
+    %p
+      %strong Date:
+      #{@appointment.date}
+    %p
+      %strong Start:
+      #{@appointment.start}
+    %p
+      %strong End:
+      #{@appointment.end}
+
+    =link_to "Go back to all appointments", appointments_path
