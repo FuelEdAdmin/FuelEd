@@ -7,16 +7,53 @@ describe AppointmentsController do
     @appt = Appointment.create(:id => 1, :client => "Stephanie Tung", :intern => "Christine Loh", :date => "12/10/2014", :start => 1400, :end => 1450)
   end
 
-  describe "adding an appointment" do
-    it "should call create method in Appointment model" do
-      Appointment.should_receive(:create).and_return(@appt)
-      get :create, {:appointment => @fake_appt}
+  context "while logged in" do
+
+    before :each do
+      @fake_user = double("user", :id => 1)
+      session[:user_id] = @fake_user.id
+      User.stub(:find).and_return(@fake_user)
     end
-    it "should redirect to the appt details page" do
-      Appointment.stub(:create).and_return(@appt)
-      get :create, {:appointment => @fake_appt}
-      response.should redirect_to "/appointments/#{@fake_appt[:id]}"
+
+    describe "adding an appointment" do
+      it "should call create method in Appointment model" do
+        @fake_appt.stub(:permit)
+        Appointment.should_receive(:create).and_return(@appt)
+        get :create, {:appointment => @fake_appt}
+      end
+      it "should redirect to the appt details page" do
+        Appointment.stub(:create).and_return(@appt)
+        get :create, {:appointment => @fake_appt}
+        response.should redirect_to "/appointments/#{@fake_appt[:id]}"
+      end
     end
+
+    describe "viewing an appointment" do
+      it "should redirect to appt details page" do
+        get :show, {:id => @fake_appt[:id]}
+        response.should render_template :show
+      end
+    end
+
+  end
+
+  context "while not logged in" do
+
+    describe "trying to access appointment pages" do
+      it "should redirect to login page (create)" do
+        get :create, {:appointment => @fake_appt}
+        response.should redirect_to "/identities"
+      end
+      it "should redirect to login page (index)" do
+        get :index
+        response.should redirect_to "/identities"
+      end
+      it "should redirect to login page (show)" do
+        get :show, {:id => @fake_appt[:id]}
+        response.should redirect_to "/identities"
+      end
+    end
+
   end
 
 end

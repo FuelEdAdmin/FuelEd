@@ -6,7 +6,8 @@ FuelEd::Application.routes.draw do
   # You can have the root of your site routed with "root"
   root :to => redirect('/identities')
   #root :to => "sessions#new"
-  resources :users, :appointments
+  resources :users
+  resources :sessions
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
