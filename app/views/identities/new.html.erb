@@ -27,5 +27,11 @@
     <%= label_tag :password_confirmation %><br>
     <%= password_field_tag :password_confirmation %>
   </div>
-  <div class="actions"><%= submit_tag "Register" %></div>
+  <div class="field">
+    <%= label_tag :rank %><br>
+    <%= text_field_tag :rank %>
+  </div>
+  <div class="actions">
+    <%= submit_tag "Register" %>
+</div>
 <% end %>
