@@ -12,8 +12,8 @@
     </div>
   <% end %>
   <div class="field">
-    <%= label_tag :type %><br>
-    <%= select_tag :type, options_for_select(User::USER_TYPES) %>
+    <%= label_tag :rank %><br>
+    <%= select_tag :rank, options_for_select(User::USER_TYPES) %>
   </div>
   <div class="field">
     <%= label_tag :name %><br>
@@ -31,10 +31,10 @@
     <%= label_tag :password_confirmation %><br>
     <%= password_field_tag :password_confirmation %>
   </div>
-  <div class="field">
+<!--   <div class="field">
     <%= label_tag :rank %><br>
     <%= text_field_tag :rank %>
-  </div>
+  </div> -->
   <div class="actions">
     <%= submit_tag "Register" %>
 </div>

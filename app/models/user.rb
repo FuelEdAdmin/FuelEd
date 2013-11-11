@@ -6,6 +6,7 @@ class User < ActiveRecord::Base
 	end
 
   def self.find_by_provider_and_uid(provider, uid)
+    # puts where(provider: provider, uid: uid)
     where(provider: provider, uid: uid).first
   end
 
