@@ -24,6 +24,11 @@ FuelEd::Application.routes.draw do
   match "/auth/identity/register" => "identities#new", via: :post
   match "/auth/failure" => "sessions#failure", via: :get
   match "/signout" => "sessions#destroy", :as => :signout, via: :get
+  
+  scope '/admin' do
+    resources :identities
+  end
+
   resources :identities
  
   # Example resource route with options:

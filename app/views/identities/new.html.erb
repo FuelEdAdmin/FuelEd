@@ -12,6 +12,10 @@
     </div>
   <% end %>
   <div class="field">
+    <%= label_tag :type %><br>
+    <%= select_tag :type, options_for_select(User::USER_TYPES) %>
+  </div>
+  <div class="field">
     <%= label_tag :name %><br>
     <%= text_field_tag :name, @identity.try(:name) %>
   </div>

@@ -4,8 +4,8 @@ class IdentitiesController < ApplicationController
 	end
 
 	def index
-		if not current_user.nil?
-          redirect_to "/appointments"
-        end
+		# if not current_user.nil?
+  #         redirect_to "/appointments"
+  #       end
     end
 end
