@@ -4,9 +4,9 @@ class SessionsController < ApplicationController
   end
 
 	def create
-                user = User.from_omniauth(env["omniauth.auth"])
-  		session[:user_id] = user.id
-  		redirect_to appointments_path, notice: "Signed in!"
+    user = User.from_omniauth(env["omniauth.auth"], params[:rank])
+		session[:user_id] = user.uid
+		redirect_to appointments_path, notice: "Signed in!"
 	end
 
 	def destroy
