@@ -4,7 +4,8 @@ class SessionsController < ApplicationController
   end
 
 	def create
-    user = User.from_omniauth(env["omniauth.auth"], params[:rank])
+    user = User.from_omniauth(env["omniauth.auth"], params["rank"])
+                puts user.uid
 		session[:user_id] = user.uid
 		redirect_to appointments_path, notice: "Signed in!"
 	end
