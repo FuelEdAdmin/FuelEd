@@ -5,35 +5,25 @@ Feature: Login to the scheduler app
   I want to have a visually appealing starting point where all features of the website are reachable.
 
 Background:
-  Given the following users exist:
-  | name          | provider | email                  |
-  | Ben Bitdiddle | identity | BenBitdiddle@gmail.com |
-  Given the following identities exist:
-  | name          | email                  | password_digest |
-  | Ben Bitdiddle | BenBitdiddle@gmail.com | mypassword      |
-
-Scenario: see login page if not logged in
-  Given I am on the homepage
-  And I am not logged in
-  Then I should be on "index.html"
-
-Scenario: can see front page if logged in
-  Given I am on the homepage
-  And I am logged in as "BenBitdiddle"
-  Then I should be on "index.html"
+  Given I am on the home page
+  When I follow "Sign Up"
+  When I fill in "Name" with "Patrick"
+  And I fill in "Email" with "cs169rocks@gmail.com"
+  And I fill in "Password" with "cs169"
+  And I fill in "Password confirmation" with "cs169"
+  And I press "Register"
+  And I follow "signout"
 
 Scenario: login to scheduler (happy)
   Given I am on the homepage
-  And I am not logged in
-  When I fill in "EMAIL" with "BenBitdiddle@gmail.com"
-  And I fill in "PASSWORD" with "mypassword"
+  When I fill in "auth_key" with "cs169rocks@gmail.com"
+  And I fill in "password" with "cs169"
   And I press "LOGIN"
-  Then I should be on "SIGN OUT"
+  Then I should see "Create an Appointment"
 
 Scenario: failed login (unhappy)
   Given I am on the homepage
-  And I am not logged in
-  When I fill in "EMAIL" with "BenBitdiddle@gmail.com"
-  And I fill in "PASSWORD" with "notmypassword"
+  When I fill in "auth_key" with "cs169rocks@gmail.com"
+  And I fill in "password" with "notmypassword"
   And I press "LOGIN"
-  Then I should see "Login was unsuccessful"
+  Then I should see "Sign Up"
