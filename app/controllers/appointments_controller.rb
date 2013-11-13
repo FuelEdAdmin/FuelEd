@@ -9,7 +9,7 @@ class AppointmentsController < ApplicationController
 		if current_user.nil?
           redirect_to "/identities"
         end
-		@appointment = Appointment.create(params[:appointment].permit(:client, :intern, :date, :start, :end))
+		@appointment = Appointment.create(params[:appointment].permit(:client, :intern, :school, :date, :start, :end))
 		  
 		#@appointment.save
 		flash[:alert] = "You have successfully made an appointment!"
