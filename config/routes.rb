@@ -27,6 +27,7 @@ FuelEd::Application.routes.draw do
   
   scope '/admin' do
     resources :identities
+    resources :schools
   end
 
   resources :identities
