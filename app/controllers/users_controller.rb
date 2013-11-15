@@ -3,16 +3,16 @@ class UsersController < ApplicationController
 	end
 
 	def show
-		@user = User.find(params[:id])
+		@user = User.find_by_uid(params[:id])
 	end
 
 	def edit
-    		@user = User.find(params[:id])
+    		@user = User.find_by_uid(params[:id])
   	end
 	
 	def update
 		
-    @user = User.find params[:id]
+    @user = User.find_by_uid(params[:id])
     @user.update_attributes!(params[:user].permit(:name, :email, :created_at, :uid))
     redirect_to user_path(@user)
 
