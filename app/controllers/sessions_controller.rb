@@ -4,7 +4,6 @@ class SessionsController < ApplicationController
   end
 
 	def create
-
     	user = User.from_omniauth(env["omniauth.auth"], params[:rank])
     	puts "NEW USER ID IS" + user.uid
 		if (session[:user_id] == nil) # => wasn't previously logged in
