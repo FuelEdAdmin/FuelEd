@@ -1,33 +1,18 @@
 -#  This file is app/views/users/show.html.haml
 
+%div{:id => @user_show_id, :class => "textbox"}
+  %p
+    %b Name:
+    #{@user.name}
+  %p
+    %strong Email:
+    #{@user.email}
+  %p
+    %strong Created At:
+    #{@user.created_at}
+  %p
+    %strong User ID:
+    #{@user.uid}
 
-%div#main
-  %div{:id => "header-main", :class => "header"}
-    %div{:id => "title"}
-      %h1.inline
-        =image_tag "fueled_logo.jpg", :height => "150px"
-      %h3.inline USER PORTAL
-
-    %nav
-      %ul
-        %li=link_to "profile", "/users/#{current_user.uid}", :class => "button-current"
-        %li=link_to "calendar", "/appointments", :class => "button-square"
-        %li=link_to "settings", "#", :class => "button-square"
-
-    %div.clear
-
-  %div{:id => "content", :class => "textbox"}
-    %p
-      %b Name:
-      #{@user.name}
-    %p
-      %strong Email:
-      #{@user.email}
-    %p
-      %strong Created At:
-      #{@user.created_at}
-    %p
-      %strong User ID:
-      #{@user.uid}
-
-    =link_to "Edit Profile", "/users/#{current_user.uid}/edit"
+  -if !current_user.nil? && current_user.uid == @user.uid
+    =link_to "Edit Profile", "/users/#{@user.uid}/edit", :class => "appt"
