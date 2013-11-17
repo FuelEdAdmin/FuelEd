@@ -1,34 +1,18 @@
 -#  This file is app/views/users/show.html.haml
 
+%div{:id => "calendar", :class => "textbox"}
+  = form_tag user_path(@user), :method => :put do
 
-%div#main
-  %div{:id => "header-main", :class => "header"}
-    %div{:id => "title"}
-      %h1.inline
-        =image_tag "fueled_logo.jpg", :height => "150px"
-      %h3.inline USER PORTAL
-
-    %nav
-      %ul
-        %li=link_to "profile", "/users/#{current_user.uid}", :class => "button-current"
-        %li=link_to "calendar", "/appointments", :class => "button-square"
-        %li=link_to "settings", "#", :class => "button-square"
-
-    %div.clear
-
-  %div{:id => "content", :class => "textbox"}
-    = form_tag user_path(@user), :method => :put do
-
-      = label :user, :name, 'Name'
-      = text_field :user, 'name'
-      %br
-      = label :user, :email, 'Email'
-      = text_field :user, 'email'
-      %br
-      = label :user, :created_at, 'Created At'
-      = text_field :user, 'created_at'
-      %br
-      = label :user, :uid, 'UID'
-      = text_field :user, 'uid'
-      %br
-      = submit_tag 'Edit Profile'
+    = label :user, :name, 'Name'
+    = text_field :user, 'name'
+    %br
+    = label :user, :email, 'Email'
+    = text_field :user, 'email'
+    %br
+    = label :user, :created_at, 'Created At'
+    = text_field :user, 'created_at'
+    %br
+    = label :user, :uid, 'UID'
+    = text_field :user, 'uid'
+    %br
+    = submit_tag 'Edit Profile'
