@@ -11,17 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 20131123214733) do
   
-=======
 
-ActiveRecord::Schema.define(version: 20131115004216) do
-
->>>>>>> changed signup process to reflect admin's creation of intern/client accounts (i.e. don't automatically sign in as newly created account, redirect to userinfo page after new creation, etc.  ALSO school model to include full address information
   create_table "appointments", force: true do |t|
     t.string   "client"
     t.string   "intern"
+    t.string   "date"
+    t.integer  "start"
+    t.integer  "end"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "school"
