@@ -35,6 +35,11 @@ img {
 	padding-top: 20px;
 }
 
+div#title h3.inline {
+	position: relative;
+	top: -20px;
+}
+
 .header{
 	padding:0px;
 	box-shadow: 0px 4px 2px -2px gray;
