@@ -1,40 +1,25 @@
 -#  This file is app/views/appointments/new.html.haml
 
+%div{:id => "calendar", :class => "textbox"}
+  = form_tag appointments_path do
 
-%div#main
-  %div{:id => "header-main", :class => "header"}
-    %div{:id => "title"}
-      %h1.inline
-        =image_tag "fueled_logo.jpg", :height => "150px"
-      %h3.inline USER PORTAL
-
-    %nav
-      %ul
-        %li=link_to "profile", "#", :class => "button-square"
-        %li=link_to "calendar", "#", :class => "button-current"
-        %li=link_to "settings", "#", :class => "button-square"
-
-    %div.clear
-
-  %div{:id => "content", :class => "textbox"}
-    = form_tag appointments_path do
-
-      = label :appointment, :client, 'Client'
-      = text_field :appointment, 'client'
-      %br
-      = label :appointment, :intern, 'Intern'
-      = text_field :appointment, 'intern'
-      %br
-      = label :appointment, :school, 'School'
-      = text_field :appointment, 'school'
-      %br
-      = label :appointment, :date, 'Date'
-      = text_field :appointment, 'date'
-      %br
-      = label :appointment, :start, 'Start'
-      = text_field :appointment, 'start'
-      %br
-      = label :appointment, :end, 'End'
-      = text_field :appointment, 'end'
-      %br
-      = submit_tag 'Create Appointment'
+    = label :appointment, :client, 'Client'
+    = text_field :appointment, 'client'
+    %br
+    = label :appointment, :intern, 'Intern'
+    = text_field :appointment, 'intern'
+    %br
+    = label :appointment, :school, 'School'
+    = text_field :appointment, 'school'
+    %br
+    = label :appointment, :date, 'Date'
+    = text_field :appointment, 'date'
+    %br
+    = label :appointment, :start, 'Start'
+    = text_field :appointment, 'start'
+    %br
+    = label :appointment, :end, 'End'
+    = text_field :appointment, 'end'
+    %br
+    = submit_tag 'Create Appointment'
+    =link_to "Cancel", appointments_path, :class => "appt"
