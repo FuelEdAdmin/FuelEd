@@ -5,8 +5,14 @@ class IdentitiesController < ApplicationController
 	end
 
 	def index
-		# if not current_user.nil?
-  #         redirect_to "/appointments"
-  #       end
-    end
+
+    	end
+
+#	def create
+#		@identity = Identity.new(params[:identity].permit(:rank, :name, :email, :password, :password_confirmation))
+		  
+#		@identity.save
+#		flash[:alert] = "You have successfully made an account!"
+#		redirect_to "/admins"	
+#	end
 end
