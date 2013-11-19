@@ -1,0 +1,56 @@
+-#  This file is app/views/admin/index.html.haml
+
+
+%div#main
+  %div{:id => "header-main", :class => "header"}
+    %div{:id => "title"}
+      %h1.inline
+        =image_tag "fueled_logo.jpg", :height => "150px"
+      %h3.inline ADMIN PORTAL
+
+    %nav
+      %ul
+        %li=link_to "profile", "/users/#{current_user.uid}", :class => "button-square"
+        %li{:class => "button-current"} calendar
+        %li=link_to "signout", "/signout", :class => "button-square"
+
+    %div.clear
+
+  %div{:id => "content"}
+
+    %div{:id => "sidebar"}
+      %div{:class => "button-pink", :id => "appointment"}
+        %h3=link_to "Create New Accounts", "/admin/identities/new"
+      %div{:class => "button-pink", :id => "appointment"}
+        %h3=link_to "School Information", "/admins"
+      %div{:class => "button-pink", :id => "appointment"}
+        %h3=link_to "Reports", "/admins"
+      %div{:id => "user_info"}
+        %h2 my information
+        %p.textbox 
+          UID: #{current_user.uid} <br/>
+          Name: #{current_user.name} <br/>
+          Rank: #{current_user.rank}
+      %div{:id => "workshops"}
+        %h2 news
+        %p.textbox FuelEd introduces its Openness to Learning module to teachers and administrators at YES Prep Southwest.
+
+    %div{:id => "calendar"}
+      %h2 all appointments
+      - @appointments.each do |appt|
+        %p
+          %table{:class => "appt"}
+            %tr
+              %td{:width => "60%"}
+                %p
+                  Intern: #{appt.intern} <br/>
+                  School: #{appt.school} <br/>
+                  Date: #{appt.date} <br/>
+                  Time: #{appt.start} - #{appt.end}
+              %td{:width => "40%"}
+                %p Booked by #{appt.client}
+                =link_to "View appointment", "appointments/#{appt.id}", :class => "appt"
+
+
+    %div.clear
+    %div{:id => "footer"}
