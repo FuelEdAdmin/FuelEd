@@ -123,6 +123,19 @@ a:hover {
     vertical-align: center;
 }
 
+#calendar a {
+    color:#8DC63F;
+}
+
+#calendar a:visited {
+    color:#8DC63F;
+}
+
+#calendar a:hover {
+    color: #333333;
+    text-shadow: none;
+}
+
 .booked {
     background: #F7941E;
 }

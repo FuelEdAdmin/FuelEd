@@ -6,7 +6,7 @@ class SchoolsController < ApplicationController
 		@school = School.new(params[:school].permit(:name, :location))
 		  
 		@school.save
-		redirect_to @school
+		redirect_to "/admin/schools"
 	end
 
 	def show

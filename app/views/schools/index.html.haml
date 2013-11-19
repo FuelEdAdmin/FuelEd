@@ -1,4 +1,4 @@
--#  This file is app/views/admin/index.html.haml
+-#  This file is app/views/schools/index.html.haml
 
 
 %div#main
@@ -36,21 +36,18 @@
         %p.textbox FuelEd introduces its Openness to Learning module to teachers and administrators at YES Prep Southwest.
 
     %div{:id => "calendar"}
-      %h2 all appointments
-      - @appointments.each do |appt|
+      %h2 all schools
+      - @schools.each do |school|
         %p
           %table{:class => "appt"}
             %tr
               %td{:width => "60%"}
                 %p
-                  Intern: #{appt.intern} <br/>
-                  School: #{appt.school} <br/>
-                  Date: #{appt.date} <br/>
-                  Time: #{appt.start} - #{appt.end}
-              %td{:width => "40%"}
-                %p Booked by #{appt.client}
-                =link_to "View appointment", "appointments/#{appt.id}", :class => "appt"
+                  Name: #{school.name} <br/>
+                  Location: #{school.location} <br/>
+              
+                
 
-
+      =link_to "Add New School", "/schools/new"
     %div.clear
     %div{:id => "footer"}
