@@ -31,7 +31,7 @@ FuelEd::Application.routes.draw do
     resources :schools
   end
 
-  resources :identities
+  #resources :identities
  
   # Example resource route with options:
   #   resources :products do
