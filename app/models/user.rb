@@ -1,4 +1,6 @@
 class User < ActiveRecord::Base
+  has_and_belongs_to_many :schools
+  has_one :identity
   USER_TYPES = ["client", "intern", "admin"]
 
 	def self.from_omniauth(auth, rank)
