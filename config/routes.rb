@@ -1,10 +1,11 @@
 FuelEd::Application.routes.draw do
+  get "login/index"
   get "index/index"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  root :to => redirect('/identities')
+  root :to => redirect('/login/index')
   #root :to => "sessions#new"
   resources :users
   resources :sessions
