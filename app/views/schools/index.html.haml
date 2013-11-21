@@ -1,53 +1,18 @@
 -#  This file is app/views/schools/index.html.haml
 
-
-%div#main
-  %div{:id => "header-main", :class => "header"}
-    %div{:id => "title"}
-      %h1.inline
-        =image_tag "fueled_logo.jpg", :height => "150px"
-      %h3.inline ADMIN PORTAL
-
-    %nav
-      %ul
-        %li=link_to "home", "/admins", :class => "button-current"
-        %li=link_to "schools", "/admin/schools", :class => "button-square"        
-        %li=link_to "signout", "/signout", :class => "button-square"
-
-    %div.clear
-
-  %div{:id => "content"}
-
-    %div{:id => "sidebar"}
-      %div{:class => "button-pink", :id => "appointment"}
-        %h3=link_to "Create New Accounts", "/admin/identities/new"
-      %div{:class => "button-pink", :id => "appointment"}
-        %h3=link_to "School Information", "/admin/schools"
-      %div{:class => "button-pink", :id => "appointment"}
-        %h3=link_to "Reports", "/admins"
-      %div{:id => "user_info"}
-        %h2 my information
-        %p.textbox 
-          UID: #{current_user.uid} <br/>
-          Name: #{current_user.name} <br/>
-          Rank: #{current_user.rank}
-      %div{:id => "workshops"}
-        %h2 news
-        %p.textbox FuelEd introduces its Openness to Learning module to teachers and administrators at YES Prep Southwest.
-
-    %div{:id => "calendar"}
-      %h2 all schools
-      - @schools.each do |school|
-        %p
-          %table{:class => "appt"}
-            %tr
-              %td{:width => "60%"}
-                %p
-                  Name: #{school.name} <br/>
-                  Location: #{school.location} <br/>
+%div{:id => "calendar"}
+  %h2 all schools
+  - @schools.each do |school|
+    %p
+      %table{:class => "appt"}
+        %tr
+          %td{:width => "60%"}
+            %p
+              Name: #{school.name} <br/>
+              Location: #{school.location} <br/>
               
                 
 
-      =link_to "Add New School", "/schools/new"
-    %div.clear
-    %div{:id => "footer"}
+  =link_to "Add New School", "/schools/new"
+%div.clear
+%div{:id => "footer"}

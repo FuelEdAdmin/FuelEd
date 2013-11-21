@@ -13,14 +13,13 @@
         %div{:id => "title"}
           %h1.inline
             =image_tag "fueled_logo.jpg", :height => "100px"
-          %h3.inline USER PORTAL
+          %h3.inline ADMIN PORTAL
 
         %nav
           -if !current_user.nil?
             %ul
-              -if current_user.rank == "intern"
-                %li=link_to "profile", "/users/#{current_user.uid}", :class => "button-square"
-              %li=link_to "calendar", "/appointments", :class => "button-square"
+              %li=link_to "home", "/admins", :class => "button-current"
+              %li=link_to "schools", "/admin/schools", :class => "button-square"
               %li=link_to "signout", "/signout", :class => "button-square"
 
         %div.clear
@@ -28,9 +27,12 @@
       %div{:id => "content"}
 
         %div{:id => "sidebar"}
-          -if current_user.rank == "intern"
-            %div{:class => "button-pink", :id => "appointment"}
-              %h3=link_to "Create an Appointment", "/appointments/new"
+          %div{:class => "button-pink", :id => "appointment"}
+            %h3=link_to "Create New Accounts", "/admin/identities/new"
+          %div{:class => "button-pink", :id => "appointment"}
+            %h3=link_to "School Information", "/admin/schools"
+          %div{:class => "button-pink", :id => "appointment"}
+            %h3=link_to "Reports", "/admins"
           %div{:id => "user_info"}
             %h2 my information
             %p.textbox 
@@ -38,11 +40,7 @@
               Name: #{current_user.name} <br/>
               Rank: #{current_user.rank} <br/><br/>
               =link_to "Change password", "#", :class => "appt"
-          %div{:id => "workshops"}
-            %h2 my appointments
-            %p.textbox (put booked appointments here?)
 
         = yield
   -else
     = yield
-	

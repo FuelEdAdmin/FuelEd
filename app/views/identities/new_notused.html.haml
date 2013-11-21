@@ -1,0 +1,22 @@
+-#  This file is app/views/identities/new.html.haml
+-#  Currently not being used
+
+%div{:id => "calendar", :class => "textbox"}
+  = form_tag identities_path do
+
+    = label :identity, :rank, 'User Type'
+    = text_field :identity, 'rank'
+    %br
+    = label :identity, :name, 'Name'
+    = text_field :identity, 'name'
+    %br
+    = label :identity, :email, 'Email'
+    = text_field :identity, 'email'
+    %br
+    = label :identity, :password, 'Password'
+    = text_field :identity, 'password'
+    %br
+    = label :identity, :password_confirmation, 'Password Confirmation'
+    = text_field :identity, 'password_confirmation'
+    %br
+    = submit_tag 'Register'

@@ -3,6 +3,11 @@
 -if current_user.rank == "admin"
   %div#main
     %div{:id => "calendar"}
+
+      %h2 quick actions
+
+      %p (will have add school, add participant forms here)
+
       %h2 all appointments
       - @appointments.each do |appt|
         %p

@@ -1,4 +1,4 @@
-class IdentitiesController < ApplicationController
+class IdentitiesController < AdminsController
 	def new
 		@identity = env['omniauth.identity']
 		puts env['omniauth.identity']
