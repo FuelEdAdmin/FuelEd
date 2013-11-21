@@ -27,7 +27,7 @@ FuelEd::Application.routes.draw do
   match "/auth/failure" => "sessions#failure", via: :get
   match "/signout" => "sessions#destroy", :as => :signout, via: :get
   
-  scope '/admin' do
+  scope '/admins' do
     resources :identities
     resources :schools
   end
