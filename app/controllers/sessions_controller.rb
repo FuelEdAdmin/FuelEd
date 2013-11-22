@@ -1,11 +1,10 @@
 class SessionsController < ApplicationController
-
-  def new
-  end
+	
+	def new
+	end
 
 	def create
-
-    user = User.from_omniauth(env["omniauth.auth"], params[:rank])
+    	user = User.from_omniauth(env["omniauth.auth"], params[:rank])
     	puts "NEW USER ID IS" + user.uid
 		if (session[:user_id] == nil) # => wasn't previously logged in
 			session[:user_id] = user.uid  # => session id = newly created user's id
