@@ -49,11 +49,11 @@ ActiveRecord::Schema.define(version: 20131115004216) do
 
   create_table "users", force: true do |t|
     t.string   "name"
+    t.string   "uid"
+    t.string   "provider"
     t.string   "email"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "uid"
-    t.string   "provider"
     t.string   "school"
     t.string   "rank"
   end

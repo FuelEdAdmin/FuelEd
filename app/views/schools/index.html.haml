@@ -1,7 +1,6 @@
 -#  This file is app/views/schools/index.html.haml
-
-%div{:id => "calendar"}
-  %h2 all schools
+.mainContentBox  
+  .mainContentBoxHeader all schools
   - @schools.each do |school|
     %p
       %table{:class => "appt"}
@@ -11,8 +10,8 @@
               Name: #{school.name} <br/>
               Location: #{school.location} <br/>
               
-                
+  %div{:class => "button"}
+    =link_to "Add New School", "/schools/new"                
 
-  =link_to "Add New School", "/schools/new"
 %div.clear
 %div{:id => "footer"}

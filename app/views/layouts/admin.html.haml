@@ -19,7 +19,7 @@
           -if !current_user.nil?
             %ul
               %li=link_to "home", "/admins", :class => "button-current"
-              %li=link_to "schools", "/admin/schools", :class => "button-square"
+              %li=link_to "schools", "/admins/schools", :class => "button-square"
               %li=link_to "signout", "/signout", :class => "button-square"
 
         %div.clear
@@ -28,9 +28,9 @@
 
         %div{:id => "sidebar"}
           %div{:class => "button-pink", :id => "appointment"}
-            %h3=link_to "Create New Accounts", "/admin/identities/new"
+            %h3=link_to "Create New Accounts", "/admins/identities/new"
           %div{:class => "button-pink", :id => "appointment"}
-            %h3=link_to "School Information", "/admin/schools"
+            %h3=link_to "School Information", "/admins/schools"
           %div{:class => "button-pink", :id => "appointment"}
             %h3=link_to "Reports", "/admins"
           %div{:id => "user_info"}

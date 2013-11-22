@@ -145,6 +145,21 @@ a:hover {
     background: #F7941E;
 }
 
+.mainContentBox{
+    float: left;
+    padding-left: 50px;
+    padding-top: 13px;
+}
+.mainContentBoxHeader{
+  font-family: 'Oswald', 'League Gothic';
+  font-size: 350%;
+  color:#8DC63F;
+  margin:0px;
+  padding:0px;
+}
+
+
+
 /*Grey text boxes css*/
 .textbox{
 	border: 0px solid black;

@@ -1,13 +1,17 @@
 -#  This file is app/views/schools/new.html.haml
 
 
-%div{:id => "calendar", :class => "textbox"}
-  = form_tag schools_path do
-
-    = label :school, :name, 'Name'
-    = text_field :school, 'name'
-    %br
-    = label :school, :location, 'Location'
-    = text_field :school, 'location'
-    %br
-    = submit_tag 'Add School'
+.mainContentBox
+  .mainContentBoxHeader New School
+  %nav
+    = form_for :school, url: schools_path do |f|
+      %p
+        = f.label :name
+        %br/
+        = f.text_field :name
+      %p
+        = f.label :location
+        %br/
+        = f.text_field :location
+      %p
+        = submit_tag 'Add School'

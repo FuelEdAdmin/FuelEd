@@ -1,25 +1,32 @@
 -#  This file is app/views/appointments/new.html.haml
-
-%div{:id => "calendar", :class => "textbox"}
-  = form_tag appointments_path do
-
-    = label :appointment, :client, 'Client'
-    = text_field :appointment, 'client'
-    %br
-    = label :appointment, :intern, 'Intern'
-    = text_field :appointment, 'intern'
-    %br
-    = label :appointment, :school, 'School'
-    = text_field :appointment, 'school'
-    %br
-    = label :appointment, :date, 'Date'
-    = text_field :appointment, 'date'
-    %br
-    = label :appointment, :start, 'Start'
-    = text_field :appointment, 'start'
-    %br
-    = label :appointment, :end, 'End'
-    = text_field :appointment, 'end'
-    %br
-    = submit_tag 'Create Appointment'
-    =link_to "Cancel", appointments_path, :class => "appt"
+.mainContentBox
+    .mainContentBoxHeader New Appointment
+    Please fill in the blanks below with the correct information.
+    %br/
+    %br/
+    = form_tag appointments_path do
+        %nav
+            %table{cellpadding: "5px"}
+                %tr
+                %td= label :appointment, :client, 'Client'
+                %td= text_field :appointment, 'client'
+                %tr
+                %td= label :appointment, :intern, 'Intern'
+                %td= text_field :appointment, 'intern'
+                %tr
+                %td= label :appointment, :school, 'School'
+                %td= text_field :appointment, 'school'
+                %tr
+                %td= label :appointment, :date, 'Date'
+                %td= text_field :appointment, 'date'
+                %td= "(MM/DD/YYYY)"
+                %tr
+                %td= label :appointment, :start, 'Start'
+                %td= text_field :appointment, 'start'
+                %td= "(eg. 7 PM = 1900)"
+                %tr
+                %td= label :appointment, :end, 'End'
+                %td= text_field :appointment, 'end'
+                %tr
+            %input.button{name: "commit", type: "submit", value: "Create"}
+            =link_to "Cancel", appointments_path, :class => "appt"

@@ -1,39 +1,60 @@
-<div id="calendar">
-<h1>New Account</h1>
+<!-- <div id="calendar">
+ --><div class = "mainContentBox">
+  <div class = "mainContentBoxHeader">New Account</div>
 
-<%= form_tag "/auth/identity/register" do %>
-  <% if @identity && @identity.errors.any? %>
-    <div class="error_messages">
-      <h2><%= pluralize(@identity.errors.count, "error") %> prohibited this account from being saved:</h2>
-      <ul>
-      <% @identity.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
+  Please fill in the blanks below with the correct information. <br> <br>
+
+  <%= form_tag "/auth/identity/register" do %>
+    <% if @identity && @identity.errors.any? %>
+      <div class="error_messages">
+        <h2><%= pluralize(@identity.errors.count, "error") %> prohibited this account from being saved:</h2>
+        <ul>
+        <% @identity.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+    <nav>
+      <table cellpadding="5px">
+        <div class="field">
+          <tr>
+            <td><%= label_tag :rank %></td>
+            <td><%= select_tag :rank, options_for_select(User::USER_TYPES) %></td>
+          </tr>
+        </div>
+        <div class="field">
+          <tr>
+          <td><%= label_tag :name %></td>
+          <td><%= text_field_tag :name, @identity.try(:name) %></td>
+          </tr>
+        </div>
+        <div class="field">
+          <tr>
+          <td><%= label_tag :email %></td>
+          <td><%= text_field_tag :email, @identity.try(:email) %></td>
+          </tr>
+        </div>
+        <div class="field">
+          <tr>
+          <td><%= label_tag :password %></td>
+          <td><%= password_field_tag :password %></td>
+          </tr>
+        </div>
+        <div class="field">
+          <tr>
+          <td><%= label_tag :password_confirmation %></td>
+          <td><%= password_field_tag :password_confirmation %></td>
+          </tr>
+        </div>
+      </table>
+      <div class="actions">
+        <input class = "button" name="commit" type="submit" value="Register">
+      </div>
+    </nav>
   <% end %>
-  <div class="field">
-    <%= label_tag :rank %><br>
-    <%= select_tag :rank, options_for_select(User::USER_TYPES) %>
-  </div>
-  <div class="field">
-    <%= label_tag :name %><br>
-    <%= text_field_tag :name, @identity.try(:name) %>
-  </div>
-  <div class="field">
-    <%= label_tag :email %><br>
-    <%= text_field_tag :email, @identity.try(:email) %>
-  </div>
-  <div class="field">
-    <%= label_tag :password %><br>
-    <%= password_field_tag :password %>
-  </div>
-  <div class="field">
-    <%= label_tag :password_confirmation %><br>
-    <%= password_field_tag :password_confirmation %>
-  </div>
-  <div class="actions">
-    <%= submit_tag "Register" %>
 </div>
-<% end %>
-</div>
+
+
+<!-- </div>
+ -->

@@ -2,13 +2,14 @@
 
 -if current_user.rank == "admin"
   %div#main
-    %div{:id => "calendar"}
+    .mainContentBox
+      / %div{:id => "calendar"}
 
-      %h2 quick actions
+      .mainContentBoxHeader quick actions
 
       %p (will have add school, add participant forms here)
 
-      %h2 all appointments
+      .mainContentBoxHeader all appointments
       - @appointments.each do |appt|
         %p
           %table{:class => "appt"}
