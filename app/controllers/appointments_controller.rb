@@ -7,27 +7,25 @@ class AppointmentsController < ApplicationController
 
 	def create
 		if current_user.nil?
-          redirect_to "/identities"
+			redirect_to "/identities"
         end
 		@appointment = Appointment.create(params[:appointment].permit(:client, :intern, :school, :date, :start, :end))
-		  
-		  #@appointment.save
-		  flash[:alert] = "You have successfully made an appointment!"
-		  redirect_to @appointment
-                end	
+		#@appointment.save
+		flash[:alert] = "You have successfully made an appointment!"
+		redirect_to @appointment	
 	end
 
 	def show
 		if current_user.nil?
-                  redirect_to "/identities"
-                end
+            redirect_to "/identities"
+        end
 		@appointment = Appointment.find(params[:id])
 	end
 
 	def index
-		if current_user.nil?
+	  if current_user.nil?
             redirect_to "/identities"
-        end
+          end
 	   # want to find by school
 	  if current_user.rank == "client"
             @appointments = Appointment.all  #find where school == my school
