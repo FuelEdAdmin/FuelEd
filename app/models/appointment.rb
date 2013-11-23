@@ -1,5 +1,5 @@
 class Appointment < ActiveRecord::Base
-	has_one :school
+	belongs_to :school
 	# Validates for presence 
 	validates :client, :presence => true, :length => { :maximum => 50 }
 	validates :intern, :presence => true, :length => { :maximum => 50 }
