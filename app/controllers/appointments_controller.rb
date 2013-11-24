@@ -1,10 +1,11 @@
 class AppointmentsController < ApplicationController
+
+	before_filter :user_check
+
 	def new
-		user_check()
 	end
 
 	def create
-		user_check()
 		@appointment = Appointment.create(params[:appointment].permit(:client, :intern, :school, :date, :start, :end))
 		#@appointment.save
 		flash[:alert] = "You have successfully made an appointment!"
@@ -12,12 +13,10 @@ class AppointmentsController < ApplicationController
 	end
 
 	def show
-		user_check()
 		@appointment = Appointment.find(params[:id])
 	end
 
 	def index
-      	user_check()
 	  	# want to find by school
 	  	if current_user.rank == "client"
             @appointments = Appointment.all  #find where school == my school
@@ -33,7 +32,7 @@ class AppointmentsController < ApplicationController
 	def user_check()
 		# check for admin privledges 
 		if current_user.nil?
-            redirect_to "/identities"
+            redirect_to root_url
       	end
 	end
 end
