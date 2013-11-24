@@ -238,6 +238,20 @@ a:hover {
 	margin-bottom: 30px;	
 }
 
+#calendar input[value="Delete"]{
+	background  : none;
+	cursor  : pointer;
+	font-size   : 16px;
+	color:#8DC63F;
+	border  : 0px solid #0f0;
+	margin      : 0px;
+	padding     : 0px;
+}
+
+#calendar input[value="Delete"]:hover{
+	color: black;
+}
+
 .day-label th {
     background: #b8d28b;
     color: white;
