@@ -26,7 +26,7 @@ FuelEd::Application.routes.draw do
   match "/auth/identity/register" => "identities#new", via: :post
   match "/auth/failure" => "sessions#failure", via: :get
   match "/signout" => "sessions#destroy", :as => :signout, via: :get
-  #match "/appointments/past.html" => "appointments@past_appts"
+  match "/appointments/past" => "appointments#past", :as => :past
   
   scope '/admins' do
     resources :identities
