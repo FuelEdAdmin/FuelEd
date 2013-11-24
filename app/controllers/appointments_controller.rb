@@ -19,14 +19,23 @@ class AppointmentsController < ApplicationController
 	def index
 	  	# want to find by school
 	  	if current_user.rank == "client"
-            @appointments = Appointment.all  #find where school == my school
+            @appointments = Appointment.all  #find where school == my school and DATE > current date
 	    	@myappts = nil #find in @appointments where client == me
 	  	elsif current_user.rank == "intern"
-            @appointments = Appointment.all  #find where intern == me
+            @appointments = Appointment.all  #find where intern == me and DATE > current date
 	    	@myappts = nil # find where booked != nil
 	  	else
 	    	@appointments = Appointment.all
 	  	end
+	end
+
+	def past
+	  	if current_user.rank == "client"
+            @appointments = Appointment.all  # want to find appointments where DATE < current date, and booked my me
+	  	elsif current_user.rank == "intern"
+            @appointments = Appointment.all  #find where booked != nil and date < current date
+	  	end
+
 	end
 
 	def user_check()
