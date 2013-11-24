@@ -1,38 +1,33 @@
 -#  This file is app/views/schools/new.html.haml
-
-
 .mainContentBox
-  .mainContentBoxHeader New School
-  %nav
-    = form_for :school, url: schools_path do |f|
-      %p
-        = f.label :name
-        %br/
-        = f.text_field :name
-      %p
-        = f.label "Street Address"
-        %br/
-        = f.text_field :address
-      %p
-        = f.label :city
-        %br/
-        = f.text_field :city
-      %p
-        = f.label :state
-        %br/
-        = f.text_field :state
-      %p
-        = f.label :county
-        %br/
-        = f.text_field :county
-      %p
-        = f.label :country
-        %br/
-        = f.text_field :country
-      %p
-        = f.label "Zip Code"
-        %br/
-        = f.text_field :zipcode
-      %p
-        %input.button{name: "commit", type: "submit", value: "Add School"}
-
+    .mainContentBoxHeader new school
+    Please fill in the blanks below with the correct information.
+    %br/
+    %br/
+    = form_tag schools_path do
+        %nav
+            %table{cellpadding: "5px", width: "100%"}
+                %tr
+                %td= label :school, :name, 'Name'
+                %td= text_field :school, 'name'
+                %tr
+                %td= label :school, :address, 'Street Address'
+                %td= text_field :school, 'address'
+                %tr
+                %td= label :school, :city, 'City'
+                %td= text_field :school, 'city'
+                %tr
+                %td= label :school, :state, 'State'
+                %td= text_field :school, 'state'
+                %tr
+                %td= label :school, :county, 'County'
+                %td= text_field :school, 'county'
+                %tr
+                %td= label :school, :country, 'Country'
+                %td= text_field :school, 'country'
+                %tr
+                %tr
+                %td= label :school, :zipcode, 'Zip Code'
+                %td= text_field :school, 'zipcode'
+                %tr
+            %input.button{name: "commit", type: "submit", value: "Add School"}
