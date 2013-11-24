@@ -41,6 +41,11 @@
               Rank: #{current_user.rank} <br/><br/>
               =link_to "Change password", "#", :class => "link"
 
-        = yield
+        %div{:id => "calendar"}
+
+          = yield
+
+        %div.clear
+        %div{:id => "footer"}
   -else
     = yield

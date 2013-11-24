@@ -46,7 +46,9 @@
             %h2 my appointments
             %p.textbox (put booked appointments here?)
 
-        = yield
+        %div{:id => "calendar"}
+
+          = yield
   -else
     = yield
 	
