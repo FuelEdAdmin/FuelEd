@@ -15,5 +15,6 @@
     %strong User ID:
     #{@user.uid}
 
-  -if !current_user.nil? && current_user.uid == @user.uid
-    =link_to "Edit Profile", "/users/#{@user.uid}/edit", :class => "appt"
+  -if (!current_user.nil? && current_user.uid == @user.uid) or (current_user.rank == "admin")
+    / =link_to "Edit Profile", "/users/#{@user.uid}/edit", :class => "appt"
+    / =button_to "Delete", user_path(@user), :method => :delete, :confirm => 'Are you sure?'
