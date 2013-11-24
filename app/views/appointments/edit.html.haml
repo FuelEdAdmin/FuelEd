@@ -1,0 +1,27 @@
+-#  This file is app/views/appointments/edit.html.haml
+
+%div{:class => "textbox"}
+  = form_tag appointment_path(@appointment), :method => :put do
+    
+    = label :appointment, :client, 'Client'
+    = text_field :appointment, 'client'
+    %br
+    = label :appointment, :intern, 'Intern'
+    = text_field :appointment, 'intern'
+    %br
+    = label :appointment, :school, 'School' 
+    = text_field :appointment, 'school'
+    %br
+    = label :appointment, :date, 'Date'
+    = text_field :appointment, 'date'
+    = "(MM/DD/YYYY)"
+    %br
+    = label :appointment, :start, 'Start'
+    = text_field :appointment, 'start'
+    = "(eg. 7 PM = 1900)"
+    %br
+    = label :appointment, :end, 'End'
+    = text_field :appointment, 'end'
+    %br
+    = submit_tag 'Edit Profile'
+    =link_to "Cancel", appointments_path, :class => "appt"
