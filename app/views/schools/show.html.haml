@@ -1,0 +1,11 @@
+%h2 Details about school
+
+%ul#details
+  %li
+    Rating:
+    = @school.name
+  %li
+    Released on:
+    = @school.location
+
+=button_to "Delete", school_path(@school), :method => :delete, :confirm => 'Are you sure?'

@@ -39,8 +39,13 @@
               UID: #{current_user.uid} <br/>
               Name: #{current_user.name} <br/>
               Rank: #{current_user.rank} <br/><br/>
-              =link_to "Change password", "#", :class => "appt"
+              =link_to "Change password", "#", :class => "link"
 
-        = yield
+        %div{:id => "calendar"}
+
+          = yield
+
+        %div.clear
+        %div{:id => "footer"}
   -else
     = yield

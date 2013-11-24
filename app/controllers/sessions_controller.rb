@@ -14,7 +14,7 @@ class SessionsController < ApplicationController
 				redirect_to appointments_path, notice: "Signed in!"  # => go to appt page
 			end
 		else
-			redirect_to "/users/#{user.uid}", notice: "User created!"
+			redirect_to "/admins/identities/#{user.uid}", notice: "User created!"
 		end
 		#session[:user_id] ||= user.uid
 		#redirect_to appointments_path, notice: "Signed in!"

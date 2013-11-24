@@ -1,17 +1,33 @@
 -#  This file is app/views/schools/new.html.haml
-
-
 .mainContentBox
-  .mainContentBoxHeader New School
-  %nav
-    = form_for :school, url: schools_path do |f|
-      %p
-        = f.label :name
-        %br/
-        = f.text_field :name
-      %p
-        = f.label :location
-        %br/
-        = f.text_field :location
-      %p
-        = submit_tag 'Add School'
+    .mainContentBoxHeader new school
+    Please fill in the blanks below with the correct information.
+    %br/
+    %br/
+    = form_tag schools_path do
+        %nav
+            %table{cellpadding: "5px", width: "100%"}
+                %tr
+                %td= label :school, :name, 'Name'
+                %td= text_field :school, 'name'
+                %tr
+                %td= label :school, :address, 'Street Address'
+                %td= text_field :school, 'address'
+                %tr
+                %td= label :school, :city, 'City'
+                %td= text_field :school, 'city'
+                %tr
+                %td= label :school, :state, 'State'
+                %td= text_field :school, 'state'
+                %tr
+                %td= label :school, :county, 'County'
+                %td= text_field :school, 'county'
+                %tr
+                %td= label :school, :country, 'Country'
+                %td= text_field :school, 'country'
+                %tr
+                %tr
+                %td= label :school, :zipcode, 'Zip Code'
+                %td= text_field :school, 'zipcode'
+                %tr
+            %input.button{name: "commit", type: "submit", value: "Add School"}

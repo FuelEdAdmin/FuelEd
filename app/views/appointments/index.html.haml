@@ -1,25 +1,21 @@
 -#  This file is app/views/appointments/index.html.haml
 
 
-%div{:id => "calendar"}
-  %h2 available appointments
-  - @appointments.each do |appt|
-    %p
-      %table{:class => "appt"}
-        %tr
-          %td{:width => "60%"}
-            %p
-              Intern: #{appt.intern} <br/>
-              School: #{appt.school} <br/>
-              Date: #{appt.date} <br/>
-              Time: #{appt.start} - #{appt.end}
-          %td{:width => "40%"}
-            %p Booked by #{appt.client}
-            =link_to "View", "appointments/#{appt.id}", :class => "appt"
-            =link_to "Edit", "#", :class => "appt"
-            =link_to "Cancel", "#", :class => "appt"
 
-
-%div.clear
-%div{:id => "footer"}
-
+%h2 available appointments
+- @appointments.each do |appt|
+  %p
+    %table{:class => "appt"}
+      %tr
+        %td{:width => "60%"}
+          %p
+            Intern: #{appt.intern} <br/>
+            School: #{appt.school} <br/>
+            Date: #{appt.date} <br/>
+            Time: #{appt.start} - #{appt.end}
+        %td{:width => "40%"}
+          %p Booked by #{appt.client}
+          =link_to "View", "appointments/#{appt.id}", :class => "link"
+          %br
+          =link_to "Edit", "appointments/#{appt.id}/edit", :class => "link"
+          =button_to "Delete", appointment_path(appt), :method => :delete, :confirm => 'Are you sure?'

@@ -13,7 +13,11 @@
         %div{:id => "title"}
           %h1.inline
             =image_tag "fueled_logo.jpg", :height => "100px"
-          %h3.inline USER PORTAL
+          %h3.inline
+            -if current_user.rank == "intern"
+              COUNSELOR PORTAL
+            -elsif current_user.rank == "client"
+              USER PORTAL
 
         %nav
           -if !current_user.nil?
@@ -37,12 +41,14 @@
               UID: #{current_user.uid} <br/>
               Name: #{current_user.name} <br/>
               Rank: #{current_user.rank} <br/><br/>
-              =link_to "Change password", "#", :class => "appt"
+              =link_to "Change password", "#", :class => "link"
           %div{:id => "workshops"}
             %h2 my appointments
             %p.textbox (put booked appointments here?)
 
-        = yield
+        %div{:id => "calendar"}
+
+          = yield
   -else
     = yield
 	

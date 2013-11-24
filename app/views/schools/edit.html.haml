@@ -1,0 +1,27 @@
+-#  This file is app/views/schools/edit.html.haml
+
+%div{:class => "textbox"}
+  = form_tag school_path(@school), :method => :put do
+
+    = label :school, :name, 'Name'
+    = text_field :school, 'name'
+    %br
+    = label :school, :address, 'Street Address'
+    = text_field :school, 'address'
+    %br
+    = label :school, :city, 'City'
+    = text_field :school, 'city'
+    %br
+    = label :school, :state, 'State'
+    = text_field :school, 'state'
+    %br
+    = label :school, :county, 'County'
+    = text_field :school, 'county'
+    %br
+    = label :school, :country, 'Country'
+    = text_field :school, 'country'    
+    %br
+    = label :school, :zipcode, 'Zip Code'
+    = text_field :school, 'zipcode'
+    %br
+    = submit_tag 'Edit School'
