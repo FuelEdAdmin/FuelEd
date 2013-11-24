@@ -17,7 +17,6 @@ class AppointmentsController < ApplicationController
 	end
 
 	def index
-<<<<<<< HEAD
       	user_check()
 	  	# want to find by school
 	  	if current_user.rank == "client"

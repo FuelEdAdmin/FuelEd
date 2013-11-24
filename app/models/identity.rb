@@ -1,4 +1,5 @@
 class Identity < OmniAuth::Identity::Models::ActiveRecord
+	belongs_to :user
 	validates_presence_of :password, on: :create
 	validates_presence_of :name
 	validates_uniqueness_of :email
