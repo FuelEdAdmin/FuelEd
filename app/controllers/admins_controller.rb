@@ -1,7 +1,7 @@
 class AdminsController < ApplicationController
 
 	layout "admin"
-	before_filter :user_and_admin_check
+	# before_filter :user_and_admin_check
 
 	def index
 		@appointments = Appointment.all # want to find by school
