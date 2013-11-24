@@ -10,9 +10,29 @@
         %br/
         = f.text_field :name
       %p
-        = f.label :location
+        = f.label "Street Address"
         %br/
-        = f.text_field :location
+        = f.text_field :address
+      %p
+        = f.label :city
+        %br/
+        = f.text_field :city
+      %p
+        = f.label :state
+        %br/
+        = f.text_field :state
+      %p
+        = f.label :county
+        %br/
+        = f.text_field :county
+      %p
+        = f.label :country
+        %br/
+        = f.text_field :country
+      %p
+        = f.label "Zip Code"
+        %br/
+        = f.text_field :zipcode
       %p
         %input.button{name: "commit", type: "submit", value: "Add School"}
-        / = submit_tag 'Add School'
+
