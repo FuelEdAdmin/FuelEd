@@ -15,6 +15,7 @@
             Time: #{appt.start} - #{appt.end}
         %td{:width => "40%"}
           %p Booked by #{appt.client}
-          =link_to "View", "appointments/#{appt.id}", :class => "appt"
-          =link_to "Edit", "#", :class => "appt"
-          =link_to "Cancel", "#", :class => "appt"
+          =link_to "View", "appointments/#{appt.id}", :class => "link"
+          %br
+          =link_to "Edit", "appointments/#{appt.id}/edit", :class => "link"
+          =button_to "Delete", appointment_path(appt), :method => :delete, :confirm => 'Are you sure?'

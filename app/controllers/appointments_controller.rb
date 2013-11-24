@@ -23,7 +23,14 @@ class AppointmentsController < ApplicationController
 	def update	
 	    @appointment = Appointment.find(params[:id])
 	    @appointment.update_attributes!(params[:appointment].permit(:client, :intern, :school, :date, :start, :end))
-	    redirect_to user_path(@appointment)
+	    redirect_to appointment_path(@appointment)
+	end
+
+        def destroy
+		@appointments = Appointment.find(params[:id])
+		@appointments.destroy
+		flash[:notice] = "Appointment deleted."
+		redirect_to "/appointments"
 	end
 
 	def index
