@@ -16,6 +16,16 @@ class AppointmentsController < ApplicationController
 		@appointment = Appointment.find(params[:id])
 	end
 
+        def edit
+    		@appointment = Appointment.find(params[:id])
+  	end
+	
+	def update	
+	    @appointment = Appointment.find(params[:id])
+	    @appointment.update_attributes!(params[:appointment].permit(:client, :intern, :school, :date, :start, :end))
+	    redirect_to user_path(@appointment)
+	end
+
 	def index
 	  	# want to find by school
 	  	if current_user.rank == "client"
