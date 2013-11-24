@@ -1,12 +1,12 @@
 class IdentitiesController < AdminsController
 	def new
-		user_and_admin_check()
+		#user_and_admin_check()
 		@identity = env['omniauth.identity']
 		puts env['omniauth.identity']
 	end
 
 	def index
-		user_and_admin_check()
+		#user_and_admin_check()
     end
 
 #	def create

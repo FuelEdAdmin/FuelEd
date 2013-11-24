@@ -1,5 +1,5 @@
 -#  This file is app/views/schools/index.html.haml
-.mainContentBox  
+#calendar 
   .mainContentBoxHeader all schools
   - @schools.each do |school|
     %p
@@ -7,9 +7,11 @@
         %tr
           %td{:width => "60%"}
             %p
-              Name: #{school.name} <br/>
-              Location: #{school.location} <br/>
-              
+              Name: #{school.name} <br/> <br/>
+              Location: <br/> #{school.address} <br/> #{school.city}, #{school.state} #{school.zipcode} <br/> #{school.county}, #{school.country} <br/>
+          %td{:width => "10%"}
+            =link_to "Edit", "/admins/schools/#{school.id}/edit", :class => "schools"
+            =button_to "Delete", school_path(school), :method => :delete, :confirm => 'Are you sure?'
   %div{:class => "button"}
     =link_to "Add New School", "/schools/new"                
 
