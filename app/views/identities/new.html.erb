@@ -1,6 +1,6 @@
 <!-- <div id="calendar">
- --><div class = "mainContentBox">
-  <div class = "mainContentBoxHeader">New Account</div>
+ --> <div class = "mainContentBox">
+  <div class = "mainContentBoxHeader">new account</div>
 
   Please fill in the blanks below with the correct information. <br> <br>
 
@@ -16,45 +16,32 @@
       </div>
     <% end %>
     <nav>
-      <table cellpadding="5px">
-        <div class="field">
-          <tr>
+      <table cellpadding="5px", width: "100%">
+        <tr>
             <td><%= label_tag :rank %></td>
             <td><%= select_tag :rank, options_for_select(User::USER_TYPES) %></td>
-          </tr>
-        </div>
-        <div class="field">
-          <tr>
+        </tr>
+        <tr>
           <td><%= label_tag :name %></td>
           <td><%= text_field_tag :name, @identity.try(:name) %></td>
-          </tr>
-        </div>
-        <div class="field">
-          <tr>
+        </tr>
+        <tr>
           <td><%= label_tag :email %></td>
           <td><%= text_field_tag :email, @identity.try(:email) %></td>
-          </tr>
-        </div>
-        <div class="field">
-          <tr>
+        </tr>
+        <tr>
           <td><%= label_tag :password %></td>
           <td><%= password_field_tag :password %></td>
-          </tr>
-        </div>
-        <div class="field">
-          <tr>
+        </tr>
+        <tr>
           <td><%= label_tag :password_confirmation %></td>
           <td><%= password_field_tag :password_confirmation %></td>
-          </tr>
-        </div>
+        </tr>
       </table>
+
+    </nav>
       <div class="actions">
         <input class = "button" name="commit" type="submit" value="Register">
       </div>
-    </nav>
   <% end %>
-</div>
 
-
-<!-- </div>
- -->

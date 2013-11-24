@@ -1,12 +1,12 @@
 -#  This file is app/views/appointments/new.html.haml
 .mainContentBox
-    .mainContentBoxHeader New Appointment
+    .mainContentBoxHeader new appointment
     Please fill in the blanks below with the correct information.
     %br/
     %br/
     = form_tag appointments_path do
         %nav
-            %table{cellpadding: "5px"}
+            %table{cellpadding: "5px", width: "100%"}
                 %tr
                 %td= label :appointment, :client, 'Client'
                 %td= text_field :appointment, 'client'

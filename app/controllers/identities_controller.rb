@@ -16,7 +16,10 @@ class IdentitiesController < AdminsController
 #		flash[:alert] = "You have successfully made an account!"
 #		redirect_to "/admins"	
 #	end
-
+	def show
+		@user_show_id = current_user.nil? ? "content" : "calendar"
+		@user = User.find_by_uid(params[:id])
+	end
 	def user_and_admin_check()
 		if current_user.nil?
             redirect_to "/identities"
