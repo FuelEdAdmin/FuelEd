@@ -15,6 +15,10 @@
             Time: #{appt.start} - #{appt.end}
         %td{:width => "40%"}
           %p Booked by #{appt.client}
+<<<<<<< HEAD
           =link_to "View", "/appointments/#{appt.id}", :class => "appt"
+=======
+          =link_to "View", "appointments/#{appt.id}", :class => "appt"
+>>>>>>> added route, view, and action to view past appts
           =link_to "Edit", "#", :class => "appt"
           =link_to "Cancel", "#", :class => "appt"

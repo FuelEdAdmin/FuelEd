@@ -47,7 +47,6 @@ class AppointmentsController < ApplicationController
 	end
 
 	def past
-		@appointments = Appointment.all
 	  	if current_user.rank == "client"
             @appointments = Appointment.all  # want to find appointments where DATE < current date, and booked my me
 	  	elsif current_user.rank == "intern"
