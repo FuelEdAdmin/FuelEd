@@ -12,7 +12,6 @@ class Appointment < ActiveRecord::Base
 	# validates :end, :presence => true, :inclusion => 0..2359
 	# validates :room, :presence => true, :length => { :maximum => 25 }
 
-
 	def self.populate_minutes()
 		array = []
 		61.times do |x|
@@ -38,7 +37,4 @@ class Appointment < ActiveRecord::Base
 	MINUTES = self.populate_minutes()
 	TIME_OF_DAY = ["AM", "PM"]
 
-
-
->>>>>>> modified appointments form
 end
