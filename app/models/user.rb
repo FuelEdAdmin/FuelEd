@@ -3,6 +3,10 @@ class User < ActiveRecord::Base
   has_one :identity, :dependent => :destroy
   USER_TYPES = ["client", "intern", "admin"]
 
+  validates_uniqueness_of :email
+  validates_format_of :email, :with => /\A[-a-z0-9_+\.]+\@([-a-z0-9]+\.)+[a-z0-9]{2,4}\z/i
+  validates :type, :inclusion => { :in => USER_TYPES, :message => "%{value} is not a valid user type" }
+
 	def self.from_omniauth(auth, rank)
 		find_by_provider_and_uid(auth["provider"], auth["uid"]) || create_with_omniauth(auth, rank)
 	end
