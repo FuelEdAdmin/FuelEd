@@ -38,5 +38,4 @@ class Appointment < ActiveRecord::Base
 	MINUTES = self.populate_minutes()
 	TIME_OF_DAY = ["AM", "PM"]
 
-
 end
