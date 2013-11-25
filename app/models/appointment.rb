@@ -10,7 +10,7 @@ class Appointment < ActiveRecord::Base
  #  	validates_numericality_of :end, :greater_than => :start
 	# validates :start, :presence => true, :inclusion => 0..2359
 	# validates :end, :presence => true, :inclusion => 0..2359
-	validates :room, :presence => true, :length => { :maximum => 25 }
+	# validates :room, :presence => true, :length => { :maximum => 25 }
 
 
 	def self.populate_minutes()
