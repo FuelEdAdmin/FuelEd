@@ -13,6 +13,7 @@ class Appointment < ActiveRecord::Base
 	# validates :room, :presence => true, :length => { :maximum => 25 }
 
 
+
 	def self.populate_minutes()
 		array = []
 		61.times do |x|
