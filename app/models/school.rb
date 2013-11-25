@@ -1,7 +1,7 @@
 class School < ActiveRecord::Base
 	has_and_belongs_to_many :users
 	#has_and_belongs_to_many :appointments
-
+	
 	validates_presence_of :name, :length => { :maximum => 50 }
 	validates_presence_of :country, :length => { :maximum => 50 }
 	validates_presence_of :state, :length => { :maximum => 20 }
