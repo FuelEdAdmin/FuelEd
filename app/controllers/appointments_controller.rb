@@ -3,6 +3,7 @@ class AppointmentsController < ApplicationController
 	before_filter :user_check
 
 	def new
+		@schools = School.find_by_user_id(current_user.id)
 	end
 
 	def create
@@ -37,8 +38,8 @@ class AppointmentsController < ApplicationController
 		@appointment = Appointment.find(params[:id])
 	end
 
-        def edit
-    		@appointment = Appointment.find(params[:id])
+    def edit
+    	@appointment = Appointment.find(params[:id])
   	end
 	
 	def update	
