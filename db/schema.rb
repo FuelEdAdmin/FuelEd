@@ -11,12 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131124230916) do
+ActiveRecord::Schema.define(version: 20131125002834) do
 
   create_table "appointments", force: true do |t|
     t.string   "client"
     t.string   "intern"
-    t.string   "date"
     t.datetime "start"
     t.datetime "end"
     t.datetime "created_at"
@@ -33,13 +32,10 @@ ActiveRecord::Schema.define(version: 20131124230916) do
     t.string   "password_digest"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "add_school_to_identities"
-    t.string   "school"
   end
 
   create_table "schools", force: true do |t|
     t.string   "name"
-    t.string   "location"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "country"
@@ -47,7 +43,7 @@ ActiveRecord::Schema.define(version: 20131124230916) do
     t.string   "county"
     t.string   "city"
     t.string   "address"
-    t.string   "zipcode"
+    t.integer  "zipcode",    limit: 255
   end
 
   create_table "users", force: true do |t|
