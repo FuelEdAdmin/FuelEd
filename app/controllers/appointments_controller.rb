@@ -6,7 +6,13 @@ class AppointmentsController < ApplicationController
 	end
 
 	def create
-		@appointment = Appointment.create(params[:appointment].permit(:client, :intern, :school, :date, :start, :end))
+		@appointment = Appointment.new
+		@appointment.client = params[:client]
+		@appointment.intern = params[:intern]
+		@appointment.room = "room"
+		@appointment.school = School.find_by_name(params[:school]).first
+		@appointment.save
+		#@appointment = Appointment.create(params[:appointment].permit(:client, :intern, :school, :date, :start, :end))
 		#@appointment.save
 		flash[:alert] = "You have successfully made an appointment!"
 		redirect_to @appointment	

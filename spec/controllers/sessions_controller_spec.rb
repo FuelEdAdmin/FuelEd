@@ -3,7 +3,7 @@ require 'spec_helper'
 describe SessionsController do
 
   before :each do
-    @fake_user = double("user", :id => 1)
+    @fake_user = double("user", :uid => 1, :rank => "client")
   end
 
   describe "creating a new session" do
@@ -14,7 +14,7 @@ describe SessionsController do
     it "should have correct id in session" do
       User.stub(:from_omniauth).and_return(@fake_user)
       get :create
-      session[:user_id].should == @fake_user.id
+      session[:user_id].should == @fake_user.uid
     end
   end
 
