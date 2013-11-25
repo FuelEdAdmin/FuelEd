@@ -6,8 +6,29 @@ class AppointmentsController < ApplicationController
 	end
 
 	def create
-		@appointment = Appointment.create(params[:appointment].permit(:client, :intern, :school, :date, :start, :end))
-		#@appointment.save
+		@appointment = Appointment.new
+
+		date = DateTime.new(params[:date_year].to_i.to_i,params[:date_month].to_i,params[:date_day].to_i)
+		if(params[:start_tod] == "PM" and params[:start_hour].to_i != 12)
+			start_date = DateTime.new(params[:date_year].to_i,params[:date_month].to_i,params[:date_day].to_i, params[:start_hour].to_i + 12, params[:start_minutes].to_i)
+		else
+			start_date = DateTime.new(params[:date_year].to_i,params[:date_month].to_i,params[:date_day].to_i, params[:start_hour].to_i, params[:start_minutes].to_i)
+		end
+		if(params[:end_tod] == "PM" and params[:end_hour].to_i != 12)
+			end_date = DateTime.new(params[:date_year].to_i,params[:date_month].to_i,params[:date_day].to_i, params[:end_hour].to_i + 12, params[:end_minutes].to_i)
+		else
+			end_date = DateTime.new(params[:date_year].to_i,params[:date_month].to_i,params[:date_day].to_i, params[:end_hour].to_i, params[:end_minutes].to_i)
+		end
+
+		@appointment.client = params[:appointment][:client]
+		@appointment.intern = params[:appointment][:intern]
+		# @appointment.school = params[:appointment][:school]
+		@appointment.date = date
+		@appointment.start = start_date
+		@appointment.end = end_date
+
+		# @appointment = Appointment.create(params[:appointment].permit(:client, :intern, :school, date, start_date, end_date))
+		@appointment.save
 		flash[:alert] = "You have successfully made an appointment!"
 		redirect_to @appointment	
 	end
