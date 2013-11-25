@@ -14,8 +14,10 @@
                 %td= label :appointment, :intern, 'Intern'
                 %td= text_field :appointment, 'intern'
                 %tr
-                %td= label :appointment, :school, 'School'
-                %td= text_field :appointment, 'school'
+                %td School
+                %td
+                    = label :school, ''
+                    = select_tag :date_month, options_for_select(current_user.schools)                
                 %tr
                 %td Date
                 %td
