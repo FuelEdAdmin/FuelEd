@@ -82,6 +82,20 @@ nav input{
     padding: 5px;
 }
 
+.message {
+    width: 100%;
+    padding: 6px;
+    color: white;
+}
+
+#notice {
+    background: #b8d28b;
+}
+
+#warning {
+    background: #FF8533;
+}
+
 /*Links*/
 
 a{

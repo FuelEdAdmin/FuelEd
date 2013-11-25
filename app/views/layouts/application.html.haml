@@ -50,7 +50,15 @@
 
         %div{:id => "calendar"}
 
+          - if flash[:notice]
+            #notice.message= flash[:notice]
+          - elsif flash[:warning]
+            #warning.message= flash[:warning]
+
           = yield
+
+        %div.clear
+        %div{:id => "footer"}
   -else
     = yield
 	
