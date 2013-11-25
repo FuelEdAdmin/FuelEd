@@ -8,8 +8,8 @@ class LoginController < ApplicationController
 		 		redirect_to "/appointments"
 		 	end
 		else
-			if not @admin_exists #not logged in and no admin exists yet => redicirect to login page
-				redirect_to "/identities/new", notice: "No admin account exists.  Please create a new admin account."
+			if !admin_exists #not logged in and no admin exists yet => redicirect to login page
+				redirect_to "/admins/identities/new", notice: "No admin account exists.  Please create a new admin account."
 			end
 		end
 	end

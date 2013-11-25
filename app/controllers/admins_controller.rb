@@ -14,7 +14,7 @@ class AdminsController < ApplicationController
         	end
       	end
 		if not current_user.nil?
-			if not @current_user.rank == "admin"
+			if not current_user.rank == "admin"
 					redirect_to root_url
 		    end
 		end
