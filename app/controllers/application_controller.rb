@@ -5,6 +5,11 @@ class ApplicationController < ActionController::Base
 
   	private
 
+    def admin_exists
+      @admin_exists ||= User.find_by_rank(:admin)
+    end
+    helper_method :admin_exists
+    
   	def current_user
   		puts "SESSION[:user_id] IS    :"
   		puts session[:user_id]
