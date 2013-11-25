@@ -42,13 +42,23 @@
               Name: #{current_user.name} <br/>
               Rank: #{current_user.rank} <br/><br/>
               =link_to "Change password", "#", :class => "link"
+              %br/
+              =link_to "View Past Appointments", past_path, :class => "link"
           %div{:id => "workshops"}
             %h2 my appointments
             %p.textbox (put booked appointments here?)
 
         %div{:id => "calendar"}
 
+          - if flash[:notice]
+            #notice.message= flash[:notice]
+          - elsif flash[:warning]
+            #warning.message= flash[:warning]
+
           = yield
+
+        %div.clear
+        %div{:id => "footer"}
   -else
     = yield
 	

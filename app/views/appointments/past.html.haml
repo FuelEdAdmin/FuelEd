@@ -1,0 +1,20 @@
+-#  This file is app/views/appointments/index.html.haml
+
+
+
+%h2 my past appointments
+- @appointments.each do |appt|
+  %p
+    %table{:class => "appt"}
+      %tr
+        %td{:width => "60%"}
+          %p
+            Intern: #{appt.intern} <br/>
+            School: #{appt.school} <br/>
+            Date: #{appt.date} <br/>
+            Time: #{appt.start} - #{appt.end}
+        %td{:width => "40%"}
+          %p Booked by #{appt.client}
+          =link_to "View", "/appointments/#{appt.id}", :class => "appt"
+          =link_to "Edit", "#", :class => "appt"
+          =link_to "Cancel", "#", :class => "appt"

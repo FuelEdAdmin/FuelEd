@@ -17,6 +17,7 @@ FuelEd::Application.routes.draw do
   #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
 
   # Example resource route (maps HTTP verbs to controller actions automatically):
+  match "/appointments/past" => "appointments#past", :as => :past, via: :get
   resources :appointments
   resources :schools
 
@@ -26,7 +27,6 @@ FuelEd::Application.routes.draw do
   match "/auth/identity/register" => "identities#new", via: :post
   match "/auth/failure" => "sessions#failure", via: :get
   match "/signout" => "sessions#destroy", :as => :signout, via: :get
-  #match "/appointments/past.html" => "appointments@past_appts"
   
   scope '/admins' do
     resources :identities

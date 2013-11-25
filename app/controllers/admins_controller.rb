@@ -9,11 +9,13 @@ class AdminsController < ApplicationController
 
 	def user_and_admin_check()
 		if current_user.nil?
-            redirect_to "/identities"
+			if @admin_exists #check to see if an admin even exists yet
+            	redirect_to "/identities"
+        	end
       	end
 		if not current_user.nil?
 			if not @current_user.rank == "admin"
-				redirect_to root_url
+					redirect_to root_url
 		    end
 		end
 	end

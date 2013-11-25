@@ -7,6 +7,10 @@ class LoginController < ApplicationController
 	        if @current_user.rank == "client" or  @current_user.rank == "intern"		
 		 		redirect_to "/appointments"
 		 	end
+		else
+			if not @admin_exists #not logged in and no admin exists yet => redicirect to login page
+				redirect_to "/identities/new", notice: "No admin account exists.  Please create a new admin account."
+			end
 		end
 	end
 end
