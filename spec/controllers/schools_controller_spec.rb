@@ -3,8 +3,8 @@ require 'spec_helper'
 describe SchoolsController do
 
   before :each do
-    @fake_school = {:id => 1, :name => "school", :location => "california"}
-    @schl = School.new(:name => "school", :location => "california")
+    @fake_school = {:id => 1, :name => "school"}
+    @schl = School.new(:name => "school", :country => "country", :state => "state", :county => "county", :zipcode => "97867", :address => "kasdkjasd", :city => "akhdasd")
   end
 
   describe "adding a school" do
@@ -15,7 +15,7 @@ describe SchoolsController do
     it "should redirect to the school details page" do
       School.stub(:new).and_return(@schl)
       get :create, {:school => @fake_school}
-      response.should redirect_to "/schools/#{@fake_school[:id]}"
+      response.should redirect_to "/admins/schools"
     end
   end
 

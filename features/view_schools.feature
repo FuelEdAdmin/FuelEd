@@ -6,19 +6,21 @@ Feature: View all schools
 
 Background:
   Given the following schools exist:
-  | name           | location       |
-  | UC Berkeley    | Berkeley, CA   |
-  | Stanford       | Palo Alto, CA  |
-  | Ohlone College | Fremont, CA    |
-  | Saratoga High  | Saratoga, CA   |
+  | name        |address   | city      | state | county | country | zipcode |
+  | UC Berkeley |blah      | Berkeley  | CA    | blah   | USA     | 94709   |
+  | Stanford    |blah      | Palo Alto | CA    | blah   | USA     | 94709   |
 
 Scenario: View all schools
+  When I go to the homepage
+  And I select "admin" from "rank"
+  And I fill in "Name" with "admin"
+  And I fill in "Email" with "admin@gmail.com"
+  And I fill in "Password" with "admin"
+  And I fill in "Password confirmation" with "admin"  
+  And I press "Register"
+  Then I should see "School Information"
   When I go to the schools homepage
   Then I should see "UC Berkeley"
   Then I should see "Berkeley, CA"
   Then I should see "Stanford"
   Then I should see "Palo Alto, CA"
-  Then I should see "Ohlone College"
-  Then I should see "Fremont, CA"
-  Then I should see "Saratoga High"
-  Then I should see "Saratoga, CA"
