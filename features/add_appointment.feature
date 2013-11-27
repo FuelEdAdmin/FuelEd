@@ -6,21 +6,22 @@ Feature: Adding an appointment
 
 Background:
   Given I am on the home page
-  And I follow "Sign Up"
+  And I select "intern" from "rank"
   And I fill in "name" with "Blah"
   And I fill in "email" with "blah@blah.com"
   And I fill in "password" with "blah"
   And I fill in "password_confirmation" with "blah"
   And I press "Register"
   Given I am on the new appointment page
-  When I fill in "appointment_client" with "Stephanie Tung"
+  And I follow "Create an Appointment"
+  And I fill in "appointment_client" with "Stephanie Tung"
   And I fill in "appointment_intern" with "Christine Loh"
+  And I fill in "appointment_school" with "UC Berkeley"
 
-Scenario: Add an appointment
-  And I fill in "Date" with "12/10/2014"
+ Scenario: Add an appointment
+  When I fill in "Date" with "12/10/2014"
   And I fill in "Start" with "1400"
   And I fill in "End" with "1450"
-  And I press "Create Appointment"
   Then I should see "Stephanie Tung"
   Then I should see "Christine Loh"
   Then I should see "1400"

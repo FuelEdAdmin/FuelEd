@@ -8,13 +8,13 @@ Background:
 
 Scenario: Create an Account 
   Given I am on the home page
-  When I follow "Sign Up"
-  Then I should see "New Account"
+  And I should see "Rank"
   And I should see "Name"
   And I should see "Email"
   And I should see "Password"
   And I should see "Password confirmation"
-  When I fill in "Name" with "Patrick"
+  When I select "intern" from "rank"
+  And I fill in "Name" with "Patrick"
   And I fill in "Email" with "cs169rocks@gmail.com"
   And I fill in "Password" with "cs169"
   And I fill in "Password confirmation" with "cs169"
@@ -23,8 +23,8 @@ Scenario: Create an Account
 
 Scenario: Password Mismatch
   Given I am on the home page
-  And I follow "Sign Up"
-  When I fill in "Name" with "Patrick"
+  When I select "intern" from "rank"
+  And I fill in "Name" with "Patrick"
   And I fill in "Email" with "cs169rocks@gmail.com"
   And I fill in "Password" with "cs169"
   And I fill in "Password confirmation" with "boooooooooo"
@@ -33,8 +33,8 @@ Scenario: Password Mismatch
 
 Scenario: Email Already Used
   Given I am on the home page
-  And I follow "Sign Up"
-  When I fill in "Name" with "Real David"
+  When I select "intern" from "rank"
+  And I fill in "Name" with "Real David"
   And I fill in "Email" with "cs169rocks@gmail.com"
   And I fill in "Password" with "cs169"
   And I fill in "Password confirmation" with "cs169"
@@ -42,8 +42,8 @@ Scenario: Email Already Used
   Then I should see "Create an Appointment"
   And I follow "signout"
   Given I am on the home page
-  And I follow "Sign Up"
-  When I fill in "Name" with "Fake David"
+  When I select "intern" from "rank"
+  And I fill in "Name" with "Fake David"
   And I fill in "Email" with "cs169rocks@gmail.com"
   And I fill in "Password" with "cs169"
   And I fill in "Password confirmation" with "cs169"
@@ -52,7 +52,6 @@ Scenario: Email Already Used
 
 Scenario: Errors appear if forms left blank
   Given I am on the home page
-  And I follow "Sign Up"
   And I press "Register"
   Then I should see "4 errors prohibited this account from being saved:"
   And I should see "Password can't be blank"
