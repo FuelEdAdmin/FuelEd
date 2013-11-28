@@ -16,6 +16,7 @@ Background:
   | David Le Brun   | Lewis Ren    | 11/14/2013  | 1400  | 1500  |
   | David Le Brun   | Lewis Ren    | 11/16/2013  | 1200  | 1300  |
   | Christine Loh   | Lewis Ren    | 11/18/2013  | 1700  | 1800  |
+  And I am logged in as "David Le Brun"
 
  Scenario: View past appointment (exists)
     And today is "11/15/2013"
