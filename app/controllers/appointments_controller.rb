@@ -3,6 +3,7 @@ class AppointmentsController < ApplicationController
 	before_filter :user_check
 
 	def new
+		@schools = School.find_by_user_id(current_user.id)
 	end
 
 	def create
@@ -10,10 +11,31 @@ class AppointmentsController < ApplicationController
 		@appointment.client = params[:client]
 		@appointment.intern = params[:intern]
 		@appointment.room = "room"
+
+		date = DateTime.new(params[:date_year].to_i.to_i,params[:date_month].to_i,params[:date_day].to_i)
+		if(params[:start_tod] == "PM" and params[:start_hour].to_i != 12)
+			start_date = DateTime.new(params[:date_year].to_i,params[:date_month].to_i,params[:date_day].to_i, params[:start_hour].to_i + 12, params[:start_minutes].to_i)
+		else
+			start_date = DateTime.new(params[:date_year].to_i,params[:date_month].to_i,params[:date_day].to_i, params[:start_hour].to_i, params[:start_minutes].to_i)
+		end
+		if(params[:end_tod] == "PM" and params[:end_hour].to_i != 12)
+			end_date = DateTime.new(params[:date_year].to_i,params[:date_month].to_i,params[:date_day].to_i, params[:end_hour].to_i + 12, params[:end_minutes].to_i)
+		else
+			end_date = DateTime.new(params[:date_year].to_i,params[:date_month].to_i,params[:date_day].to_i, params[:end_hour].to_i, params[:end_minutes].to_i)
+		end
+
+		@appointment.client = params[:appointment][:client]
+		@appointment.intern = params[:appointment][:intern]
+		# @appointment.school = params[:appointment][:school]
+		@appointment.date = date
+		@appointment.start = start_date
+		@appointment.end = end_date
 		@appointment.school = School.find_by_name(params[:school]).first
 		@appointment.save
 		#@appointment = Appointment.create(params[:appointment].permit(:client, :intern, :school, :date, :start, :end))
 		#@appointment.save
+		# @appointment = Appointment.create(params[:appointment].permit(:client, :intern, :school, date, start_date, end_date))
+
 		flash[:alert] = "You have successfully made an appointment!"
 		redirect_to @appointment	
 	end
@@ -22,8 +44,8 @@ class AppointmentsController < ApplicationController
 		@appointment = Appointment.find(params[:id])
 	end
 
-        def edit
-    		@appointment = Appointment.find(params[:id])
+    def edit
+    	@appointment = Appointment.find(params[:id])
   	end
 	
 	def update	
