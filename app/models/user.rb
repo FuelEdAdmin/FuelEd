@@ -2,6 +2,7 @@ class User < ActiveRecord::Base
   has_and_belongs_to_many :schools
   has_one :identity, :dependent => :destroy
   USER_TYPES = ["client", "intern", "admin"]
+  @@randIDs = (1..1000).to_a.shuffle
 
   validates_uniqueness_of :email
   validates_format_of :email, :with => /\A[-a-z0-9_+\.]+\@([-a-z0-9]+\.)+[a-z0-9]{2,4}\z/i
@@ -19,7 +20,7 @@ class User < ActiveRecord::Base
 	def self.create_with_omniauth(auth, userRank)
 		create! do |user|
     	user.provider = auth["provider"]
-    	user.uid = auth["uid"]
+    	user.uid = @@randIDs.pop
     	user.name = auth["info"]["name"]
     	user.email = auth["info"]["email"] 
       user.rank = userRank
