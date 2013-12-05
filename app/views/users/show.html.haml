@@ -1,18 +1,21 @@
 -#  This file is app/views/users/show.html.haml
 
-%div{:class => "textbox"}
-  %p
-    %b Name:
-    #{@user.name}
-  %p
-    %strong Email:
-    #{@user.email}
-  %p
-    %strong Created At:
-    #{@user.created_at}
-  %p
-    %strong User ID:
-    #{@user.uid}
 
-  -if !current_user.nil? && current_user.uid == @user.uid
-    =link_to "Edit Profile", "/users/#{@user.uid}/edit", :class => "appt"
+.mainContentBox
+  .mainContentBoxHeader view profile
+  %div{:class => "textbox"}
+    %p
+      %b Name:
+      #{@user.name}
+    %p
+      %strong Email:
+      #{@user.email}
+    %p
+      %strong Created At:
+      #{@user.created_at}
+    %p
+      %strong User ID:
+      #{@user.uid}
+
+    -if !current_user.nil? && current_user.uid == @user.uid
+      =link_to "Edit Profile", "/users/#{@user.uid}/edit", :class => "appt"

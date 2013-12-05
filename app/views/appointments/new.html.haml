@@ -1,4 +1,6 @@
 -#  This file is app/views/appointments/new.html.haml
+
+
 .mainContentBox
     .mainContentBoxHeader new appointment
     Please fill in the blanks below with the correct information.
@@ -7,26 +9,41 @@
     = form_tag appointments_path do
         %nav
             %table{cellpadding: "5px", width: "100%"}
-                %tr
-                %td= label :appointment, :client, 'Client'
-                %td= text_field :appointment, 'client'
-                %tr
                 %td= label :appointment, :intern, 'Intern'
-                %td= text_field :appointment, 'intern'
+                %td= @current_user.name
                 %tr
-                %td= label :appointment, :school, 'School'
-                %td= text_field :appointment, 'school'
+                %td School
+                %td
+                    = label :school, ''
+                    = select_tag :school, options_for_select(@schools)
                 %tr
-                %td= label :appointment, :date, 'Date'
-                %td= text_field :appointment, 'date'
+                %td Date
+                %td
+                    = label :date_month, ''
+                    = select_tag :date_month, options_for_select(Appointment::MONTHS)
+                    = label :date_day, '/'
+                    = select_tag :date_day, options_for_select(Appointment::DAYS)
+                    = label :date_year, '/'
+                    = select_tag :date_year, options_for_select(Appointment::YEARS)                
                 %td= "(MM/DD/YYYY)"
                 %tr
                 %td= label :appointment, :start, 'Start'
-                %td= text_field :appointment, 'start'
-                %td= "(eg. 7 PM = 1900)"
+                %td
+                    = label :start_hour, ''
+                    = select_tag :start_hour, options_for_select(Appointment::HOURS)
+                    = label :start_minutes, ':'
+                    = select_tag :start_minutes, options_for_select(Appointment::MINUTES)
+                    = label :start_tod, '-'
+                    = select_tag :start_tod, options_for_select(Appointment::TIME_OF_DAY)
                 %tr
                 %td= label :appointment, :end, 'End'
-                %td= text_field :appointment, 'end'
+                %td
+                    = label :end_hour, ''
+                    = select_tag :end_hour, options_for_select(Appointment::HOURS)
+                    = label :end_minutes, ':'
+                    = select_tag :end_minutes, options_for_select(Appointment::MINUTES)
+                    = label :end_tod, '-'
+                    = select_tag :end_tod, options_for_select(Appointment::TIME_OF_DAY)
                 %tr
             %input.button{name: "commit", type: "submit", value: "Create"}
             =link_to "Cancel", appointments_path, :class => "appt"

@@ -10,6 +10,7 @@
       %p (will have add school, add participant forms here)
 
       .mainContentBoxHeader all appointments
+
       - @appointments.each do |appt|
         %p
           %table{:class => "appt"}
@@ -17,11 +18,15 @@
               %td{:width => "60%"}
                 %p
                   Intern: #{appt.intern} <br/>
-                  School: #{appt.school} <br/>
-                  Date: #{appt.date} <br/>
-                  Time: #{appt.start} - #{appt.end}
+                  School: #{appt.school.name} <br/>
+                  Time: #{appt.start.strftime("%I:%M%p")} - #{appt.end.strftime("%I:%M%p, %m/%d/%Y")}
               %td{:width => "40%"}
-                %p Booked by #{appt.client}
+                -if appt.client
+                  -if appt.client == ""
+                    %p Booked by no one
+                  -else
+                    %p Booked by #{appt.client}
+
                 =link_to "View appointment", "appointments/#{appt.id}", :class => "appt"
 
 

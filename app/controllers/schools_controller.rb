@@ -16,6 +16,9 @@ class SchoolsController < AdminsController
 
 	def index
 		@schools = School.all
+		@schools.each do|school|
+  			puts "Hello #{school.name}"
+		end
 	end
 
 	def destroy
