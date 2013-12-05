@@ -58,7 +58,7 @@ class AppointmentsController < ApplicationController
 	    redirect_to appointment_path(@appointment)
 	end
 
-        def destroy
+    def destroy
 		@appointments = Appointment.find(params[:id])
 		@appointments.destroy
 		flash[:notice] = "Appointment deleted."
@@ -86,6 +86,13 @@ class AppointmentsController < ApplicationController
             @appointments = Appointment.all  #find where booked != nil and date < current date
 	  	end
 
+	end
+
+	def book
+	    @appointment = Appointment.find(params[:id])
+	    @appointment.client = @current_user.uid
+	    @appointment.save
+	   	redirect_to appointment_path(@appointment)
 	end
 
 	def user_check()
