@@ -22,6 +22,7 @@ group :production do
   gem 'rails_12factor'
 end
 
+gem 'will_paginate'
 #gem 'bcrypt-ruby', '~> 3.0.0' #omniauth??
 gem 'omniauth'
 #FOR LATER IF WE WANT TO USE OTHER PROVIDES FOR AUTHENTICATION
