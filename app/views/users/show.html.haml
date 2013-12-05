@@ -11,11 +11,8 @@
       %strong Email:
       #{@user.email}
     %p
-      %strong Created At:
-      #{@user.created_at}
-    %p
-      %strong User ID:
-      #{@user.uid}
+      %strong Bio:
+      #{@user.bio}
 
     -if !current_user.nil? && current_user.uid == @user.uid
       =link_to "Edit Profile", "/users/#{@user.uid}/edit", :class => "appt"
