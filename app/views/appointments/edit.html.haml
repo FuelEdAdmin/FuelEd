@@ -34,5 +34,5 @@
             = label :end_tod, '-'
             = select_tag :end_tod, options_for_select(Appointment::TIME_OF_DAY, @appointment.end.strftime("%p").to_i)
             %p
-            = submit_tag 'Edit Profile'
+            = submit_tag 'Update Appointment'
             =link_to "Cancel", appointments_path, :class => "link"
