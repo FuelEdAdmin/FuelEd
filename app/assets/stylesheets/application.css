@@ -187,6 +187,14 @@ a:hover {
 	background: rgba(0,0,0,0.08);
 }
 
+textarea{
+    border: 0px solid black;
+    padding: 5px;
+    width: 200px;
+    height: 100px;
+    background: rgba(0,0,0,0.08); 
+}
+
 /*All button css*/
 
 .button {
