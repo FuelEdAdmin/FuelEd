@@ -166,8 +166,8 @@ a:hover {
 
 .mainContentBox{
     float: left;
-    padding-left: 50px;
-    width: 65%;
+/*    padding-left: 50px;
+*/    width: 85%;
 
 }
 .mainContentBoxHeader{
@@ -229,7 +229,7 @@ a:hover {
     background: #F7941E;
     padding: 5px 20px 5px 20px;
     color: white;
-    margin:10px 0px;
+    margin:0px 0px 10px 0px;
     text-align: center;
 }
 

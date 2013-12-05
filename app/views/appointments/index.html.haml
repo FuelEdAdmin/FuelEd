@@ -2,7 +2,7 @@
 
 
 
-%h2 available appointments
+%h2 all appointments
 - @appointments.each do |appt|
   %p
     %table{:class => "appt"}
@@ -10,12 +10,14 @@
         %td{:width => "60%"}
           %p
             Intern: #{appt.intern} <br/>
-            School: #{appt.school} <br/>
-            Date: #{appt.date} <br/>
-            Time: #{appt.start} - #{appt.end}
+            School: #{appt.school.name} <br/>
+            Time: #{appt.start.strftime("%I:%M%p")} - #{appt.end.strftime("%I:%M%p, %m/%d/%Y")}
         %td{:width => "40%"}
-          %p Booked by #{appt.client}
+          -if appt.client
+            -if appt.client == ""
+              %p Booked by no one
+            -else
+              %p Booked by #{appt.client}          
           =link_to "View", "appointments/#{appt.id}", :class => "link"
-          %br
           =link_to "Edit", "appointments/#{appt.id}/edit", :class => "link"
           =button_to "Delete", appointment_path(appt), :method => :delete, :confirm => 'Are you sure?'
