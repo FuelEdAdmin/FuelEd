@@ -22,7 +22,7 @@ class UsersController < ApplicationController
 	def update
 		
     @user = User.find_by_uid(params[:id])
-    @user.update_attributes!(params[:user].permit(:name, :email, :created_at, :uid))
+    @user.update_attributes!(params[:user].permit(:name, :email, :bio))
     redirect_to user_path(@user)
 
 	end

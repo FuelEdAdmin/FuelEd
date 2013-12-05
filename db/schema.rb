@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131125002834) do
+ActiveRecord::Schema.define(version: 20131205061934) do
 
   create_table "appointments", force: true do |t|
     t.string   "client"
@@ -46,6 +46,14 @@ ActiveRecord::Schema.define(version: 20131125002834) do
     t.integer  "zipcode",    limit: 255
   end
 
+  create_table "schools_users", id: false, force: true do |t|
+    t.integer "user_id"
+    t.integer "school_id"
+  end
+
+  add_index "schools_users", ["user_id", "school_id"], name: "index_schools_users_on_user_id_and_school_id"
+  add_index "schools_users", ["user_id"], name: "index_schools_users_on_user_id"
+
   create_table "users", force: true do |t|
     t.string   "name"
     t.string   "uid"
@@ -55,14 +63,7 @@ ActiveRecord::Schema.define(version: 20131125002834) do
     t.datetime "updated_at"
     t.string   "school"
     t.string   "rank"
+    t.text     "bio"
   end
-
-  create_table "users_schools", id: false, force: true do |t|
-    t.integer "user_id"
-    t.integer "school_id"
-  end
-
-  add_index "users_schools", ["user_id", "school_id"], name: "index_users_schools_on_user_id_and_school_id"
-  add_index "users_schools", ["user_id"], name: "index_users_schools_on_user_id"
 
 end

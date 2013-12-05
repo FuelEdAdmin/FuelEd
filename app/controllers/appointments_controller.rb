@@ -95,6 +95,13 @@ class AppointmentsController < ApplicationController
 	   	redirect_to appointment_path(@appointment)
 	end
 
+	def unbook
+	    @appointment = Appointment.find(params[:id])
+	    @appointment.client = ""
+	    @appointment.save
+	   	redirect_to appointment_path(@appointment)
+	end
+
 	def user_check()
 		# check for admin privledges 
 		if current_user.nil?
