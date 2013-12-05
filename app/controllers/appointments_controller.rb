@@ -67,14 +67,17 @@ class AppointmentsController < ApplicationController
 
 	def index
 	  	# want to find by school
+
 		current_date = Time.new
-	  	if @current_user.rank == "client"
-            @appointments = Appointment.all  #find where school == my school and DATE > current date
-	  	elsif @current_user.rank == "intern"
-            @appointments = Appointment.all  #find where intern == me and DATE > current date
-	  	else
-	    	@appointments = Appointment.all
-	  	end
+	  	# if @current_user.rank == "client"
+    #         @appointments = Appointment.all  #find where school == my school and DATE > current date
+	  	# elsif @current_user.rank == "intern"
+    #         @appointments = Appointment.all  #find where intern == me and DATE > current date
+	  	# else
+	   #  	@appointments = Appointment.all
+	  	# end
+	  	@appointments = Appointment.paginate(:page => params[:page], :per_page => 5)
+
 	end
 
 	def past

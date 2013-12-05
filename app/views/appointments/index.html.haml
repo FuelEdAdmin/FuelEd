@@ -2,8 +2,8 @@
 
 
 
-%h2 all appointments
-- @appointments.each do |appt|
+.mainContentBoxHeader all appointments
+- @appointments.sort_by{|appt| appt.start}.each do |appt|
   %p
     %table{:class => "appt"}
       %tr
@@ -22,11 +22,9 @@
               %p Booked by #{appt.client}  
               -if @current_user.rank == "client"
                 =link_to "Unbook", unbook_url(appt.id), :class => "link"
-          
-            
-
-
-          -else        
+          -if @current_user.rank == "intern"        
             =link_to "View", "appointments/#{appt.id}", :class => "link"
             =link_to "Edit", "appointments/#{appt.id}/edit", :class => "link"
             =button_to "Delete", appointment_path(appt), :method => :delete, :confirm => 'Are you sure?'
+
+= will_paginate @appointments
