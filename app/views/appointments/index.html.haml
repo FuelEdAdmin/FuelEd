@@ -16,10 +16,15 @@
           -if appt.client
             -if appt.client == ""
               %p Booked by no one
+              -if @current_user.rank == "client"
+                =link_to "Book", book_url(appt.id), :class => "link"
             -else
               %p Booked by #{appt.client}  
-          -if @current_user.rank == "client"
-            =link_to "Book", book_url(appt.id), :class => "link"
+              -if @current_user.rank == "client"
+                =link_to "Unbook", unbook_url(appt.id), :class => "link"
+          
+            
+
 
           -else        
             =link_to "View", "appointments/#{appt.id}", :class => "link"
