@@ -15,13 +15,13 @@ class ApplicationController < ActionController::Base
   	end
 
     def booked_appts
-         current_date = Time.new
-	 if @current_user.rank == "client"
+      current_date = Time.new
+      if @current_user.rank == "client"
 	    	@myappts = Appointment.where(["start >= ? and client = ?", "#{current_date}", "#{current_user.uid}"])
-	 elsif @current_user.rank == "intern"
+	    elsif @current_user.rank == "intern"
 	    	@myappts = Appointment.where(["start >= ? and client != ?", "#{current_date}", ""])
-	 end
-         @myappts
+	    end
+      @myappts
     end
 
     def admin_exists
