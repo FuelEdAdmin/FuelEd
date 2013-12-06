@@ -3,6 +3,13 @@ class AppointmentsController < ApplicationController
 	before_filter :user_check, :setup_schools
 
 	def new
+	    @durations = []
+	    @num_slots = [1, 2, 3, 4, 5]
+	    @repeats = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+	    @everys = [1, 2, 3, 4]
+	    11.times do |x|
+	        @durations << (10 + (x * 5))
+            end
 	end
 
 	def create
@@ -96,6 +103,8 @@ class AppointmentsController < ApplicationController
 	    @appointment = Appointment.find(params[:id])
 	    @appointment.client = @current_user.uid
 	    @appointment.save
+	    flash[:notice] = "Appointment successfully booked!"
+	    flash.keep
 	   	redirect_to appointment_path(@appointment)
 	end
 
@@ -103,6 +112,8 @@ class AppointmentsController < ApplicationController
 	    @appointment = Appointment.find(params[:id])
 	    @appointment.client = ""
 	    @appointment.save
+	    flash[:notice] = "Appointment successfully unbooked!"
+	    flash.keep
 	   	redirect_to appointment_path(@appointment)
 	end
 

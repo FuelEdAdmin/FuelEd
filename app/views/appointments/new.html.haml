@@ -45,5 +45,25 @@
                         = label :end_tod, '-'
                         = select_tag :end_tod, options_for_select(Appointment::TIME_OF_DAY)
                     %tr
+                    %td Duration
+                    %td
+                        = label :duration, ''
+                        = select_tag :duration, options_for_select(@durations)
+                        minutes
+                    %tr
+                    %td Number of slots
+                    %td
+                        = label :num_slots, ''
+                        = select_tag :num_slots, options_for_select(@num_slots)
+                    %tr
+                    %td Repeat
+                    %td
+                        = label :repeat, ''
+                        = select_tag :repeat, options_for_select(@repeats)
+                        times every
+                        = label :every, ''
+                        = select_tag :every, options_for_select(@everys)
+                        week(s)
+                    %tr
                 %input.button{name: "commit", type: "submit", value: "Create"}
                 =link_to "Cancel", appointments_path, :class => "appt"
