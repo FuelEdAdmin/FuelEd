@@ -16,7 +16,7 @@ class AppointmentsController < ApplicationController
 		@appointment = Appointment.new
 		@appointment.client = "" 
 		@appointment.intern = @current_user.name
-		@appointment.room = "room"
+		@appointment.room = params[:room]
 
 		date = DateTime.new(params[:date_year].to_i.to_i,params[:date_month].to_i,params[:date_day].to_i)
         if(params[:start_tod] == "PM" and params[:start_hour].to_i != 12)

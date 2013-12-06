@@ -18,6 +18,11 @@
                         = label :school, ''
                         = select_tag :school, options_for_select(@schools)
                     %tr
+                    %td Room
+                    %td
+                        = label :room, ''
+                        = text_field :room, 'room'
+                    %tr
                     %td Date
                     %td
                         = label :date_month, ''
@@ -27,7 +32,7 @@
                         = label :date_year, '/'
                         = select_tag :date_year, options_for_select(Appointment::YEARS)                
                     %tr
-                    %td= label :appointment, :start, 'Start'
+                    %td= label :appointment, :start, 'Start Time'
                     %td
                         = label :start_hour, ''
                         = select_tag :start_hour, options_for_select(Appointment::HOURS)
@@ -36,16 +41,16 @@
                         = label :start_tod, '-'
                         = select_tag :start_tod, options_for_select(Appointment::TIME_OF_DAY)
                     %tr
-                    %td= label :appointment, :end, 'End'
-                    %td
-                        = label :end_hour, ''
-                        = select_tag :end_hour, options_for_select(Appointment::HOURS)
-                        = label :end_minutes, ':'
-                        = select_tag :end_minutes, options_for_select(Appointment::MINUTES)
-                        = label :end_tod, '-'
-                        = select_tag :end_tod, options_for_select(Appointment::TIME_OF_DAY)
+                    / %td= label :appointment, :end, 'End'
+                    / %td
+                    /     = label :end_hour, ''
+                    /     = select_tag :end_hour, options_for_select(Appointment::HOURS)
+                    /     = label :end_minutes, ':'
+                    /     = select_tag :end_minutes, options_for_select(Appointment::MINUTES)
+                    /     = label :end_tod, '-'
+                    /     = select_tag :end_tod, options_for_select(Appointment::TIME_OF_DAY)
                     %tr
-                    %td Duration
+                    %td Slot Duration
                     %td
                         = label :duration, ''
                         = select_tag :duration, options_for_select(@durations)
