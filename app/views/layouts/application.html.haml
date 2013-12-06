@@ -24,7 +24,7 @@
             %ul
               -if @current_user.rank == "intern"
                 %li=link_to "profile", "/users/#{@current_user.uid}", :class => "button-square"
-              %li=link_to "calendar", "/appointments", :class => "button-square"
+              %li=link_to "scheduler", "/appointments", :class => "button-square"
               %li=link_to "signout", "/signout", :class => "button-square"
 
         %div.clear
