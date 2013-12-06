@@ -10,6 +10,9 @@
             %b= label :appointment, :intern, 'Intern:'
             = text_field :appointment, 'intern'
             %p
+            %b= label :appointment, :room, 'Room:'
+            = text_field :appointment, 'room'
+            %p
             %b= label :appointment, :date, 'Date:'
             = label :date_month, ''
             = select_tag :date_month, options_for_select(Appointment::MONTHS, @appointment.start.strftime("%m").to_i)
