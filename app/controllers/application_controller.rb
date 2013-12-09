@@ -4,7 +4,10 @@ class ApplicationController < ActionController::Base
   	protect_from_forgery with: :exception
 
 
-    
+    @schools = []
+    School.all.each do |school|
+      @schools << school.name
+    end
     private 
 
   	def current_user

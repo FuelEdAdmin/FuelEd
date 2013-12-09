@@ -14,13 +14,17 @@ $(document).ready(function(){
      rank = $("select").find(":selected").html();
      if (rank == "client"){ 
        console.log("asdkjasndkas");
-       $("#name_form").slideUp();
-       $("#email_form").slideUp();
-       $(".password_form").slideUp();
+       $("#name_form").slideUp(0);
+       $("#email_form").slideUp(0);
+       $(".password_form").slideUp(0);
+       $("#school_form").slideDown(0);
+       $("#number_form").slideDown(0);
      }else if (rank == "intern" || rank == "admin"){
-       $("#name_form").slideDown();
-       $("#email_form").slideDown();
-       $(".password_form").slideDown();
+       $("#name_form").slideDown(0);
+       $("#email_form").slideDown(0);
+       $(".password_form").slideDown(0);
+       $("#school_form").slideUp(0);
+       $("#number_form").slideUp(0);
       }
   });
 });
@@ -52,6 +56,15 @@ $(document).ready(function(){
               <td><%= label_tag :name %></td>
               <td><%= text_field_tag :name, @identity.try(:name) %></td>
             </tr>
+            <tr id="school_form">
+              <td><%= label_tag :school %></td>
+              <td><%= select_tag :school, options_for_select(@schools) %></td>
+            </tr>
+            <tr id="number_form">
+              <td><%= label_tag :num_accts %></td>
+              <td><%= text_field_tag :num_accts %></td>
+            </tr>
+
             <tr id="email_form">
               <td><%= label_tag :email %></td>
               <td><%= text_field_tag :email, @identity.try(:email) %></td>
@@ -64,6 +77,7 @@ $(document).ready(function(){
               <td><%= label_tag :password_confirmation %></td>
               <td><%= password_field_tag :password_confirmation %></td>
             </tr>
+
       </table>
 
     </nav>
