@@ -19,5 +19,3 @@
             -else
               %p Booked by #{appt.client}          
           =link_to "View", "/appointments/#{appt.id}", :class => "link"
-          =link_to "Edit", "/appointments/#{appt.id}/edit", :class => "link"
-          =button_to "Delete", appointment_path(appt), :method => :delete, :confirm => 'Are you sure?'
