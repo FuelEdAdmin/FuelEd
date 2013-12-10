@@ -19,7 +19,7 @@ class SessionsController < ApplicationController
 			if (User.count == 1)
 				#redirect_to "/admins/identities/#{user.uid}", notice: "User created!"
 				redirect_to "/signout"
-			else if (current_user.rank = "admin")
+			elsif (current_user.rank = "admin")
 				redirect_to "/admins/identities/#{user.uid}", notice: "User created!"
 			else
 				redirect_to appointments_path, notice: "Signed in!"
