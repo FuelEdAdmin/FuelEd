@@ -30,7 +30,8 @@ FuelEd::Application.routes.draw do
   match "/auth/identity/register" => "identities#new", via: :post
   match "/auth/failure" => "sessions#failure", via: :get
   match "/signout" => "sessions#destroy", :as => :signout, via: :get
-  
+  match "/change_password" => "users#change_password", :as=> :change_password, via: :get
+
   scope '/admins' do
     resources :identities
     resources :schools
