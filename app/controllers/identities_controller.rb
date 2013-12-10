@@ -35,8 +35,8 @@ class IdentitiesController < AdminsController
 #		redirect_to "/admins"	
 #	end
 	def show
-		@user_show_id = current_user.nil? ? "content" : "calendar"
 		@user = User.find_by_uid(params[:id])
+		@identity = Identity.find_by_email(@user.email)
 	end
 
 	def destroy

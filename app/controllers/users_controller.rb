@@ -42,9 +42,10 @@ class UsersController < ApplicationController
 			    user_identity.password_digest = password_digest;
 			    user_identity.save!
 			else
+				puts "KJASHDKAJSDHKAJS"
 				flash[:warning] = "Password and confirmation did not match."
 				flash.keep
-				redirect_to change_password_path
+				return redirect_to change_password_path
 			end
 		end
 
@@ -68,7 +69,7 @@ class UsersController < ApplicationController
 	end
 
 	def add_school
-  		@user = User.find_by_uid(params[:uid])
+  		@user = User.find_by_uid(params[:id])
   	    puts current_user
   	    puts "WHY GOD"
 	end

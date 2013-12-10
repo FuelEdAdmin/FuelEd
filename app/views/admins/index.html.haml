@@ -5,10 +5,6 @@
     .mainContentBox
       / %div{:id => "calendar"}
 
-      .mainContentBoxHeader quick actions
-
-      %p (will have add school, add participant forms here)
-
       .mainContentBoxHeader all appointments
 
       - @appointments.each do |appt|
@@ -29,6 +25,6 @@
 
                 =link_to "View appointment", "appointments/#{appt.id}", :class => "appt"
 
-
+      = will_paginate @appointments
       %div.clear
       %div{:id => "footer"}

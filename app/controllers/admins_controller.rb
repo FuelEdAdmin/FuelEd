@@ -4,7 +4,7 @@ class AdminsController < ApplicationController
 	before_filter :user_and_admin_check
 
 	def index
-		@appointments = Appointment.all # want to find by school
+		@appointments = Appointment.paginate(:page => params[:page], :per_page => 5) # want to find by school
 	end
 
 	def user_and_admin_check()

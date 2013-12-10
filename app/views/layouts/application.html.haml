@@ -45,10 +45,11 @@
               %br/
               =link_to "View Past Appointments", past_path, :class => "link"
           %div{:id => "workshops"}
-            %h2 my appointments
+            %h2 upcoming appointments
             - booked_appts.sort_by{|appt| appt.start}.each do |appt|
               %p.textbox
-                Intern: #{appt.intern} <br/>
+                Counselor: #{appt.intern} <br/>
+                Participant: #{appt.client} <br/>
                 School: #{appt.school.name} <br/>
                 Time: #{appt.start.strftime("%I:%M%p")} - #{appt.end.strftime("%I:%M%p, %m/%d/%Y")}<br/>
                 =link_to "Unbook", unbook_url(appt.id), :class => "link"
