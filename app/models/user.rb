@@ -30,20 +30,24 @@ class User < ActiveRecord::Base
 
 	user = self.new
     	user.provider = auth["provider"]
-    	user.uid = @@randIDs.pop
+    	user.uid = auth["uid"]
     	user.name = auth["info"]["name"]
-    	user.email = auth["info"]["email"] 
+    	if userRank == "client"
+		user.email = @@randIDs.pop.to_s + "@fueled.com"
+	else
+		user.email = auth["info"]["email"]
+	end
         user.rank = userRank
 	if school
 	    user.schools << School.find_by_name(school)
 	end
 	user.save
 
-	#my_identity = Identity.find_by_email("a@fueled.com")
-	#if my_identity
-	#	my_identity.email = user.uid.to_s + "@fueled.com"
-	#	my_identity.save!
-	#end
+	my_identity = Identity.find_by_email("c@fueled.com")
+	if my_identity
+		my_identity.email = user.email #user.uid.to_s + "@fueled.com"
+		my_identity.save!
+	end
 
 	user
 
