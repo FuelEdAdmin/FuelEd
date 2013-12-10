@@ -27,6 +27,6 @@
         %td{:width => "40%"}
           %p 
           =link_to "Add School", "/user/#{user.uid}/add_school", :class => "link"
-          =button_to "Delete", "#", :method => :delete, :confirm => 'Are you sure?'
+          =button_to "Delete", "/users/#{user.uid}", :method => :delete, :confirm => 'Are you sure?'
 
 = will_paginate @users

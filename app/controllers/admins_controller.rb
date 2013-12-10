@@ -19,4 +19,11 @@ class AdminsController < ApplicationController
 		    end
 		end
 	end
+
+	def destroy
+		@user = User.find(params[:id])
+		@user.destroy
+		flash[:notice] = "User '#{@user.name}' had been deleted."
+		redirect_to users_path
+	end
 end

@@ -68,7 +68,7 @@ class UsersController < ApplicationController
 	end
 
 	def add_school
-  		@user = User.find_by_uid(params[:id])
+  		@user = User.find_by_uid(params[:uid])
   	    puts current_user
   	    puts "WHY GOD"
 	end
@@ -80,4 +80,10 @@ class UsersController < ApplicationController
         end
     end
 
+	def destroy
+		@user = User.find_by_uid(params[:id])
+		@user.destroy
+		flash[:notice] = "User '#{@user.name}' had been deleted."
+		redirect_to users_path
+	end
 end
