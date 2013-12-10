@@ -5,7 +5,7 @@ class SessionsController < ApplicationController
 
 	def create
 		puts "FJDKSLFJDKLS F DS F  A  DFS  FD FJSD S F DS"
-    	user = User.from_omniauth(env["omniauth.auth"], params[:rank])
+    	user = User.from_omniauth(env["omniauth.auth"], params[:rank], params[:school])
     	#puts "NEW USER ID IS" + user.uid
     	#puts "SESSION ID IS : " + session[:user_id]
 		if (session[:user_id].nil?) # => wasn't previously logged in

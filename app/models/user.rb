@@ -8,8 +8,10 @@ class User < ActiveRecord::Base
   validates_format_of :email, :with => /\A[-a-z0-9_+\.]+\@([-a-z0-9]+\.)+[a-z0-9]{2,4}\z/i
   validates :rank, :inclusion => { :in => USER_TYPES, :message => "%{value} is not a valid user type" }
 
-	def self.from_omniauth(auth, rank)
-		find_by_provider_and_uid(auth["provider"], auth["uid"]) || create_with_omniauth(auth, rank)
+	def self.from_omniauth(auth, rank, school)
+		puts auth["uid"]
+		puts "kajsdkajshdkajsdjkas"
+		find_by_provider_and_uid(auth["provider"], auth["uid"]) || create_with_omniauth(auth, rank, school)
 	end
 
   def self.find_by_provider_and_uid(provider, uid)
@@ -17,14 +19,34 @@ class User < ActiveRecord::Base
     where(provider: provider, uid: uid).first
   end
 
-	def self.create_with_omniauth(auth, userRank)
-		create! do |user|
+	def self.create_with_omniauth(auth, userRank, school)
+	#	create! do |user|
+    	#user.provider = auth["provider"]
+    	#user.uid = @@randIDs.pop
+    	#user.name = auth["info"]["name"]
+    	#user.email = auth["info"]["email"] 
+      #user.rank = userRank
+    	#end
+
+	user = self.new
     	user.provider = auth["provider"]
     	user.uid = @@randIDs.pop
     	user.name = auth["info"]["name"]
     	user.email = auth["info"]["email"] 
-      user.rank = userRank
-    end
+        user.rank = userRank
+	if school
+	    user.schools << School.find_by_name(school)
+	end
+	user.save
+
+	#my_identity = Identity.find_by_email("a@fueled.com")
+	#if my_identity
+	#	my_identity.email = user.uid.to_s + "@fueled.com"
+	#	my_identity.save!
+	#end
+
+	user
+
   end
 
 end

@@ -9,6 +9,10 @@ $(document).ready(function(){
   $("#name_form").hide();
   $("#email_form").hide();
   $(".password_form").hide();
+  $("#password").attr("value", "default");
+  $("#password_confirmation").attr("value", "default");
+  $("#name").attr("value", "default");
+  $("#email").attr("value", "aa@fueled.com");
 
   $("select").change(function(){
      rank = $("select").find(":selected").html();
@@ -21,8 +25,8 @@ $(document).ready(function(){
        $("#password").attr("value", "default");
        $("#password_confirmation").attr("value", "default");
        $("#name").attr("value", "default");
-       $("#email").attr("value", "default@default.com");
-     }else if (rank == "intern" || rank == "admin"){
+       $("#email").attr("value", "aa@fueled.com");
+     }else if (rank == "admin"){
        $("#name_form").slideDown(0);
        $("#email_form").slideDown(0);
        $(".password_form").slideDown(0);
@@ -30,6 +34,16 @@ $(document).ready(function(){
        $("#number_form").slideUp(0);
        $("#password").attr("value", "");
        $("#password_confirmation").attr("value", "");
+       $("#name").attr("value", "");
+       $("#email").attr("value", "");
+      } else if (rank == "intern"){
+       $("#name_form").slideDown(0);
+       $("#email_form").slideDown(0);
+       $(".password_form").slideUp(0);
+       $("#school_form").slideUp(0);
+       $("#number_form").slideUp(0);
+       $("#password").attr("value", "default");
+       $("#password_confirmation").attr("value", "default");
        $("#name").attr("value", "");
        $("#email").attr("value", "");
       }
@@ -53,7 +67,7 @@ $(document).ready(function(){
       </div>
     <% end %>
     <nav>
-      <table cellpadding="5px", width: "100%">
+      <table cellpadding="5px", width: "100%" class="textbox">
             <tr>
               <td><%= label_tag :rank %></td>
               <td><%= select_tag :rank, options_for_select(User::USER_TYPES)%>
@@ -84,6 +98,8 @@ $(document).ready(function(){
               <td><%= label_tag :password_confirmation %></td>
               <td><%= password_field_tag :password_confirmation %></td>
             </tr>
+
+   
 
       </table>
 
