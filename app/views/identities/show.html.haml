@@ -14,10 +14,6 @@
   %p
     %strong User ID:
     #{@user.uid}
-  -if @user.rank == "client"
-    %p
-      %strong Password:
-      #{@identity.password_digest}
 
   / -if (!current_user.nil? && current_user.uid == @user.uid) or (current_user.rank == "admin")
   /   =link_to "Edit Profile", "/users/#{@user.uid}/edit", :class => "appt"

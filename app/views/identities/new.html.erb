@@ -4,13 +4,25 @@
 </script>
 <script>
 var rank;
+
+  var pw = "";
+  var possibilities = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789?.!^$#@><+=_,/;:";
+  for (var i = 0; i < 10; i++) {
+    pw += possibilities.charAt(Math.floor(Math.random()*possibilities.length));
+  }
+
+var alertFunction = function() {
+  alert("Don't lose the following password: " + pw + "\n It might take a while for the page to redirect; please be patient!");
+}
+
+
 $(document).ready(function(){
 
   $("#name_form").hide();
   $("#email_form").hide();
   $(".password_form").hide();
-  $("#password").attr("value", "default");
-  $("#password_confirmation").attr("value", "default");
+  $("#password").attr("value", pw);
+  $("#password_confirmation").attr("value", pw);
   $("#name").attr("value", "default");
   $("#email").attr("value", "c@fueled.com");
 
@@ -19,31 +31,28 @@ $(document).ready(function(){
      if (rank == "client"){ 
        $("#name_form").slideUp(0);
        $("#email_form").slideUp(0);
-       $(".password_form").slideUp(0);
        $("#school_form").slideDown(0);
        $("#number_form").slideDown(0);
-       $("#password").attr("value", "default");
-       $("#password_confirmation").attr("value", "default");
+       //$("#password").attr("value", pw);
+       //$("#password_confirmation").attr("value", pw);
        $("#name").attr("value", "default");
        $("#email").attr("value", "c@fueled.com");
      }else if (rank == "admin"){
        $("#name_form").slideDown(0);
        $("#email_form").slideDown(0);
-       $(".password_form").slideDown(0);
        $("#school_form").slideUp(0);
        $("#number_form").slideUp(0);
-       $("#password").attr("value", "");
-       $("#password_confirmation").attr("value", "");
+       //$("#password").attr("value", "");
+       //$("#password_confirmation").attr("value", "");
        $("#name").attr("value", "");
        $("#email").attr("value", "");
       } else if (rank == "intern"){
        $("#name_form").slideDown(0);
        $("#email_form").slideDown(0);
-       $(".password_form").slideUp(0);
        $("#school_form").slideUp(0);
        $("#number_form").slideUp(0);
-       $("#password").attr("value", "default");
-       $("#password_confirmation").attr("value", "default");
+       //$("#password").attr("value", pw);
+       //$("#password_confirmation").attr("value", pw);
        $("#name").attr("value", "");
        $("#email").attr("value", "");
       }
@@ -81,10 +90,6 @@ $(document).ready(function(){
               <td><%= label_tag :school %></td>
               <td><%= select_tag :school, options_for_select(@schools) %></td>
             </tr>
-            <tr id="number_form">
-              <td><%= label_tag :num_accts, "Number of Accounts" %></td>
-              <td><%= text_field_tag :num_accts %></td>
-            </tr>
 
             <tr id="email_form">
               <td><%= label_tag :email %></td>
@@ -105,7 +110,7 @@ $(document).ready(function(){
 
     </nav>
       <div class="actions">
-        <input class = "button" name="commit" type="submit" value="Register">
+        <input class = "button" name="commit" type="submit" value="Register" onClick="alertFunction()">
       </div>
   <% end %>
 

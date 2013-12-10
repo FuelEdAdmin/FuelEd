@@ -31,7 +31,7 @@ class UsersController < ApplicationController
 		
 	    @user = User.find_by_uid(params[:id])
 
-	    if !params[:password_digest].nil?
+	    if !params[:password_digest].nil? 
 		    user_identity = Identity.find_by_email(@user.email)
 		    unencrypted_password = params[:password_digest].to_s
 		    unencrypted_password_confirmation = params[:password_digest_confirm].to_s
@@ -63,7 +63,11 @@ class UsersController < ApplicationController
 	    else
 		    flash[:notice] = "User information successfully updated."
 		    flash.keep
-		    redirect_to user_path(@user)
+                    if (current_user.rank == "client")
+                      return redirect_to "/appointments"
+                    else
+		      return redirect_to user_path(@user)
+                    end
 		end
 
 	end

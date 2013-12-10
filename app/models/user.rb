@@ -31,10 +31,11 @@ class User < ActiveRecord::Base
 	user = self.new
     	user.provider = auth["provider"]
     	user.uid = auth["uid"]
-    	user.name = @@randIDs.pop.to_s  #auth["info"]["name"]
     	if userRank == "client"
+    		user.name = @@randIDs.pop.to_s  #auth["info"]["name"]
 		user.email = user.name + "@fueled.com"
 	else
+    		user.name = auth["info"]["name"]
 		user.email = auth["info"]["email"]
 	end
         user.rank = userRank
