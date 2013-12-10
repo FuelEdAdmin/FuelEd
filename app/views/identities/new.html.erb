@@ -13,18 +13,25 @@ $(document).ready(function(){
   $("select").change(function(){
      rank = $("select").find(":selected").html();
      if (rank == "client"){ 
-       console.log("asdkjasndkas");
        $("#name_form").slideUp(0);
        $("#email_form").slideUp(0);
        $(".password_form").slideUp(0);
        $("#school_form").slideDown(0);
        $("#number_form").slideDown(0);
+       $("#password").attr("value", "default");
+       $("#password_confirmation").attr("value", "default");
+       $("#name").attr("value", "default");
+       $("#email").attr("value", "default@default.com");
      }else if (rank == "intern" || rank == "admin"){
        $("#name_form").slideDown(0);
        $("#email_form").slideDown(0);
        $(".password_form").slideDown(0);
        $("#school_form").slideUp(0);
        $("#number_form").slideUp(0);
+       $("#password").attr("value", "");
+       $("#password_confirmation").attr("value", "");
+       $("#name").attr("value", "");
+       $("#email").attr("value", "");
       }
   });
 });
@@ -61,7 +68,7 @@ $(document).ready(function(){
               <td><%= select_tag :school, options_for_select(@schools) %></td>
             </tr>
             <tr id="number_form">
-              <td><%= label_tag :num_accts %></td>
+              <td><%= label_tag :num_accts, "Number of Accounts" %></td>
               <td><%= text_field_tag :num_accts %></td>
             </tr>
 

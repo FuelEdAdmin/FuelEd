@@ -2,14 +2,15 @@ class IdentitiesController < AdminsController
 
 	def new
    		@schools = []
-    	School.all.each do |school|
-      		@schools << school.name
-    	end
+    		School.all.each do |school|
+      			@schools << school.name
+    		end
 		@identity = env['omniauth.identity']
 		puts env['omniauth.identity']
 	end
 
 	def index
+	    @counselors = User.all
     end
 
 #	def create

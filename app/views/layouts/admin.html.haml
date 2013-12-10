@@ -18,7 +18,7 @@
         %nav
           -if !@current_user.nil?
             %ul
-              %li=link_to "home", "/admins", :class => "button-current"
+              %li=link_to "home", "/admins", :class => "button-square"
               %li=link_to "schools", "/admins/schools", :class => "button-square"
               %li=link_to "signout", "/signout", :class => "button-square"
 
@@ -28,7 +28,7 @@
 
         %div{:id => "sidebar"}
           %div{:class => "button-pink", :id => "appointment"}
-            %h3=link_to "Create New Accounts", "/admins/identities/new"
+            %h3=link_to "View & Create Accounts", "/admins/identities"
           %div{:class => "button-pink", :id => "appointment"}
             %h3=link_to "School Information", "/admins/schools"
           %div{:class => "button-pink", :id => "appointment"}

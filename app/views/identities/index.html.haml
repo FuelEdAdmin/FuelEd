@@ -1,0 +1,17 @@
+%h2 all counselors and administrators
+
+%p
+  =link_to "Create New Accounts", "identities/new"
+
+- @counselors.each do |counselor|
+  %p
+    %table{:class => "appt"}
+      %tr
+        %td{:width => "60%"}
+          %p
+            Name: #{counselor.name} <br/>
+            Email: #{counselor.email} 
+        %td{:width => "40%"}
+          %p 
+          =link_to "Add School", "#", :class => "link"
+          =button_to "Delete", "#", :method => :delete, :confirm => 'Are you sure?'
