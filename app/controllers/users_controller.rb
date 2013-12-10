@@ -30,7 +30,11 @@ class UsersController < ApplicationController
 
     user_identity = Identity.find_by_email(@user.email)
     unencrypted_password = params[:password_digest].to_s
-    unencrypted_password_confirmation = params[:password_digest_confirmation].to_s
+    unencrypted_password_confirmation = params[:password_digest_confirm].to_s
+
+    puts unencrypted_password_confirmation
+    puts unencrypted_password
+    puts "foasdpfoaisudproiaweurpoaeisurpoaseiurpoi"
 
     if unencrypted_password == unencrypted_password_confirmation
 
