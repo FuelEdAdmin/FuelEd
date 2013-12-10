@@ -171,7 +171,7 @@ class AppointmentsController < ApplicationController
     def setup_users()
         @users = {}
         School.all.each do |school|
-        	@users[school.name] = User.where(:school_id => school.id)
+        	@users[school.name] = school.users.where(["rank = ?", "client"])
         end
     end
 end
