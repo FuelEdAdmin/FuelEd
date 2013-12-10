@@ -84,6 +84,6 @@ class UsersController < ApplicationController
 		@user = User.find_by_uid(params[:id])
 		@user.destroy
 		flash[:notice] = "User '#{@user.name}' had been deleted."
-		redirect_to users_path
+		redirect_to "/admins/identities"
 	end
 end
