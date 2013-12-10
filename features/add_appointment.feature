@@ -40,8 +40,8 @@ Background:
   And I fill in "Intern" with "Christine Loh"
   And I fill in "School" with "UC Berkeley"
 
-Scenario: Add an appointment
-  And I fill in "Date" with "12/10/2014"
+ Scenario: Add an appointment
+  When I fill in "Date" with "12/10/2014"
   And I fill in "Start" with "1400"
   And I fill in "End" with "1450"
   #And I press "Create"
