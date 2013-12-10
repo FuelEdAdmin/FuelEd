@@ -3,12 +3,7 @@ class ApplicationController < ActionController::Base
   	# For APIs, you may want to use :null_session instead.
   	protect_from_forgery with: :exception
 
-
-    #@schools = []
-    #School.all.each do |school|
-    #  @schools << school.name
-    #end
-    #private 
+    private 
 
   	def current_user
   		puts "SESSION[:user_id] IS    :"
