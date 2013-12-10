@@ -1,6 +1,6 @@
 class AppointmentsController < ApplicationController
 
-    before_filter :user_check, :setup_schools
+    before_filter :user_check, :setup_schools, :setup_users
 
     def new
         @durations = []
@@ -126,7 +126,7 @@ class AppointmentsController < ApplicationController
 
     end
 
-    def book
+    def book_client
         @appointment = Appointment.find(params[:id])
         @appointment.client = @current_user.uid
         @appointment.save
@@ -144,6 +144,16 @@ class AppointmentsController < ApplicationController
            redirect_to appointment_path(@appointment)
     end
 
+    def book_intern
+        @appointment = Appointment.find(params[:id])
+        @appointment.client = params[:client]
+        @appointment.save
+        flash[:notice] = "Appointment successfully booked!"
+        flash.keep
+           redirect_to appointment_path(@appointment)
+    end
+
+
     def user_check()
         # check for admin privledges 
         if current_user.nil?
@@ -152,9 +162,16 @@ class AppointmentsController < ApplicationController
     end
 
     def setup_schools()
-          @schools = []
+        @schools = []
         School.all.each do |school|
             @schools << school.name
+        end
+    end
+
+    def setup_users()
+        @users = {}
+        School.all.each do |school|
+        	@users[school.name] = User.where(:school_id => school.id)
         end
     end
 end

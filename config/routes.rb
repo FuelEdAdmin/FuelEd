@@ -18,7 +18,8 @@ FuelEd::Application.routes.draw do
 
   # Example resource route (maps HTTP verbs to controller actions automatically):
   match "/appointments/past" => "appointments#past", :as => :past, via: :get
-  get "/appointments/:id/book" => "appointments#book", as: :book
+  match "/appointments/:id/book_intern" => "appointments#book_intern", as: :book_intern, via: :put
+  get "/appointments/:id/book_client" => "appointments#book_client", as: :book_client
   get "/appointments/:id/unbook" => "appointments#unbook", as: :unbook
   resources :appointments
   resources :schools
