@@ -23,7 +23,9 @@ class ApplicationController < ActionController::Base
 	    	@myappts = Appointment.where(["start >= ? and client = ?", "#{current_date}", "#{current_user.uid}"])
 	    elsif @current_user.rank == "intern"
 	    	@myappts = Appointment.where(["start >= ? and client != ?", "#{current_date}", ""])
-	    end
+	    else
+        @myappts = Appointment.all
+      end
       @myappts
     end
 

@@ -1,17 +1,32 @@
-%h2 all counselors and administrators
+%h2 all users
 
 %p
   =link_to "Create New Accounts", "identities/new"
 
-- @counselors.each do |counselor|
+= form_tag identities_path, :method => :get do
+  Include: 
+  - @all_users.each do |user_type|
+    = user_type
+    = check_box_tag "user_types[#{user_type}]", 1, @selected_users.include?(user_type), :id => "user_types[#{user_type}]"
+  = submit_tag 'Refresh'
+
+  
+  / = link_to 'Refresh', identities_path(:user_types => @selected_users)
+
+- @users.each do |user|
   %p
     %table{:class => "appt"}
       %tr
         %td{:width => "60%"}
           %p
-            Name: #{counselor.name} <br/>
-            Email: #{counselor.email} 
+            Name: #{user.name} <br/>
+            Email: #{user.email} <br/>
+            School(s):
+            - user.schools.each do |school|
+              #{school.name},  
         %td{:width => "40%"}
           %p 
-          =link_to "Add School", "#", :class => "link"
+          =link_to "Add School", "/user/#{user.id}/add_school", :class => "link"
           =button_to "Delete", "#", :method => :delete, :confirm => 'Are you sure?'
+
+= will_paginate @users

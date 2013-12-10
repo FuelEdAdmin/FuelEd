@@ -1,5 +1,8 @@
 require 'bcrypt'
 class UsersController < ApplicationController
+
+	before_filter :setup_schools
+
 	def new
 	end
 
@@ -26,36 +29,53 @@ class UsersController < ApplicationController
 	
 	def update
 		
-    @user = User.find_by_uid(params[:id])
+	    @user = User.find_by_uid(params[:id])
 
-    user_identity = Identity.find_by_email(@user.email)
-    unencrypted_password = params[:password_digest].to_s
-    unencrypted_password_confirmation = params[:password_digest_confirm].to_s
+	    if !params[:password_digest].nil?
+		    user_identity = Identity.find_by_email(@user.email)
+		    unencrypted_password = params[:password_digest].to_s
+		    unencrypted_password_confirmation = params[:password_digest_confirm].to_s
 
-    puts unencrypted_password_confirmation
-    puts unencrypted_password
-    puts "foasdpfoaisudproiaweurpoaeisurpoaseiurpoi"
+		    if unencrypted_password == unencrypted_password_confirmation
 
-    if unencrypted_password == unencrypted_password_confirmation
-
-	    password_digest = BCrypt::Password.create(unencrypted_password)
-	    user_identity.password_digest = password_digest;
-	    user_identity.save!
+			    password_digest = BCrypt::Password.create(unencrypted_password)
+			    user_identity.password_digest = password_digest;
+			    user_identity.save!
+			else
+				flash[:warning] = "Password and confirmation did not match."
+				flash.keep
+				redirect_to change_password_path
+			end
+		end
 
 	    if !params[:user].nil?
 	    	@user.update_attributes!(params[:user].permit(:name, :email, :bio))
 	    end
+	    if !params[:school].nil?
+	    	new_school = School.find_by_name(params[:school])
+	    	@user.schools << new_school
+	    	@user.save
+	        flash[:notice] = "School added to #{@user.name}."
+	        flash.keep
+	        redirect_to "/admins/identities"
+	    else
+		    flash[:notice] = "User information successfully updated."
+		    flash.keep
+		    redirect_to user_path(@user)
+		end
 
-	    flash[:notice] = "User information successfully updated."
-	    flash.keep
-	    redirect_to user_path(@user)
-	else
-		flash[:warning] = "Password and confirmation did not match."
-		flash.keep
-		redirect_to change_password_path
 	end
 
-
-
+	def add_school
+  		@user = User.find_by_uid(params[:id])
+  		# puts current_user
 	end
+
+    def setup_schools()
+        @schools = []
+        School.all.each do |school|
+            @schools << school.name
+        end
+    end
+
 end

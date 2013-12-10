@@ -10,7 +10,21 @@ class IdentitiesController < AdminsController
 	end
 
 	def index
-	    @counselors = User.all
+	    @all_users = User::USER_TYPES
+	    @selected_users = params[:user_types] || session[:user_types] || {}
+
+	    if @selected_users == {}
+	      @selected_users = Hash[@all_users.map {|user| [user, user]}]
+	    end
+    
+	    if params[:user_types] != session[:user_types]
+	      session[:user_types] = @selected_users
+	      redirect_to :user_types => @selected_users and return
+	    end
+    	@users = User.find_all_by_rank(@selected_users.keys) 
+	    @users = User.paginate(:page => params[:page], :per_page => 5)
+
+
     end
 
 #	def create
