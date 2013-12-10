@@ -36,7 +36,6 @@
           %div{:id => "user_info"}
             %h2 my information
             %p.textbox 
-              UID: #{@current_user.uid} <br/>
               Name: #{@current_user.name} <br/>
               Rank: #{@current_user.rank} <br/><br/>
               =link_to "Change password", "/change_password", :class => "link"
