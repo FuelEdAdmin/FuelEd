@@ -16,7 +16,7 @@ class SessionsController < ApplicationController
 				redirect_to appointments_path, notice: "Signed in!"  # => go to appt page
 			end
 		else
-			if (current_user.rank == "admin")
+			if (User.count == 1)
 				redirect_to "/admins/identities/#{user.uid}", notice: "User created!"
 			else
 				redirect_to appointments_path, notice: "Signed in!"
