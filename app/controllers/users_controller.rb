@@ -51,6 +51,7 @@ class UsersController < ApplicationController
 	    if !params[:user].nil?
 	    	@user.update_attributes!(params[:user].permit(:name, :email, :bio))
 	    end
+	    puts current_user
 	    if !params[:school].nil?
 	    	new_school = School.find_by_name(params[:school])
 	    	@user.schools << new_school
@@ -68,7 +69,8 @@ class UsersController < ApplicationController
 
 	def add_school
   		@user = User.find_by_uid(params[:id])
-  		# puts current_user
+  	    puts current_user
+  	    puts "WHY GOD"
 	end
 
     def setup_schools()

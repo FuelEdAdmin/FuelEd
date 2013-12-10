@@ -1,0 +1,13 @@
+-#  This file is app/views/users/show.html.haml
+.mainContentBox
+  .mainContentBoxHeader add school
+  %div{:class => "textbox"}
+    = form_tag user_path(:id => @user.uid), :method => :put do
+      %nav
+        %table{cellpadding: "5px", width: "100%"}
+
+          %td= label :school, :name, 'Schools'
+          %td= select_tag :school, options_for_select(@schools)
+          %tr
+                      
+      %input.button{name: "commit", type: "submit", value: "Submit"}

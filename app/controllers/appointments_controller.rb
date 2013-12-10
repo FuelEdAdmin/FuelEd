@@ -9,7 +9,11 @@ class AppointmentsController < ApplicationController
         @everys = [1, 2, 3, 4]
         11.times do |x|
             @durations << (10 + (x * 5))
-            end
+        end
+        @my_schools = []
+        @current_user.schools.each do |school|
+            @my_schools << school.name
+        end
     end
 
     def create

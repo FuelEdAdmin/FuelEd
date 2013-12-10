@@ -21,8 +21,8 @@ class IdentitiesController < AdminsController
 	      session[:user_types] = @selected_users
 	      redirect_to :user_types => @selected_users and return
 	    end
-    	@users = User.find_all_by_rank(@selected_users.keys) 
-	    @users = User.paginate(:page => params[:page], :per_page => 5)
+    	# @users = User.find_all_by_rank(@selected_users.keys) 
+	    @users = User.paginate(:page => params[:page], :per_page => 5).find_all_by_rank(@selected_users.keys) 
 
 
     end
