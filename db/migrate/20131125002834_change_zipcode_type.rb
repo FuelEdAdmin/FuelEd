@@ -1,6 +1,6 @@
 class ChangeZipcodeType < ActiveRecord::Migration
 	def change
-  		remove_column :appointments, :zipcode, :string
-		add_column :appointments, :zipcode, :integer
+  		remove_column :schools, :zipcode, :string
+		add_column :schools, :zipcode, :integer
 	end
 end
