@@ -18,7 +18,7 @@ Scenario: login to scheduler (happy)
   When I fill in "auth_key" with "admin@admin.com"
   And I fill in "password" with "admin"
   And I press "LOGIN"
-  Then I should see "Create New Accounts"
+  Then I should see "View & Create Accounts"
 
 Scenario: failed login (unhappy)
   Given I am on the home page

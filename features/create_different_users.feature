@@ -12,6 +12,7 @@ Background:
   And I fill in "Password" with "cs169"
   And I fill in "Password confirmation" with "cs169"
   And I press "Register"
+  And I follow "View & Create Accounts"
   Then I follow "Create New Accounts"
 
 Scenario: Create an Admin account 
@@ -32,7 +33,6 @@ Scenario: Create a Client account
   And I fill in "Password confirmation" with "hihihi"
   And I press "Register"
   Then I should see "User created!" 
-  And I should see "Client's Profile"
 
 Scenario: Create a Intern account
   When I select "intern" from "rank"

@@ -19,7 +19,7 @@ Scenario: Create an Account
   And I fill in "Password" with "cs169"
   And I fill in "Password confirmation" with "cs169"
   And I press "Register"
-  Then I should see "Create an Appointment"
+  Then I should see "Signed in!"
 
 Scenario: Password Mismatch
   Given I am on the home page
@@ -39,7 +39,7 @@ Scenario: Email Already Used
   And I fill in "Password" with "cs169"
   And I fill in "Password confirmation" with "cs169"
   And I press "Register"
-  Then I should see "Create an Appointment"
+  Then I should see "Signed in!"
   And I follow "signout"
   Given I am on the home page
   When I select "intern" from "rank"
