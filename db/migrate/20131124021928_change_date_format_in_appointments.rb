@@ -1,11 +1,8 @@
 class ChangeDateFormatInAppointments < ActiveRecord::Migration
-  def self.up
-   change_column :appointments, :start, :datetime
-   change_column :appointments, :end, :datetime
-  end
-
-  def self.down
-   change_column :appointments, :start, :integer
-   change_column :appointments, :end, :integer
-  end
+	def change
+		remove_column :appointments, :start, :integer
+		remove_column :appointments, :end, :integer
+		add_column :appointments, :start, :datetime
+		add_column :appointments, :end, :datetime
+	end
 end
