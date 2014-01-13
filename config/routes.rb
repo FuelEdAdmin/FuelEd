@@ -41,6 +41,7 @@ FuelEd::Application.routes.draw do
 
   resources :identities
   resources :admins
+  resources :reports
  
   # Example resource route with options:
   #   resources :products do
