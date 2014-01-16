@@ -14,15 +14,15 @@
           %h1.inline
             =image_tag "fueled_logo.jpg", :height => "100px"
           %h3.inline
-            -if @current_user.rank == "intern"
+            -if @current_user.rank == "counselor"
               COUNSELOR PORTAL
-            -elsif @current_user.rank == "client"
-              USER PORTAL
+            -elsif @current_user.rank == "participant"
+              PARTICIPANT PORTAL
 
         %nav
           -if !@current_user.nil?
             %ul
-              -if @current_user.rank == "intern"
+              -if @current_user.rank == "counselor"
                 %li=link_to "profile", "/users/#{@current_user.uid}", :class => "button-square"
               %li=link_to "scheduler", "/appointments", :class => "button-square"
               %li=link_to "signout", "/signout", :class => "button-square"
@@ -32,7 +32,7 @@
       %div{:id => "content"}
 
         %div{:id => "sidebar"}
-          -if @current_user.rank == "intern"
+          -if @current_user.rank == "counselor"
             %div{:class => "button-pink", :id => "appointment"}
               %h3=link_to "Create Appointment Slots", "/appointments/new"
           %div{:id => "user_info"}
@@ -47,8 +47,8 @@
             %h2 upcoming appointments
             - booked_appts.sort_by{|appt| appt.start}.each do |appt|
               %p.textbox
-                Counselor: #{appt.intern} <br/>
-                Participant: #{appt.client} <br/>
+                Counselor: #{appt.counselor} <br/>
+                Participant: #{appt.participant} <br/>
                 School: #{appt.school.name} <br/>
                 Time: #{appt.start.strftime("%I:%M%p")} - #{appt.end.strftime("%I:%M%p, %m/%d/%Y")}<br/>
                 =link_to "Unbook", unbook_url(appt.id), :class => "link"

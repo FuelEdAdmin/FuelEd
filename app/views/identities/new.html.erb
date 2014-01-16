@@ -28,7 +28,7 @@ $(document).ready(function(){
 
   $("select").change(function(){
      rank = $("select").find(":selected").html();
-     if (rank == "client"){ 
+     if (rank == "participant"){ 
        $("#name_form").slideUp(0);
        $("#email_form").slideUp(0);
        $("#school_form").slideDown(0);
@@ -46,7 +46,7 @@ $(document).ready(function(){
        //$("#password_confirmation").attr("value", "");
        $("#name").attr("value", "");
        $("#email").attr("value", "");
-      } else if (rank == "intern"){
+      } else if (rank == "counselor"){
        $("#name_form").slideDown(0);
        $("#email_form").slideDown(0);
        $("#school_form").slideUp(0);

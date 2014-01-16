@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
   has_and_belongs_to_many :schools
   has_one :identity, :dependent => :destroy
-  USER_TYPES = ["client", "intern", "admin"]
+  USER_TYPES = ["participant", "counselor", "admin"]
   @@randIDs = (1..1000).to_a.shuffle
 
   validates_uniqueness_of :email
@@ -31,7 +31,7 @@ class User < ActiveRecord::Base
 	user = self.new
     	user.provider = auth["provider"]
     	user.uid = auth["uid"]
-    	if userRank == "client"
+    	if userRank == "participant"
     		user.name = @@randIDs.pop.to_s  #auth["info"]["name"]
 		user.email = user.name + "@fueled.com"
 		user.schools << School.find_by_name(school)

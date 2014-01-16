@@ -4,11 +4,11 @@
     .mainContentBoxHeader view appointment
     %div{:class => "textbox"}
         = form_tag appointment_path(@appointment), :method => :put do
-            %b= label :appointment, :client, 'Client:'
-            = text_field :appointment, 'client'
+            %b= label :appointment, :participant, 'participant:'
+            = text_field :appointment, 'participant'
             %p
-            %b= label :appointment, :intern, 'Intern:'
-            = text_field :appointment, 'intern'
+            %b= label :appointment, :counselor, 'counselor:'
+            = text_field :appointment, 'counselor'
             %p
             %b= label :appointment, :room, 'Room:'
             = text_field :appointment, 'room'

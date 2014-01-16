@@ -63,7 +63,7 @@ class UsersController < ApplicationController
 	    else
 		    flash[:notice] = "User information successfully updated."
 		    flash.keep
-                    if (current_user.rank == "client")
+                    if (current_user.rank == "participant")
                       return redirect_to "/appointments"
                     else
 		      return redirect_to user_path(@user)

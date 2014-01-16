@@ -4,7 +4,7 @@ class LoginController < ApplicationController
 		  	if @current_user.rank == "admin"
 		 		redirect_to "/admins"
 	        end
-	        if @current_user.rank == "client" or  @current_user.rank == "intern"		
+	        if @current_user.rank == "participant" or  @current_user.rank == "counselor"		
 		 		redirect_to "/appointments"
 		 	end
 		else
