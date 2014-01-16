@@ -14,5 +14,5 @@
       %strong Bio:
       #{@user.bio}
 
-    -if !current_user.nil? && current_user.uid == @user.uid && current_user.rank != "client"
+    -if !current_user.nil? && current_user.uid == @user.uid && current_user.rank != "participant"
       =link_to "Edit Profile", "/users/#{@user.uid}/edit", :class => "link"

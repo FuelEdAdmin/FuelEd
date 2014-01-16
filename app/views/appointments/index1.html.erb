@@ -2,8 +2,8 @@
  
 <table>
   <tr>
-    <th>Client</th>
-    <th>Intern</th>
+    <th>participant</th>
+    <th>counselor</th>
     <th>Date</th>
     <th>Start</th>
     <th>End</th>
@@ -11,8 +11,8 @@
  
   <% @appointments.each do |appointment| %>
     <tr>
-      <td><%= appointment.client %></td>
-      <td><%= appointment.intern %></td>
+      <td><%= appointment.participant %></td>
+      <td><%= appointment.counselor %></td>
       <td><%= appointment.date %></td>
       <td><%= appointment.start %></td>
       <td><%= appointment.end %></td>

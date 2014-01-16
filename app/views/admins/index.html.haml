@@ -13,15 +13,15 @@
             %tr
               %td{:width => "60%"}
                 %p
-                  Intern: #{appt.intern} <br/>
+                  counselor: #{appt.counselor} <br/>
                   School: #{appt.school.name} <br/>
                   Time: #{appt.start.strftime("%I:%M%p")} - #{appt.end.strftime("%I:%M%p, %m/%d/%Y")}
               %td{:width => "40%"}
-                -if appt.client
-                  -if appt.client == ""
+                -if appt.participant
+                  -if appt.participant == ""
                     %p Booked by no one
                   -else
-                    %p Booked by #{appt.client}
+                    %p Booked by #{appt.participant}
 
                 =link_to "View appointment", "appointments/#{appt.id}", :class => "appt"
 
