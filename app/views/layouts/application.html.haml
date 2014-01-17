@@ -18,13 +18,19 @@
               COUNSELOR PORTAL
             -elsif @current_user.rank == "participant"
               PARTICIPANT PORTAL
+            -else
+              ADMIN PORTAL
 
         %nav
           -if !@current_user.nil?
             %ul
-              -if @current_user.rank == "counselor"
-                %li=link_to "profile", "/users/#{@current_user.uid}", :class => "button-square"
-              %li=link_to "scheduler", "/appointments", :class => "button-square"
+              -if @current_user.rank == "admin"
+                %li=link_to "home", "/admins", :class => "button-square"
+                %li=link_to "schools", "/admins/schools", :class => "button-square"
+              -else
+                -if @current_user.rank == "counselor"
+                  %li=link_to "profile", "/users/#{@current_user.uid}", :class => "button-square"
+                %li=link_to "scheduler", "/appointments", :class => "button-square"
               %li=link_to "signout", "/signout", :class => "button-square"
 
         %div.clear
@@ -41,17 +47,19 @@
               Name: #{@current_user.name} <br/>
               Rank: #{@current_user.rank} <br/><br/>
               =link_to "Change password", change_password_path, :class => "link"
-              %br/
-              =link_to "View Past Appointments", past_path, :class => "link"
-          %div{:id => "workshops"}
-            %h2 upcoming appointments
-            - booked_appts.sort_by{|appt| appt.start}.each do |appt|
-              %p.textbox
-                Counselor: #{appt.counselor} <br/>
-                Participant: #{appt.participant} <br/>
-                School: #{appt.school.name} <br/>
-                Time: #{appt.start.strftime("%I:%M%p")} - #{appt.end.strftime("%I:%M%p, %m/%d/%Y")}<br/>
-                =link_to "Unbook", unbook_url(appt.id), :class => "link"
+              -if @current_user.rank != "admin"
+                %br/
+                =link_to "View Past Appointments", past_path, :class => "link"
+          -if @current_user.rank != "admin"
+            %div{:id => "workshops"}
+              %h2 upcoming appointments
+              - booked_appts.sort_by{|appt| appt.start}.each do |appt|
+                %p.textbox
+                  Counselor: #{appt.counselor} <br/>
+                  Participant: #{appt.participant} <br/>
+                  School: #{appt.school.name} <br/>
+                  Time: #{appt.start.strftime("%I:%M%p")} - #{appt.end.strftime("%I:%M%p, %m/%d/%Y")}<br/>
+                  =link_to "Unbook", unbook_url(appt.id), :class => "link"
 
         %div{:id => "calendar"}
 
