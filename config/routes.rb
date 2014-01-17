@@ -37,11 +37,11 @@ FuelEd::Application.routes.draw do
   scope '/admins' do
     resources :identities
     resources :schools
+    resources :reports
   end
 
   resources :identities
   resources :admins
-  resources :reports
  
   # Example resource route with options:
   #   resources :products do

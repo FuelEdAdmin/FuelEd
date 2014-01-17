@@ -150,7 +150,7 @@ class AppointmentsController < ApplicationController
 
     def book_counselor
         @appointment = Appointment.find(params[:id])
-        @appointment.participant = User.find_by_name(params[:participant])
+        @appointment.participant = params[:participant]
         @appointment.save
         flash[:notice] = "Appointment successfully booked!"
         flash.keep
