@@ -12,11 +12,12 @@
       %div{:id => "header-main", :class => "header"}
         %div{:id => "title"}
           %h1.inline
-            =image_tag "fueled_logo.jpg", :height => "100px"
+            %a{:href => "/"}
+              =image_tag "fueled_logo.jpg", :height => "100px"
           %h3.inline
-            -if @current_user.rank == "counselor"
+            -if @current_user.rank == "counselor" || @current_user.rank == "intern"
               COUNSELOR PORTAL
-            -elsif @current_user.rank == "participant"
+            -elsif @current_user.rank == "participant" || @current_user.rank == "client"
               PARTICIPANT PORTAL
             -else
               ADMIN PORTAL
@@ -28,7 +29,7 @@
                 %li=link_to "home", "/admins", :class => "button-square"
                 %li=link_to "schools", "/admins/schools", :class => "button-square"
               -else
-                -if @current_user.rank == "counselor"
+                -if @current_user.rank == "counselor" || @current_user.rank == "intern"
                   %li=link_to "profile", "/users/#{@current_user.uid}", :class => "button-square"
                 %li=link_to "scheduler", "/appointments", :class => "button-square"
               %li=link_to "signout", "/signout", :class => "button-square"
@@ -38,7 +39,7 @@
       %div{:id => "content"}
 
         %div{:id => "sidebar"}
-          -if @current_user.rank == "counselor"
+          -if @current_user.rank == "counselor" || @current_user.rank == "intern"
             %div{:class => "button-pink", :id => "appointment"}
               %h3=link_to "Create Appointment Slots", "/appointments/new"
           %div{:id => "user_info"}

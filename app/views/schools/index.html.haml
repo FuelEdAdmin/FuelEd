@@ -12,6 +12,6 @@
         %td{:width => "10%"}
           =link_to "Edit", "/admins/schools/#{school.id}/edit", :class => "schools"
           =button_to "Delete", school_path(school), :method => :delete, :confirm => 'Are you sure?'
-%div{:class => "button"}
-  =link_to "Add New School", "/schools/new"
+%div
+  =link_to "Add New School", "/schools/new", :class => "link"
 

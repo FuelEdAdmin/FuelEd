@@ -1,4 +1,4 @@
-class ReportsController < ApplicationController
+class ReportsController < AdminsController
 
   def index
     @reports = nil

@@ -17,17 +17,17 @@
           -if appt.participant
             -if appt.participant == ""
               %p Booked by no one
-              -if @current_user.rank == "participant"
-                =link_to "Book", book_participant_url(appt.id), :class => "link"
-              -if @current_user.rank == "counselor"
-                = form_tag book_counselor_path(appt.id), :method => :put do
+              -if @current_user.rank == "participant" || @current_user.rank == "client"
+                =link_to "Book", book_client_url(appt.id), :class => "link"
+              -if @current_user.rank == "counselor" || @current_user.rank == "intern"
+                = form_tag book_intern_path(appt.id), :method => :put do
                   = select_tag :participant, options_for_select(@users[appt.school.name])
                   = submit_tag 'Book'
             -else
               %p Booked by #{appt.participant}  
-              -if @current_user.rank == "participant"
+              -if @current_user.rank == "participant" || @current_user.rank == "client"
                 =link_to "Unbook", unbook_url(appt.id), :class => "link"
-          -if @current_user.rank == "counselor"        
+          -if @current_user.rank == "counselor" || @current_user.rank == "intern"   
             =link_to "View", "appointments/#{appt.id}", :class => "link"
             =link_to "Edit", "appointments/#{appt.id}/edit", :class => "link"
             =button_to "Delete", appointment_path(appt), :method => :delete, :confirm => 'Are you sure?'

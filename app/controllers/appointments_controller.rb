@@ -107,9 +107,9 @@ class AppointmentsController < ApplicationController
           # want to find by school
 
         current_date = Time.new
-           if @current_user.rank == "participant"
+           if @current_user.rank == "participant" || @current_user.rank == "client"
              @appointments = Appointment.paginate(:page => params[:page], :per_page => 5).where(["school_id = ? and start >= ? and participant = ?", current_user.schools.first.id, "#{current_date}", ""])  #find where school == my school and DATE > current date
-           elsif @current_user.rank == "counselor"
+           elsif @current_user.rank == "counselor" || @current_user.rank == "intern"
              @appointments = Appointment.paginate(:page => params[:page], :per_page => 5).where(["counselor = ? and start >= ? and participant = ?", current_user.name, "#{current_date}", ""])  #find where counselor == me and DATE > current date
            else
              @appointments = Appointment.paginate(:page => params[:page], :per_page => 5)
@@ -122,15 +122,15 @@ class AppointmentsController < ApplicationController
 
         current_date = Time.new
         @appointments = Appointment.all
-          if @current_user.rank == "participant"
+          if @current_user.rank == "participant" || @current_user.rank == "client"
             @appointments = Appointment.where(["start < ? and participant = ?", "#{current_date}", "#{current_user.name}"])
-          elsif @current_user.rank == "counselor"
+          elsif @current_user.rank == "counselor" || @current_user.rank == "intern"
             @appointments = Appointment.where(["start < ? and participant != ?", "#{current_date}", ""])
           end
 
     end
 
-    def book_participant
+    def book_client
         @appointment = Appointment.find(params[:id])
         @appointment.participant = @current_user.name
         @appointment.save
@@ -148,7 +148,7 @@ class AppointmentsController < ApplicationController
            redirect_to appointment_path(@appointment)
     end
 
-    def book_counselor
+    def book_intern
         @appointment = Appointment.find(params[:id])
         @appointment.participant = params[:participant]
         @appointment.save
@@ -175,7 +175,7 @@ class AppointmentsController < ApplicationController
     def setup_users()
         @users = {}
         School.all.each do |school|
-		users = school.users.where(["rank = ?", "participant"])
+		users = school.users.where(["rank = ? OR rank = ?", "participant", "client"])
         	@users[school.name] = []
 		users.each do |user|
 			@users[school.name] << user.name

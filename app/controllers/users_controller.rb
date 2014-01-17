@@ -55,9 +55,13 @@ class UsersController < ApplicationController
 	    puts current_user
 	    if !params[:school].nil?
 	    	new_school = School.find_by_name(params[:school])
-	    	@user.schools << new_school
-	    	@user.save
-	        flash[:notice] = "School added to #{@user.name}."
+		if @user.schools.include? new_school
+			flash[:notice] = "#{@user.name} already has this school."
+		else
+	    		@user.schools << new_school
+	    		@user.save
+	        	flash[:notice] = "School added to #{@user.name}."
+		end
 	        flash.keep
 	        redirect_to "/admins/identities"
 	    else
