@@ -6,8 +6,8 @@
 = form_tag identities_path, :method => :get do
   Include: 
   - @all_users.each do |user_type|
-    = user_type
     = check_box_tag "user_types[#{user_type}]", 1, @selected_users.include?(user_type), :id => "user_types[#{user_type}]"
+    = user_type
   = submit_tag 'Refresh'
 
   

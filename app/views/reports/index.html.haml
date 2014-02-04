@@ -1,3 +1,26 @@
 -#  This file is app/views/reports/index.html.haml
 
 .mainContentBoxHeader reports
+
+%div#school_list
+= form_tag identities_path, :method => :get do
+  - @all_schools.each do |school_name|
+    = check_box_tag "school_names[#{school_name}]", 1, false, :id => "school_names[#{school_name}]"
+    = school_name
+    %br
+  = submit_tag 'Refresh'
+
+= label_tag :report_type 
+= select_tag :report_type, options_for_select([["Clinical Service Hours", "Clinical Service Hours"], ["1-1 Services to Admin | Teachers", "1-1 Services to Admin | Teachers"], ["People Served", "People Served"]]) 
+%br
+= 'Date Range (mm/yy):'
+= label :start_month, ''
+= select_tag :start_month, options_for_select(Appointment::MONTHS)
+= label :start_year, '/'
+= select_tag :start_year, options_for_select(@years)   
+
+= 'to'
+= label :end_month, ''
+= select_tag :end_month, options_for_select(Appointment::MONTHS)
+= label :end_year, '/'
+= select_tag :end_year, options_for_select(@years)   
