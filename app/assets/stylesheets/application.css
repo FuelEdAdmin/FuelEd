@@ -196,11 +196,13 @@ textarea{
 }
 
 #school_list {
-	padding: 20px;
+	padding: 15px;
 	background: rgba(0,0,0,0.08);
 	overflow: auto;
 	width: 150px;
-	height: 400px;
+	height: 300px;
+	float: left;
+	margin-right: 15px;
 }
 
 /*All button css*/

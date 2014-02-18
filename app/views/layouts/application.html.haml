@@ -15,24 +15,16 @@
             %a{:href => "/"}
               =image_tag "fueled_logo.jpg", :height => "100px"
           %h3.inline
-<<<<<<< HEAD
             -if @current_user.rank == "counselor" || @current_user.rank == "intern"
               COUNSELOR PORTAL
             -elsif @current_user.rank == "participant" || @current_user.rank == "client"
               PARTICIPANT PORTAL
             -else
               ADMIN PORTAL
-=======
-            -if @current_user.rank == "counselor"
-              COUNSELOR PORTAL
-            -elsif @current_user.rank == "participant"
-              PARTICIPANT PORTAL
->>>>>>> fa2942f57b03b477210b03927212236955c9e902
 
         %nav
           -if !@current_user.nil?
             %ul
-<<<<<<< HEAD
               -if @current_user.rank == "admin"
                 %li=link_to "home", "/admins", :class => "button-square"
                 %li=link_to "schools", "/admins/schools", :class => "button-square"
@@ -40,11 +32,6 @@
                 -if @current_user.rank == "counselor" || @current_user.rank == "intern"
                   %li=link_to "profile", "/users/#{@current_user.uid}", :class => "button-square"
                 %li=link_to "scheduler", "/appointments", :class => "button-square"
-=======
-              -if @current_user.rank == "counselor"
-                %li=link_to "profile", "/users/#{@current_user.uid}", :class => "button-square"
-              %li=link_to "scheduler", "/appointments", :class => "button-square"
->>>>>>> fa2942f57b03b477210b03927212236955c9e902
               %li=link_to "signout", "/signout", :class => "button-square"
 
         %div.clear
@@ -52,11 +39,7 @@
       %div{:id => "content"}
 
         %div{:id => "sidebar"}
-<<<<<<< HEAD
           -if @current_user.rank == "counselor" || @current_user.rank == "intern"
-=======
-          -if @current_user.rank == "counselor"
->>>>>>> fa2942f57b03b477210b03927212236955c9e902
             %div{:class => "button-pink", :id => "appointment"}
               %h3=link_to "Create Appointment Slots", "/appointments/new"
           %div{:id => "user_info"}
@@ -65,7 +48,6 @@
               Name: #{@current_user.name} <br/>
               Rank: #{@current_user.rank} <br/><br/>
               =link_to "Change password", change_password_path, :class => "link"
-<<<<<<< HEAD
               -if @current_user.rank != "admin"
                 %br/
                 =link_to "View Past Appointments", past_path, :class => "link"
@@ -79,19 +61,6 @@
                   School: #{appt.school.name} <br/>
                   Time: #{appt.start.strftime("%I:%M%p")} - #{appt.end.strftime("%I:%M%p, %m/%d/%Y")}<br/>
                   =link_to "Unbook", unbook_url(appt.id), :class => "link"
-=======
-              %br/
-              =link_to "View Past Appointments", past_path, :class => "link"
-          %div{:id => "workshops"}
-            %h2 upcoming appointments
-            - booked_appts.sort_by{|appt| appt.start}.each do |appt|
-              %p.textbox
-                Counselor: #{appt.counselor} <br/>
-                Participant: #{appt.participant} <br/>
-                School: #{appt.school.name} <br/>
-                Time: #{appt.start.strftime("%I:%M%p")} - #{appt.end.strftime("%I:%M%p, %m/%d/%Y")}<br/>
-                =link_to "Unbook", unbook_url(appt.id), :class => "link"
->>>>>>> fa2942f57b03b477210b03927212236955c9e902
 
         %div{:id => "calendar"}
 
