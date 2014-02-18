@@ -125,7 +125,7 @@ class AppointmentsController < ApplicationController
           if @current_user.rank == "participant" || @current_user.rank == "client"
             @appointments = Appointment.where(["start < ? and participant = ?", "#{current_date}", "#{current_user.name}"])
           elsif @current_user.rank == "counselor" || @current_user.rank == "intern"
-            @appointments = Appointment.where(["start < ? and participant != ?", "#{current_date}", ""])
+            @appointments = Appointment.where(["start < ? and participant != ? and counselor = ?", "#{current_date}", "", "#{current_user.name}"])
           end
 
     end
