@@ -195,6 +195,14 @@ textarea{
     background: rgba(0,0,0,0.08); 
 }
 
+#school_list {
+	padding: 20px;
+	background: rgba(0,0,0,0.08);
+	overflow: auto;
+	width: 150px;
+	height: 400px;
+}
+
 /*All button css*/
 
 .button {
