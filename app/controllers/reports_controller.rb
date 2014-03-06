@@ -21,10 +21,13 @@ class ReportsController < AdminsController
 	    # @schools = User.paginate(:page => params[:page], :per_page => 5).find_all_by_rank(@selected_schools.keys) 
 
 
-	   	# year = params[:date_year].to_i
-     #    month = params[:date_month].to_i
-		@years = (Date.parse("2014-01-01").year..Time.now.year).to_a
-	    @months = [1,2,3,4,5,6,7,8,9,10,11,12]
+
+
+
+	   	year = params[:date_year].to_i  #was commentted out in patbranch	
+        month = params[:date_month].to_i #was commentted out in patbranch
+		@years = (Date.parse("2014-01-01").year..Time.now.year).to_a #array of year numbers [2001, 2002, etc]
+		puts(getHoursReport2DArray)
 
 		puts params
 
@@ -38,10 +41,19 @@ class ReportsController < AdminsController
 	end
 
 
+
 	def export
 
 		puts "fuck yapwiouerpoiseurpoaisueproiaueporuawpoeriupowaeiurpoawjeporiawpeoriuawpoerupeoiu"
 		redirect_to "/admins/reports"     
+	end
+	
+	def getHoursReport2DArray
+		Appointments.getHoursReport2DArray(@selected_schools, params[:start_month], params[:start_year], params[:end_month], params[:end_year])
+	end
+
+	def getNumPeopleReport2DArray
+		Appointments.getNumPeopleReport2DArray(@selected_schools, params[:start_month], params[:start_year], params[:end_month], params[:end_year])
 	end
 
 end
