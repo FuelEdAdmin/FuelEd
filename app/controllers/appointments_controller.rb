@@ -25,7 +25,7 @@ class AppointmentsController < ApplicationController
         duration = params[:duration].to_i
         school = School.find_by_name(params[:school])
 
-	year = params[:date_year].to_i
+	    year = params[:date_year].to_i
         month = params[:date_month].to_i
         day = params[:date_day].to_i
         hour = params[:start_hour].to_i

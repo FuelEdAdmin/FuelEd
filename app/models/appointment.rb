@@ -41,7 +41,6 @@ class Appointment < ActiveRecord::Base
 			days = NON_LEAP_DAYS_IN_MONTH[month]
 		end
 		return days
-
 	end
 
 	def self.getHoursReport2DArray(schools, start_month, start_year, end_month, end_year)  #called in reports controller
@@ -59,6 +58,7 @@ class Appointment < ActiveRecord::Base
 	end
 
 	def self.getNumPeopleReport2DArray(schools, start_month, start_year, end_month, end_year)
+
 		#Appointments.getNumPeopleReport2DArray(params[:schools], params[:start_month], params[:start_year], params[:end_month], params[:end_year])
 	end
 

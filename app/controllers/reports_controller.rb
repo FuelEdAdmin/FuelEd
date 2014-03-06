@@ -28,6 +28,7 @@ class ReportsController < AdminsController
 		@years = (Date.parse("2014-01-01").year..Time.now.year).to_a
 	    @months = [1,2,3,4,5,6,7,8,9,10,11,12]
 
+
 		puts params
 
 	end
