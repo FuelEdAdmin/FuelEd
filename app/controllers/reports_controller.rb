@@ -25,7 +25,8 @@ class ReportsController < AdminsController
 
 	   	year = params[:date_year].to_i
         month = params[:date_month].to_i
-		@years = (Date.parse("2014-01-01").year..Time.now.year).to_a
+		@years = (Date.parse("2014-01-01").year..Time.now.year).to_a #array of year numbers [2001, 2002, etc]
+		puts(getHoursReport2DArray)
 
 
 	end
@@ -35,6 +36,14 @@ class ReportsController < AdminsController
 		School.all.each do |school|
 			@all_schools << school.name
 		end
+	end
+
+	def getHoursReport2DArray
+		Appointments.getHoursReport2DArray(@selected_schools, params[:start_month], params[:start_year], params[:end_month], params[:end_year])
+	end
+
+	def getNumPeopleReport2DArray
+		Appointments.getNumPeopleReport2DArray(@selected_schools, params[:start_month], params[:start_year], params[:end_month], params[:end_year])
 	end
 
 end

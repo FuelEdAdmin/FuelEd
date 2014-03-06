@@ -25,6 +25,7 @@ class Appointment < ActiveRecord::Base
 	end
 
 	MONTHS = [1,2,3,4,5,6,7,8,9,10,11,12]
+	NON_LEAP_DAYS_IN_MONTH = [nil, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
 	DAYS = self.populate_days
 	YEARS = [Time.new.year, Time.new.year+1]
 
@@ -33,5 +34,27 @@ class Appointment < ActiveRecord::Base
 	TIME_OF_DAY = ["AM", "PM"]
 
 
+	def daysInMonth(month, year)
+		days = nil
+		if month == 2 and Date.gregorian_leap?(year)
+			days = 29
+		else
+			days = NON_LEAP_DAYS_IN_MONTH[month]
+		return days
+
+	end
+
+	def getHoursReport2DArray(schools, start_month, start_year, end_month, end_year)  #called in reports controller
+		start_datetime = Datetime.new(start_year, start_month, 1)
+		end_datetime = Datetime.new(end_year, end_month, daysInMonth(end_month, end_year))
+		appts = []
+		for school in schools
+			appts += Appointment.where(["start >=? and end<=? and school=?", "#{start_datetime}", "#{end_datetime}", "#{school}"])
+		return appts
+	end
+
+	def getNumPeopleReport2DArray(schools, start_month, start_year, end_month, end_year)
+		#Appointments.getNumPeopleReport2DArray(params[:schools], params[:start_month], params[:start_year], params[:end_month], params[:end_year])
+	end
 
 end
