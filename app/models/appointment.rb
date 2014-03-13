@@ -43,8 +43,6 @@ class Appointment < ActiveRecord::Base
 		return days
 	end
 
-	def self.getMonths
-
 	def self.getHoursReport2DArray(schools, start_month, start_year, end_month, end_year)  #called in reports controller
 		#we want to get an array of rows where each row corresponds to a month, and the elements of each row are the number of hours booked per school
 
@@ -52,26 +50,26 @@ class Appointment < ActiveRecord::Base
 		end_datetime = DateTime.new(end_year, end_month+1, 1)
 		
 		this_month = start_datetime
-		next_month = start_date + 1.month #initialize next month to be first month after 
+		next_month = start_datetime + 1.month #initialize next month to be first month after 
 		months_to_iter_over = (end_datetime.year * 12 + end_datetime.month) - (start_datetime.year * 12 + start_datetime.month)
 
 		table = {}
 
 		months_to_iter_over.times do
-			this_entry_name = this_month.month + " " + this_month.year
+			this_entry_name = this_month.month.to_s + "/" + this_month.year.to_s
 			table[this_entry_name] = {}
 
 			schools.each do |school_name|
-				table[this_entry_name][school_name] = {}
-				school = School.find_by_name(school_name)
+				table[this_entry_name][school_name[0]] = {}
+				school = School.find_by_name(school_name[0])
 				appts = Appointment.where(["start >=? and end<=? and school_id=? and participant != ?", "#{this_month}", "#{next_month}", school, ""]).to_a
 				num_hours = 0
 
 				appts.each do |appt|
-					num_hours+= ((appt.end - appt.start)/3600).round
+					num_hours+= ((appt.end - appt.start)/3600)
 				end
 
-				table[this_entry_name][school_name] = num_hours
+				table[this_entry_name][school_name[0]] = num_hours
 			end
 
 			this_month = this_month + 1.month
@@ -79,7 +77,27 @@ class Appointment < ActiveRecord::Base
 		end
 		puts("||||  HOURS REPORT TABLE: ||||")
 		puts table
-		return table
+
+		output = []
+		table.each do |month, schools|
+			puts "SCHOOLS"
+			puts schools
+			array = [month]
+			schools.each do |school_name, hours|
+				puts "SCHOOL Name"
+				puts school_name
+				puts "SCHOOL Name Hours"
+				puts hours
+				array << hours
+			end
+			puts "ARRAY"
+			puts array.to_csv
+			output << array.to_csv
+		end
+
+		puts("||||  HOURS OUTPUT CSV: ||||")
+		puts output
+		return output
 	end
 
 
@@ -89,13 +107,65 @@ class Appointment < ActiveRecord::Base
 			days = 29
 		else
 			days = NON_LEAP_DAYS_IN_MONTH[month]
+		end
 		return days
 
 	end
 
 
 	def self.getNumPeopleReport2DArray(schools, start_month, start_year, end_month, end_year)
-		#Appointments.getNumPeopleReport2DArray(params[:schools], params[:start_month], params[:start_year], params[:end_month], params[:end_year])
+
+		start_datetime = DateTime.new(start_year, start_month, 1)
+		end_datetime = DateTime.new(end_year, end_month+1, 1)
+		
+		this_month = start_datetime
+		next_month = start_datetime + 1.month #initialize next month to be first month after 
+		months_to_iter_over = (end_datetime.year * 12 + end_datetime.month) - (start_datetime.year * 12 + start_datetime.month)
+
+		table = {}
+
+		months_to_iter_over.times do
+			this_entry_name = this_month.month.to_s + "/" + this_month.year.to_s
+			table[this_entry_name] = {}
+
+			schools.each do |school_name|
+				table[this_entry_name][school_name[0]] = {}
+				school = School.find_by_name(school_name[0])
+				appts = Appointment.where(["start >=? and end<=? and school_id=? and participant != ?", "#{this_month}", "#{next_month}", school, ""]).to_a
+				unique_person = {}
+				appts.each do |appt|
+					unique_person[appt.participant] = true
+				end
+
+				table[this_entry_name][school_name[0]] = unique_person.keys.length
+			end
+
+			this_month = this_month + 1.month
+			next_month = next_month + 1.month
+		end
+		puts("||||  HOURS REPORT TABLE: ||||")
+		puts table
+
+		output = []
+		table.each do |month, schools|
+			puts "SCHOOLS"
+			puts schools
+			array = [month]
+			schools.each do |school_name, people|
+				puts "SCHOOL Name"
+				puts school_name
+				puts "SCHOOL Name peoples"
+				puts people
+				array << people
+			end
+			puts "ARRAY"
+			puts array.to_csv
+			output << array.to_csv
+		end
+
+		puts("||||  HOURS OUTPUT CSV: ||||")
+		puts output
+		return output
 	end
 
 end

@@ -29,7 +29,8 @@ class ReportsController < AdminsController
 	   	year = params[:date_year].to_i  #was commentted out in patbranch	
         month = params[:date_month].to_i #was commentted out in patbranch
 		@years = (Date.parse("2014-01-01").year..Time.now.year).to_a #array of year numbers [2001, 2002, etc]
-		puts(getHoursReport2DArray)
+		@months = (1..12).to_a
+		#puts(getHoursReport2DArray)
 
 
 		puts params
@@ -48,7 +49,7 @@ class ReportsController < AdminsController
 	def export
 
 	  type = params[:report_type]
-	  school_names = [" "]
+	  school_names = ["Date"]
 	  all_schools = []
 	  School.all.each do |school|
 	    all_schools << [school.name, "1"]
@@ -57,11 +58,20 @@ class ReportsController < AdminsController
 	  selected.each do |school|
 	    school_names << school[0]
 	  end
-  	  output = [school_names.to_csv]
+  	  output = school_names.to_csv
 	  puts "fuck yapwiouerpoiseurpoaisueproiaueporuawpoeriupowaeiurpoawjeporiawpeoriuawpoerupeoiu"
 	
-	  Appointment.getHoursReport2DArray(selected, params[:start_month].to_i, params[:start_year].to_i, params[:end_month].to_i, params[:end_year].to_i).to_a
-
+	  if (type == "Clinical Service Hours")
+	    rows = Appointment.getHoursReport2DArray(selected, params[:start_month].to_i, params[:start_year].to_i, params[:end_month].to_i, params[:end_year].to_i).to_a
+	    rows.each do |row|
+	      output << row
+	    end
+	  else 
+	    rows = Appointment.getNumPeopleReport2DArray(selected, params[:start_month].to_i, params[:start_year].to_i, params[:end_month].to_i, params[:end_year].to_i).to_a
+	    rows.each do |row|
+	      output << row
+	    end
+	  end
 	  # put query calls n stuff here
 	  # 
 	  # Format the array to look like this!
@@ -69,7 +79,7 @@ class ReportsController < AdminsController
     	  #  output << [date, school1_data, school2_data, school3_data, ...]   
   	  #end
 
-      	  send_data output.to_csv, :type => "text/csv", :filename => "FuelEdReports_#{type}_#{Time.now.strftime('%b-%d-%Y')}.csv"
+      	  send_data output, :type => "text/csv", :filename => "FuelEdReports_#{type}_#{Time.now.strftime('%b-%d-%Y')}.csv"
 
 		#redirect_to "/admins/reports"     
 	end
@@ -80,14 +90,6 @@ class ReportsController < AdminsController
 
 	def getNumPeopleReport2DArray
 		Appointment.getNumPeopleReport2DArray(@selected_schools, params[:start_month], params[:start_year], params[:end_month], params[:end_year])
-	end
-	
-	def getHoursReport2DArray
-		Appointments.getHoursReport2DArray(@selected_schools, params[:start_month], params[:start_year], params[:end_month], params[:end_year])
-	end
-
-	def getNumPeopleReport2DArray
-		Appointments.getNumPeopleReport2DArray(@selected_schools, params[:start_month], params[:start_year], params[:end_month], params[:end_year])
 	end
 
 end
