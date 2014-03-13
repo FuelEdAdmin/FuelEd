@@ -43,18 +43,43 @@ class Appointment < ActiveRecord::Base
 		return days
 	end
 
+	def self.getMonths
+
 	def self.getHoursReport2DArray(schools, start_month, start_year, end_month, end_year)  #called in reports controller
+		#we want to get an array of rows where each row corresponds to a month, and the elements of each row are the number of hours booked per school
+
 		start_datetime = DateTime.new(start_year, start_month, 1)
-		end_datetime = DateTime.new(end_year, end_month, daysInMonth(end_month, end_year))
-		appts = []
-		schools.each do |name|
-			school = School.find_by_name(name)
-			appts += Appointment.where(["start >=? and end<=? and school_id=? and participant != ?", "#{start_datetime}", "#{end_datetime}", school, ""]).to_a
+		end_datetime = DateTime.new(end_year, end_month+1, 1)
+		
+		this_month = start_datetime
+		next_month = start_date + 1.month #initialize next month to be first month after 
+		months_to_iter_over = (end_datetime.year * 12 + end_datetime.month) - (start_datetime.year * 12 + start_datetime.month)
+
+		table = {}
+
+		months_to_iter_over.times do
+			this_entry_name = this_month.month + " " + this_month.year
+			table[this_entry_name] = {}
+
+			schools.each do |school_name|
+				table[this_entry_name][school_name] = {}
+				school = School.find_by_name(school_name)
+				appts = Appointment.where(["start >=? and end<=? and school_id=? and participant != ?", "#{this_month}", "#{next_month}", school, ""]).to_a
+				num_hours = 0
+
+				appts.each do |appt|
+					num_hours+= ((appt.end - appt.start)/3600).round
+				end
+
+				table[this_entry_name][school_name] = num_hours
+			end
+
+			this_month = this_month + 1.month
+			next_month = next_month + 1.month
 		end
-		puts "KAJHFLKAJHFKLAJHSDKASDHKJASD"
-		puts appts
-		#puts Appointment.first.start.to_s
-		return appts
+		puts("||||  HOURS REPORT TABLE: ||||")
+		puts table
+		return table
 	end
 
 
@@ -68,14 +93,6 @@ class Appointment < ActiveRecord::Base
 
 	end
 
-	def getHoursReport2DArray(schools, start_month, start_year, end_month, end_year)  #called in reports controller
-		start_datetime = Datetime.new(start_year, start_month, 1)
-		end_datetime = Datetime.new(end_year, end_month, daysInMonth(end_month, end_year))
-		appts = []
-		for school in schools
-			appts += Appointment.where(["start >=? and end<=? and school=?", "#{start_datetime}", "#{end_datetime}", "#{school}"])
-		return appts
-	end
 
 	def self.getNumPeopleReport2DArray(schools, start_month, start_year, end_month, end_year)
 		#Appointments.getNumPeopleReport2DArray(params[:schools], params[:start_month], params[:start_year], params[:end_month], params[:end_year])
