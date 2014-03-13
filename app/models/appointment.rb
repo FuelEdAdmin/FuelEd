@@ -48,12 +48,13 @@ class Appointment < ActiveRecord::Base
 		start_datetime = DateTime.new(start_year, start_month, 1)
 		end_datetime = DateTime.new(end_year, end_month, daysInMonth(end_month, end_year))
 		appts = []
-		schools.each do |school|
-			appts += Appointment.where(["start >=? and end<=? and school=? and client != ?", "#{start_datetime}", "#{end_datetime}", "#{school}", ""]).to_a
+		schools.each do |name|
+			school = School.find_by_name(name)
+			appts += Appointment.where(["start >=? and end<=? and school_id=? and participant != ?", "#{start_datetime}", "#{end_datetime}", school, ""]).to_a
 		end
 		puts "KAJHFLKAJHFKLAJHSDKASDHKJASD"
 		puts appts
-		puts Appointment.first.start.to_s
+		#puts Appointment.first.start.to_s
 		return appts
 	end
 
