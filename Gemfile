@@ -23,7 +23,7 @@ group :production do
 end
 
 gem 'will_paginate'
-#gem 'bcrypt-ruby', '~> 3.0.0' #omniauth??
+gem 'bcrypt-ruby', '~> 3.0.0' #omniauth??
 gem 'omniauth'
 #FOR LATER IF WE WANT TO USE OTHER PROVIDES FOR AUTHENTICATION
 #gem 'omniauth-twitter'
@@ -63,7 +63,7 @@ end
 gem 'haml'
 
 # Use ActiveModel has_secure_password
-gem 'bcrypt-ruby', '~> 3.1.1'
+#gem 'bcrypt-ruby', '~> 3.1.1'
 
 # Use unicorn as the app server
 # gem 'unicorn'

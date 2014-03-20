@@ -19,7 +19,7 @@
               %p Booked by no one
               -if @current_user.rank == "participant"
                 =link_to "Book", book_participant_url(appt.id), :class => "link"
-              -if @current_user.rank == "counselor"
+              -if @current_user.rank == "counselor"  
                 = form_tag book_counselor_path(appt.id), :method => :put do
                   = select_tag :participant, options_for_select(@users[appt.school.name])
                   = submit_tag 'Book'
@@ -27,9 +27,10 @@
               %p Booked by #{appt.participant}  
               -if @current_user.rank == "participant"
                 =link_to "Unbook", unbook_url(appt.id), :class => "link"
-          -if @current_user.rank == "counselor"        
+          -if @current_user.rank == "counselor"  
             =link_to "View", "appointments/#{appt.id}", :class => "link"
             =link_to "Edit", "appointments/#{appt.id}/edit", :class => "link"
+            =link_to "Unbook", unbook_url(appt.id), :class => "link"
             =button_to "Delete", appointment_path(appt), :method => :delete, :confirm => 'Are you sure?'
 
 = will_paginate @appointments

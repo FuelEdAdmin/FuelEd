@@ -5,7 +5,9 @@
 
 = form_tag '/reports/export', :method => :get do
   %div#school_list
-    %p <b>Schools</b>
+    %h3 Schools
+    %p
+      If you don't select any schools, reports will be run for all schools.
     - @all_schools.each do |school_name|
       = check_box_tag "school_names[#{school_name}]", 1, false, :id => "school_names[#{school_name}]"
       = school_name

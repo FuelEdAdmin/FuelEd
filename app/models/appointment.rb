@@ -50,19 +50,26 @@ class Appointment < ActiveRecord::Base
 		end_datetime = DateTime.new(end_year, end_month+1, 1)
 		
 		this_month = start_datetime
-		next_month = start_datetime + 1.month #initialize next month to be first month after 
+		next_month = DateTime.new(start_year, start_month+1, 1) #initialize next month to be first month after 
 		months_to_iter_over = (end_datetime.year * 12 + end_datetime.month) - (start_datetime.year * 12 + start_datetime.month)
 
 		table = {}
 
+		school_totals = Hash.new(0)
+
 		months_to_iter_over.times do
+
+			puts " ||||  THE MONTHS |||"
+			puts this_month
+			puts next_month
+			puts DateTime.new(this_month.year, 2, 1) < next_month
 			this_entry_name = this_month.month.to_s + "/" + this_month.year.to_s
 			table[this_entry_name] = {}
 
 			schools.each do |school_name|
 				table[this_entry_name][school_name[0]] = {}
 				school = School.find_by_name(school_name[0])
-				appts = Appointment.where(["start >=? and end<=? and school_id=? and participant != ?", "#{this_month}", "#{next_month}", school, ""]).to_a
+				appts = Appointment.where(["start >=? and end<? and school_id=? and participant != ?", this_month, next_month, school, ""]).to_a
 				num_hours = 0
 
 				appts.each do |appt|
@@ -70,13 +77,19 @@ class Appointment < ActiveRecord::Base
 				end
 
 				table[this_entry_name][school_name[0]] = num_hours
+				school_totals[school_name[0]] += num_hours
 			end
 
-			this_month = this_month + 1.month
-			next_month = next_month + 1.month
+			this_month = next_month
+			next_month = DateTime.new(next_month.year, next_month.month + 1, 1)
 		end
 		puts("||||  HOURS REPORT TABLE: ||||")
 		puts table
+
+		school_total_arr = [ "Total" ]
+		schools.each do |school_name|
+			school_total_arr << school_totals[school_name[0]]
+		end
 
 		output = []
 		table.each do |month, schools|
@@ -94,6 +107,8 @@ class Appointment < ActiveRecord::Base
 			puts array.to_csv
 			output << array.to_csv
 		end
+
+		output << school_total_arr.to_csv
 
 		puts("||||  HOURS OUTPUT CSV: ||||")
 		puts output
@@ -119,10 +134,12 @@ class Appointment < ActiveRecord::Base
 		end_datetime = DateTime.new(end_year, end_month+1, 1)
 		
 		this_month = start_datetime
-		next_month = start_datetime + 1.month #initialize next month to be first month after 
+		next_month = DateTime.new(start_year, start_month+1, 1) #initialize next month to be first month after 
 		months_to_iter_over = (end_datetime.year * 12 + end_datetime.month) - (start_datetime.year * 12 + start_datetime.month)
 
 		table = {}
+
+		school_totals = Hash.new(0)
 
 		months_to_iter_over.times do
 			this_entry_name = this_month.month.to_s + "/" + this_month.year.to_s
@@ -131,20 +148,26 @@ class Appointment < ActiveRecord::Base
 			schools.each do |school_name|
 				table[this_entry_name][school_name[0]] = {}
 				school = School.find_by_name(school_name[0])
-				appts = Appointment.where(["start >=? and end<=? and school_id=? and participant != ?", "#{this_month}", "#{next_month}", school, ""]).to_a
+				appts = Appointment.where(["start >=? and end<? and school_id=? and participant != ?", this_month, next_month, school, ""]).to_a
 				unique_person = {}
 				appts.each do |appt|
 					unique_person[appt.participant] = true
 				end
 
 				table[this_entry_name][school_name[0]] = unique_person.keys.length
+				school_totals[school_name[0]] += unique_person.keys.length
 			end
 
-			this_month = this_month + 1.month
-			next_month = next_month + 1.month
+			this_month = next_month
+			next_month = DateTime.new(next_month.year, next_month.month + 1, 1)
 		end
 		puts("||||  HOURS REPORT TABLE: ||||")
 		puts table
+
+		school_total_arr = [ "Total" ]
+		schools.each do |school_name|
+			school_total_arr << school_totals[school_name[0]]
+		end
 
 		output = []
 		table.each do |month, schools|
@@ -162,6 +185,8 @@ class Appointment < ActiveRecord::Base
 			puts array.to_csv
 			output << array.to_csv
 		end
+
+		output << school_total_arr.to_csv
 
 		puts("||||  HOURS OUTPUT CSV: ||||")
 		puts output

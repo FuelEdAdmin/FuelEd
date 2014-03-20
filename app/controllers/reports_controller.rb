@@ -58,26 +58,30 @@ class ReportsController < AdminsController
 	  selected.each do |school|
 	    school_names << school[0]
 	  end
-  	  output = school_names.to_csv
-	  puts "fuck yapwiouerpoiseurpoaisueproiaueporuawpoeriupowaeiurpoawjeporiawpeoriuawpoerupeoiu"
+
+	  output = [].to_csv
 	
-	  if (type == "Clinical Service Hours")
+	  if (type == "Clinical Service Hours" || type == "Both")
+	    output << [ "Clinical Service Hours" ].to_csv
+	    output << school_names.to_csv
 	    rows = Appointment.getHoursReport2DArray(selected, params[:start_month].to_i, params[:start_year].to_i, params[:end_month].to_i, params[:end_year].to_i).to_a
 	    rows.each do |row|
 	      output << row
 	    end
-	  else 
+	  end
+
+	  if (type == "People Served" || type == "Both")
+            if (type == "Both")
+	      output << [].to_csv
+	      output << [].to_csv
+	    end
+	    output << [ "People Served" ].to_csv
+	    output << school_names.to_csv
 	    rows = Appointment.getNumPeopleReport2DArray(selected, params[:start_month].to_i, params[:start_year].to_i, params[:end_month].to_i, params[:end_year].to_i).to_a
 	    rows.each do |row|
 	      output << row
 	    end
 	  end
-	  # put query calls n stuff here
-	  # 
-	  # Format the array to look like this!
-  	  #dates.each do |date| 
-    	  #  output << [date, school1_data, school2_data, school3_data, ...]   
-  	  #end
 
       	  send_data output, :type => "text/csv", :filename => "FuelEdReports_#{type}_#{Time.now.strftime('%b-%d-%Y')}.csv"
 
