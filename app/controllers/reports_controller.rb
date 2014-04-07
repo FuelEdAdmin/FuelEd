@@ -30,10 +30,6 @@ class ReportsController < AdminsController
         month = params[:date_month].to_i #was commentted out in patbranch
 		@years = (Date.parse("2014-01-01").year..Time.now.year).to_a #array of year numbers [2001, 2002, etc]
 		@months = (1..12).to_a
-		#puts(getHoursReport2DArray)
-
-
-		puts params
 
 	end
 

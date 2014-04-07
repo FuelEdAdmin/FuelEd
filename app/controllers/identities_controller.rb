@@ -6,7 +6,6 @@ class IdentitiesController < AdminsController
       			@schools << school.name
     		end
 		@identity = env['omniauth.identity']
-		puts env['omniauth.identity']
 	end
 
 	def index

@@ -9,8 +9,6 @@ class User < ActiveRecord::Base
   validates :rank, :inclusion => { :in => USER_TYPES, :message => "%{value} is not a valid user type" }
 
 	def self.from_omniauth(auth, rank, school)
-		puts auth["uid"]
-		puts "kajsdkajshdkajsdjkas"
 		find_by_provider_and_uid(auth["provider"], auth["uid"]) || create_with_omniauth(auth, rank, school)
 	end
 
