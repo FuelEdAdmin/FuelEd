@@ -2,7 +2,7 @@ class User < ActiveRecord::Base
   has_and_belongs_to_many :schools
   has_one :identity, :dependent => :destroy
   USER_TYPES = ["participant", "counselor", "admin"]
-  @@randIDs = (1..1000).to_a.shuffle
+  @@randIDs = (1..100000).to_a.shuffle
 
   validates_uniqueness_of :email
   validates_format_of :email, :with => /\A[-a-z0-9_+\.]+\@([-a-z0-9]+\.)+[a-z0-9]{2,4}\z/i
@@ -13,7 +13,6 @@ class User < ActiveRecord::Base
 	end
 
   def self.find_by_provider_and_uid(provider, uid)
-    # puts where(provider: provider, uid: uid)
     where(provider: provider, uid: uid).first
   end
 
