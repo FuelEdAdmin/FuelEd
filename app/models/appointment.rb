@@ -59,10 +59,6 @@ class Appointment < ActiveRecord::Base
 
 		months_to_iter_over.times do
 
-			puts " ||||  THE MONTHS |||"
-			puts this_month
-			puts next_month
-			puts DateTime.new(this_month.year, 2, 1) < next_month
 			this_entry_name = this_month.month.to_s + "/" + this_month.year.to_s
 			table[this_entry_name] = {}
 
@@ -83,8 +79,6 @@ class Appointment < ActiveRecord::Base
 			this_month = next_month
 			next_month = DateTime.new(next_month.year, next_month.month + 1, 1)
 		end
-		puts("||||  HOURS REPORT TABLE: ||||")
-		puts table
 
 		school_total_arr = [ "Total" ]
 		schools.each do |school_name|
@@ -93,25 +87,15 @@ class Appointment < ActiveRecord::Base
 
 		output = []
 		table.each do |month, schools|
-			puts "SCHOOLS"
-			puts schools
 			array = [month]
 			schools.each do |school_name, hours|
-				puts "SCHOOL Name"
-				puts school_name
-				puts "SCHOOL Name Hours"
-				puts hours
 				array << hours
 			end
-			puts "ARRAY"
-			puts array.to_csv
 			output << array.to_csv
 		end
 
 		output << school_total_arr.to_csv
 
-		puts("||||  HOURS OUTPUT CSV: ||||")
-		puts output
 		return output
 	end
 
@@ -161,8 +145,6 @@ class Appointment < ActiveRecord::Base
 			this_month = next_month
 			next_month = DateTime.new(next_month.year, next_month.month + 1, 1)
 		end
-		puts("||||  HOURS REPORT TABLE: ||||")
-		puts table
 
 		school_total_arr = [ "Total" ]
 		schools.each do |school_name|
@@ -171,25 +153,15 @@ class Appointment < ActiveRecord::Base
 
 		output = []
 		table.each do |month, schools|
-			puts "SCHOOLS"
-			puts schools
 			array = [month]
 			schools.each do |school_name, people|
-				puts "SCHOOL Name"
-				puts school_name
-				puts "SCHOOL Name peoples"
-				puts people
 				array << people
 			end
-			puts "ARRAY"
-			puts array.to_csv
 			output << array.to_csv
 		end
 
 		output << school_total_arr.to_csv
 
-		puts("||||  HOURS OUTPUT CSV: ||||")
-		puts output
 		return output
 	end
 
