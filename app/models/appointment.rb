@@ -44,9 +44,13 @@ class Appointment < ActiveRecord::Base
 	end
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 >>>>>>> idk, probz just gonna overwrite it anyways
+=======
+
+>>>>>>> f16e471afe35aa98fb230fe1b1824f492cf500c0
 	def self.getHoursReport2DArray(schools, start_month, start_year, end_month, end_year)  #called in reports controller
 		#we want to get an array of rows where each row corresponds to a month, and the elements of each row are the number of hours booked per school
 
