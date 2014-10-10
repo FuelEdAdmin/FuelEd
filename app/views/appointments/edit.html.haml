@@ -15,27 +15,27 @@
             %p
             %b= label :appointment, :date, 'Date:'
             = label :date_month, ''
-            = select_tag :date_month, options_for_select(Appointment::MONTHS, @appointment.start.strftime("%m").to_i)
+            = select_tag :date_month, options_for_select(Appointment::MONTHS, @appointment.start_time.strftime("%m").to_i)
             = label :date_day, '/'
-            = select_tag :date_day, options_for_select(Appointment::DAYS, @appointment.start.strftime("%d").to_i)
+            = select_tag :date_day, options_for_select(Appointment::DAYS, @appointment.start_time.strftime("%d").to_i)
             = label :date_year, '/'
-            = select_tag :date_year, options_for_select(Appointment::YEARS, @appointment.start.strftime("%Y").to_i)   
+            = select_tag :date_year, options_for_select(Appointment::YEARS, @appointment.start_time.strftime("%Y").to_i)   
             %p                 
             %b= label :appointment, :start, 'Start:'
             = label :start_hour, ''
-            = select_tag :start_hour, options_for_select(Appointment::HOURS, @appointment.start.strftime("%I").to_i)
+            = select_tag :start_hour, options_for_select(Appointment::HOURS, @appointment.start_time.strftime("%I").to_i)
             = label :start_minutes, ':'
-            = select_tag :start_minutes, options_for_select(Appointment::MINUTES, @appointment.start.strftime("%M").to_i)
+            = select_tag :start_minutes, options_for_select(Appointment::MINUTES, @appointment.start_time.strftime("%M").to_i)
             = label :start_tod, '-'
-            = select_tag :start_tod, options_for_select(Appointment::TIME_OF_DAY, @appointment.start.strftime("%p").to_i)
+            = select_tag :start_tod, options_for_select(Appointment::TIME_OF_DAY, @appointment.start_time.strftime("%p").to_i)
             %p
             %b= label :appointment, :end, 'End:'
             = label :end_hour, ''
-            = select_tag :end_hour, options_for_select(Appointment::HOURS, @appointment.end.strftime("%I").to_i)
+            = select_tag :end_hour, options_for_select(Appointment::HOURS, @appointment.end_time.strftime("%I").to_i)
             = label :end_minutes, ':'
-            = select_tag :end_minutes, options_for_select(Appointment::MINUTES, @appointment.end.strftime("%M").to_i)
+            = select_tag :end_minutes, options_for_select(Appointment::MINUTES, @appointment.end_time.strftime("%M").to_i)
             = label :end_tod, '-'
-            = select_tag :end_tod, options_for_select(Appointment::TIME_OF_DAY, @appointment.end.strftime("%p").to_i)
+            = select_tag :end_tod, options_for_select(Appointment::TIME_OF_DAY, @appointment.end_time.strftime("%p").to_i)
             %p
             = submit_tag 'Update Appointment'
             =link_to "Cancel", appointments_path, :class => "link"

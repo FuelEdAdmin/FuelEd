@@ -65,11 +65,11 @@ class Appointment < ActiveRecord::Base
 			schools.each do |school_name|
 				table[this_entry_name][school_name[0]] = {}
 				school = School.find_by_name(school_name[0])
-				appts = Appointment.where(["start >=? and end<? and school_id=? and participant != ?", this_month, next_month, school, ""]).to_a
+				appts = Appointment.where(["start_time >= ? and end_time < ? and school_id=? and participant != ?", this_month, next_month, school, ""]).to_a
 				num_hours = 0
 
 				appts.each do |appt|
-					num_hours+= ((appt.end - appt.start)/3600)
+					num_hours+= ((appt.end_time - appt.start_time)/3600)
 				end
 
 				table[this_entry_name][school_name[0]] = num_hours
@@ -132,7 +132,7 @@ class Appointment < ActiveRecord::Base
 			schools.each do |school_name|
 				table[this_entry_name][school_name[0]] = {}
 				school = School.find_by_name(school_name[0])
-				appts = Appointment.where(["start >=? and end<? and school_id=? and participant != ?", this_month, next_month, school, ""]).to_a
+				appts = Appointment.where(["start_time >=? and end_time<? and school_id=? and participant != ?", this_month, next_month, school, ""]).to_a
 				unique_person = {}
 				appts.each do |appt|
 					unique_person[appt.participant] = true

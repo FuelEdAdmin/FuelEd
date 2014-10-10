@@ -13,9 +13,9 @@ class ApplicationController < ActionController::Base
     def booked_appts
       current_date = Time.new
       if @current_user.rank == "participant"
-	    	@myappts = Appointment.where(["start >= ? and participant = ?", "#{current_date}", "#{current_user.name}"]).limit(3)
+	    	@myappts = Appointment.where(["start_time >= ? and participant = ?", "#{current_date}", "#{current_user.name}"]).limit(3)
 	    elsif @current_user.rank == "counselor"
-	    	@myappts = Appointment.where(["start >= ? and participant != ? and counselor = ?", "#{current_date}", "", "#{current_user.name}"]).limit(3)
+	    	@myappts = Appointment.where(["start_time >= ? and participant != ? and counselor = ?", "#{current_date}", "", "#{current_user.name}"]).limit(3)
 	    else
         @myappts = Appointment.all.limit(3)
       end

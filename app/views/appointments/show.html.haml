@@ -18,9 +18,9 @@
       #{@appointment.room}
     %p
       %strong Start:
-      #{@appointment.start.strftime("%I:%M%p, %m/%d/%Y")}
+      #{@appointment.start_time.strftime("%I:%M%p, %m/%d/%Y")}
     %p
       %strong End:
-      #{@appointment.end.strftime("%I:%M%p, %m/%d/%Y")}
+      #{@appointment.end_time.strftime("%I:%M%p, %m/%d/%Y")}
     </br>
     =link_to "Go back to all appointments", appointments_path, :class => "link"

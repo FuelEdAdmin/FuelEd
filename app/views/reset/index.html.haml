@@ -14,7 +14,7 @@
         %table{cellpadding: "5px", width: "100%"}
 
           %td= label :identities, :muffins, 'Muffin Code'
-          %td= text_field_tag :muffins, "", :value => @real_muffins
+          %td= password_field_tag :muffins, "", :value => @real_muffins
           %tr
           %td= label :identities, :email, 'Email'
           %td= text_field_tag :email

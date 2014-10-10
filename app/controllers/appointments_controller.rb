@@ -50,8 +50,8 @@ class AppointmentsController < ApplicationController
                 @appointment.room = room
                 @appointment.school = school
                 end_date = (start_date.to_time + duration.minutes).to_datetime
-                @appointment.start = start_date
-                @appointment.end = end_date
+                @appointment.start_time = start_date
+                @appointment.end_time = end_date
                 @appointment.save
                 start_date = end_date
             end
@@ -92,8 +92,8 @@ class AppointmentsController < ApplicationController
         else
                 end_date = DateTime.new(params[:date_year].to_i,params[:date_month].to_i,params[:date_day].to_i, params[:end_hour].to_i, params[:end_minutes].to_i)
         end
-        @appointment.start = start_date
-        @appointment.end = end_date
+        @appointment.start_time = start_date
+        @appointment.end_time = end_date
         @appointment.update_attributes!(params[:appointment].permit(:participant, :counselor, :school, :date, :room))
         redirect_to appointment_path(@appointment)
     end
@@ -110,9 +110,9 @@ class AppointmentsController < ApplicationController
 
         current_date = Time.new
            if @current_user.rank == "participant"
-             @appointments = Appointment.paginate(:page => params[:page], :per_page => 5).where(["school_id = ? and start >= ? and participant = ?", current_user.schools.first.id, current_date, ""])  #find where school == my school and DATE > current date
+             @appointments = Appointment.paginate(:page => params[:page], :per_page => 5).where(["school_id = ? and start_time >= ? and participant = ?", current_user.schools.first.id, current_date, ""])  #find where school == my school and DATE > current date
            elsif @current_user.rank == "counselor"
-             @appointments = Appointment.paginate(:page => params[:page], :per_page => 5).where(["counselor = ? and start >= ?", current_user.name, current_date])  #find where counselor == me and DATE > current date
+             @appointments = Appointment.paginate(:page => params[:page], :per_page => 5).where(["counselor = ? and start_time >= ?", current_user.name, current_date])  #find where counselor == me and DATE > current date
            else
              @appointments = Appointment.paginate(:page => params[:page], :per_page => 5)
            end
@@ -125,9 +125,9 @@ class AppointmentsController < ApplicationController
         current_date = Time.new
         @appointments = Appointment.all
           if @current_user.rank == "participant"
-            @appointments = Appointment.where(["start < ? and participant = ?", "#{current_date}", "#{current_user.name}"])
+            @appointments = Appointment.where(["start_time < ? and participant = ?", "#{current_date}", "#{current_user.name}"])
           elsif @current_user.rank == "counselor"
-            @appointments = Appointment.where(["start < ? and participant != ? and counselor = ?", "#{current_date}", "", "#{current_user.name}"])
+            @appointments = Appointment.where(["start_time < ? and participant != ? and counselor = ?", "#{current_date}", "", "#{current_user.name}"])
           end
 
     end

@@ -3,7 +3,7 @@
 
 
 .mainContentBoxHeader all appointments
-- @appointments.sort_by{|appt| appt.start}.each do |appt|
+- @appointments.sort_by{|appt| appt.start_time}.each do |appt|
   %p
     %table{:class => "appt"}
       %tr
@@ -12,7 +12,7 @@
             counselor: #{appt.counselor} <br/>
             School: #{appt.school.name} <br/>
             Room: #{appt.room} <br/>
-            Time: #{appt.start.strftime("%I:%M%p")} - #{appt.end.strftime("%I:%M%p, %m/%d/%Y")}
+            Time: #{appt.start_time.strftime("%I:%M%p")} - #{appt.end_time.strftime("%I:%M%p, %m/%d/%Y")}
         %td{:width => "40%"}
           -if appt.participant
             -if appt.participant == ""

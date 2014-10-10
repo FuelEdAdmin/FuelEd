@@ -54,12 +54,12 @@
           -if @current_user.rank != "admin"
             %div{:id => "workshops"}
               %h2 upcoming appointments
-              - booked_appts.sort_by{|appt| appt.start}.each do |appt|
+              - booked_appts.sort_by{|appt| appt.start_time}.each do |appt|
                 %p.textbox
                   Counselor: #{appt.counselor} <br/>
                   Participant: #{appt.participant} <br/>
                   School: #{appt.school.name} <br/>
-                  Time: #{appt.start.strftime("%I:%M%p")} - #{appt.end.strftime("%I:%M%p, %m/%d/%Y")}<br/>
+                  Time: #{appt.start_time.strftime("%I:%M%p")} - #{appt.end_time.strftime("%I:%M%p, %m/%d/%Y")}<br/>
                   =link_to "Unbook", unbook_url(appt.id), :class => "link"
 
         %div{:id => "calendar"}
