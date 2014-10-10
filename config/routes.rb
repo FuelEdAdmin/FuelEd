@@ -23,6 +23,8 @@ FuelEd::Application.routes.draw do
   get "/appointments/:id/book_participant" => "appointments#book_participant", as: :book_participant
   get "/appointments/:id/unbook" => "appointments#unbook", as: :unbook
   match "/user/:id/add_school" => "users#add_school", as: :add_school, via: :get
+  match "/h9Hbbe894xx030" => "reset#index", as: :reset, via: :get
+  match "/h9Hbbe894xx030/execute" => "reset#execute", as: :reset_execute, via: :put
 
   resources :appointments
   resources :schools

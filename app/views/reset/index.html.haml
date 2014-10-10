@@ -1,0 +1,28 @@
+-#  This file is app/views/reset/index.html.haml
+
+.mainContentBox
+  .mainContentBoxHeader reset password
+  %div{:class => "textbox"}
+
+    - if flash[:notice]
+      #notice.message= flash[:notice]
+    - elsif flash[:warning]
+      #warning.message= flash[:warning]
+
+    = form_tag reset_execute_path, :method => :put do
+      %nav
+        %table{cellpadding: "5px", width: "100%"}
+
+          %td= label :identities, :muffins, 'Muffin Code'
+          %td= text_field_tag :muffins, "", :value => @real_muffins
+          %tr
+          %td= label :identities, :email, 'Email'
+          %td= text_field_tag :email
+          %tr
+          %td= label :identities, :password_digest, 'New Password'
+          %td= password_field_tag :password_digest
+          %tr
+          %td= label :identities, :password_digest_confirm, 'Confirm Password'
+          %td= password_field_tag :password_digest_confirm
+          %tr
+      %input.button{name: "commit", type: "submit", value: "Submit"}

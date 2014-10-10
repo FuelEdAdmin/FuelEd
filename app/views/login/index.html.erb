@@ -32,6 +32,13 @@
 			<div class="clear"></div>
 		</div>
 		<div id= "content">
+
+		<% if flash[:notice] %>
+			<div id="notice"> <%= flash[:notice] %> </div>
+		<% elsif flash[:warning] %>
+			<div id="warning"> <%= flash[:warning] %> </div>
+		<% end %>
+
 		<h2>welcome</h2>
 		<% if current_user %>
   			<h3>User Profile</h3>
